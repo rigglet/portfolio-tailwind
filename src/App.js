@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import { useState, useEffect } from "react";
 import './App.css';
+import { Button } from "@material-tailwind/react";
 
-function App() {
+export default function App() {
+  const [theme, setTheme] = useState('light');
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setTheme('dark')
+    } else {
+      setTheme('light')
+    }
+  }, [])
+  
+  useEffect(() => {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [theme])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-blue-gray-100 dark:bg-black h-screen w-screen flex items-center justify-center">
+      <Button onClick={()=>setTheme(theme === 'dark' ? 'light' : 'dark')}>Mode</Button>
     </div>
-  );
+  )
 }
-
-export default App;
