@@ -4,23 +4,25 @@ module.exports = withMT({
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      height: {
+        '15': '15vh',
+      },
+    },
     fontFamily: {
       sans: ["Open Sans", "sans-serif"],
+      montserrat: ["Montserrat", "sans-serif"], 
+      nunito: ["Nunito", "sans-serif"],
+      poppins: ["Poppins", "sans-serif"],
     },
     colors: {
-      sky: {
-          50: "#f0f9ff",
-          100: "#e0f2fe",
-          200: "#bae6fd",
-          300: "#7dd3fc",
-          400: "#38bdf8",
-          500: "#0ea5e9",
-          600: "#0284c7",
-          700: "#0369a1",
-          800: "#075985",
-          900: "#0c4a6e",
-        },
+      bgdark: "#2f2f2f",
+      bglight: "#e2e2e2",
+      textdark: "#2f2f2f",
+      textlight: "#e2e2e2",
+      darkshadow: "#2B2B37",
+      primary: "#5156B8",
+      secondary: "#D478D1",
     },
   },
   plugins: [],
