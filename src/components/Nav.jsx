@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion as m } from "framer-motion";
 import { HashLink } from "react-router-hash-link";
 import { Button } from "@material-tailwind/react";
 import Icon from "../components/Icon"
 
 //import NavbarIcon from "../components/NavbarIcon";
 
-const NavLine = () => {
-    return (<motion.div className="bg-primary rounded-xl h-1"> </motion.div>)
+const NavLine = ({homeInView}) => {
+    return (<m.div initial={{width: "0"}}
+      animate={{width: homeInView ? "100" : "0"}}
+      transition={{ duration: 2 }}
+      className="bg-primary rounded-xl h-1"> </m.div>)
 }
 
 const Nav = ({
@@ -19,8 +22,8 @@ const Nav = ({
   experienceInView,
   contactInView,
   allIcons,
-    showNav,
-    theme,
+  showNav,
+  theme,
   setTheme
 }) => {
   
@@ -32,12 +35,12 @@ const Nav = ({
   return (
     
     // <nav className={showNav ? "showNav" : "hideNav"} showNav={showNav}>
-      <nav className={"flex h-15 w-full px-64 justify-between items-center fixed backdrop-blur-md bg-bglight/30 dark:bg-bgdark/30 z-10"} showNav={showNav}>
+      <nav className={"z-50 flex h-15 w-full px-64 justify-between items-center fixed backdrop-blur-md bg-bglight/30 dark:bg-bgdark/30 z-10"} showNav={showNav}>
       <h1 className="text-textdark dark:text-textlight uppercase text-2xl font-bold font-montserrat px-0 relative">Neil Rigg
       <div className="absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg -z-10 dark:bg-darkshadow"></div></h1>
       
-      {/* <motion.div className={showDropMenu ? "menu" : "menu mob-menu-hide"}> */}
-      <motion.div className={"flex justify-around items-center gap-8 relative "}>
+      {/* <m.div className={showDropMenu ? "menu" : "menu mob-menu-hide"}> */}
+      <m.div className={"flex justify-around items-center gap-8 relative "}>
       <HashLink
         className="link"
         smooth
@@ -48,17 +51,12 @@ const Nav = ({
           onClick={() => setShowMenu(false)}
         >
           <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">Home</h1>
-          <NavLine
-            height="4px"
-            bgcolor="#313131"
-            initial={{
-                width: "0%",
-            }}
-            animate={{
-              width: homeInView ? "100%" : "0%",
-            }}
+          <m.div
+            initial={{ width: "0" }}
+            animate={{ width: homeInView ? "100%" : "0" }}
             transition={{ duration: 0.75 }}
-            />
+            className="bg-primary rounded-xl h-1 w-full">
+          </m.div>
         </HashLink>
         <HashLink
         className="link"
@@ -70,15 +68,12 @@ const Nav = ({
           onClick={() => setShowMenu(false)}
         >
           <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">About</h1>
-          <NavLine
-            height="4px"
-            bgcolor="#313131"
-            initial={{ width: "0%" }}
-            animate={{
-                width: aboutInView ? "100%" : "0%",
-            }}
+          <m.div
+            initial={{ width: "0" }}
+            animate={{ width: aboutInView ? "100%" : "0" }}
             transition={{ duration: 0.75 }}
-            />
+            className="bg-primary rounded-xl h-1 w-full">
+          </m.div>
         </HashLink>
         <HashLink
           className="link"
@@ -89,15 +84,12 @@ const Nav = ({
           onClick={() => setShowMenu(false)}
         >
           <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">Portfolio</h1>
-          <NavLine
-            height="4px"
-            bgcolor="#313131"
-            initial={{ width: "0%" }}
-            animate={{
-                width: portfolioInView ? "100%" : "0%",
-            }}
+          <m.div
+            initial={{ width: "0" }}
+            animate={{ width: portfolioInView ? "100%" : "0" }}
             transition={{ duration: 0.75 }}
-            />
+            className="bg-primary rounded-xl h-1 w-full">
+          </m.div>
         </HashLink>
         <HashLink
           className="link"
@@ -108,15 +100,12 @@ const Nav = ({
           onClick={() => setShowMenu(false)}
         >
           <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">Skills</h1>
-          <NavLine
-            height="4px"
-            bgcolor="#313131"
-            initial={{ width: "0%" }}
-            animate={{
-                width: skillsInView ? "100%" : "0%",
-            }}
+          <m.div
+            initial={{ width: "0" }}
+            animate={{ width: skillsInView ? "100%" : "0" }}
             transition={{ duration: 0.75 }}
-            />
+            className="bg-primary rounded-xl h-1 w-full">
+          </m.div>
         </HashLink>
         <HashLink
           className="link"
@@ -127,15 +116,12 @@ const Nav = ({
           onClick={() => setShowMenu(false)}
           >
           <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">Education</h1>
-          <NavLine
-            height="4px"
-            bgcolor="#313131"
-            initial={{ width: "0%" }}
-            animate={{
-                width: educationInView ? "100%" : "0%",
-            }}
+          <m.div
+            initial={{ width: "0" }}
+            animate={{ width: educationInView ? "100%" : "0" }}
             transition={{ duration: 0.75 }}
-            />
+            className="bg-primary rounded-xl h-1 w-full">
+          </m.div>
         </HashLink>
         <HashLink
           className="link"
@@ -146,15 +132,12 @@ const Nav = ({
           onClick={() => setShowMenu(false)}
           >
           <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">Experience</h1>
-          <NavLine
-            height="4px"
-            bgcolor="#313131"
-            initial={{ width: "0%" }}
-            animate={{
-                width: experienceInView ? "100%" : "0%",
-            }}
+          <m.div
+            initial={{ width: "0" }}
+            animate={{ width: experienceInView ? "100%" : "0" }}
             transition={{ duration: 0.75 }}
-          />
+            className="bg-primary rounded-xl h-1 w-full">
+          </m.div>
         </HashLink>
         <HashLink
           className="link"
@@ -165,19 +148,8 @@ const Nav = ({
           onClick={() => setShowMenu(false)}
         >
           <Button ripple={true} variant="outlined" color="#5156B8" className="!text-textdark dark:!text-textlight border-primary border-2 text-l font-bold font-nunito p-2">Contact</Button>
-          {/* <h1 className="text-textdark dark:text-textlight text-l font-normal">Contact</h1> */}
-        {/* <NavLine
-            height="4px"
-            bgcolor="#313131"
-            initial={{ width: "0%" }}
-            animate={{
-                width: contactInView ? "100%" : "0%",
-            }}
-            transition={{ duration: 0.75 }}
-          />
-        */}
         </HashLink> 
-      </motion.div>
+      </m.div>
       
           
         {/* <Button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>Mode</Button> */}

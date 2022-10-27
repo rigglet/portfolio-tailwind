@@ -13,15 +13,17 @@ import {
 
 const About = ({ aboutRef, aboutControls }) => {
   return (
-    <section ref={aboutRef} className="flex flex-col justify-around w-full h-full min-h-screen bg-bglight dark:bg-bgdark">
+    <section ref={aboutRef} className="pt-20 flex flex-col justify-around w-full h-full min-h-screen bg-bglight dark:bg-bgdark">
         <m.div
         variants={fadeInOut}
         initial="initial"
         animate={aboutControls}
         className="section-header"
-        >
-            <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative">About me
-            <div className="absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg -z-10 dark:bg-darkshadow"></div></h1>
+          >
+              <div className="flex items-start">
+                <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative z-10">About me
+                <div className="-z-10 absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg dark:bg-darkshadow"></div></h1>
+              </div>
         </m.div>
 
         

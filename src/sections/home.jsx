@@ -50,17 +50,15 @@ const Home = ({ homeRef, homeControls, showNav }) => {
         </m.div>
 
         <HashLink smooth to="/#portfolio" className="home-button">
-            <Button ripple={true} variant="filled" color="#5156B8" className="bg-primary !text-textlight dark:text-textlight text-l font-bold font-nunito hover:!shadow-lg hover:!shadow-indigo-500/40">View Projects</Button>
-            {/* <m.button
-            className="page-btn dark-btn"
+            <m.div
             variants={buttonVariants}
             initial="initial"
             animate={homeControls}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            View Portfolio
-          </m.button> */}
+            <Button ripple={true} variant="filled" color="#5156B8" className="bg-primary !text-textlight dark:text-textlight text-l font-bold font-nunito hover:!shadow-lg hover:!shadow-indigo-500/40">View Projects</Button>
+          </m.div>
         </HashLink>
       </div>
 
