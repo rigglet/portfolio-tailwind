@@ -4,7 +4,7 @@ function section({
     children,
 }) {
   return (
-    <section id={id} className="h-screen px-72 w-screen m-0 p-0 border-box">
+    <section id={id} className="h-screen w-full px-64 m-0 border-box bg-bglight dark:bg-bgdark flex justify-center">
       {children}
     </section>
   );

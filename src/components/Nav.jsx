@@ -32,7 +32,7 @@ const Nav = ({
   return (
     
     // <nav className={showNav ? "showNav" : "hideNav"} showNav={showNav}>
-      <nav className={"flex h-15 w-full justify-between items-center fixed px-72"} showNav={showNav}>
+      <nav className={"flex h-15 w-full px-64 justify-between items-center fixed backdrop-blur-md bg-bglight/30 dark:bg-bgdark/30 z-10"} showNav={showNav}>
       <h1 className="text-textdark dark:text-textlight uppercase text-2xl font-bold font-montserrat px-0 relative">Neil Rigg
       <div className="absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg -z-10 dark:bg-darkshadow"></div></h1>
       

@@ -10,7 +10,6 @@ import * as io5Icons from "react-icons/io5";
 import * as riIcons from "react-icons/ri";
 import * as tiIcons from "react-icons/ti";
 import * as wiIcons from "react-icons/wi";
-
 import * as cgIcons from "react-icons/cg";
 import * as mdIcons from "react-icons/md";
 import * as vscIcons from "react-icons/vsc";
@@ -22,9 +21,8 @@ import * as fiIcons from "react-icons/fi";
 import * as faIcons from "react-icons/fa";
 
 import Section from "./components/Section";
-import Container from "./components/Container";
 import Home from "./sections/home";
-// import About from "./sections/about";
+import About from "./sections/about";
 // import Education from "./sections/education";
 // import Experience from "./sections/experience";
 // import Contact from "./sections/contact";
@@ -112,7 +110,7 @@ function App() {
   //const handleScroll = useCallback(throttle(updateMenuStatus, 5000), []);
 
   return (
-    <div onScroll={handleScroll} ref={elementRef} className=" bg-bglight dark:bg-bgdark h-screen w-screen flex items-start justify-center">
+    <div onScroll={handleScroll} ref={elementRef} className="bg-bglight dark:bg-bgdark">
       <AnimatePresence initial={false} mode='wait'>
         <Router>
 
@@ -134,20 +132,16 @@ function App() {
             exact
             path="/"
             element={
-              <>
+              <div className="flex flex-col">
                 <Section id="home">
-                  {/* <Container> */}
-                    <Home homeRef={homeRef} homeControls={homeControls} showNav={showNav}/>
-                  {/* </Container> */}
+                  <Home homeRef={homeRef} homeControls={homeControls} showNav={showNav}/>
+                </Section>
+                <Section id="about">
+                  <About aboutRef={aboutRef} aboutControls={aboutControls} showNav={showNav}/>  
                 </Section>
                 {/* 
-                <Section id="about">
-                  <Container light>
-                    <About aboutRef={aboutRef} aboutControls={aboutControls} showNav={showNav}/>
-                  </Container>
-                </Section>
                 <Section id="portfolio">
-                  <Container dark>
+                  
                   <Portfolio
                   portfolioRef={portfolioRef}
                       portfolioControls={portfolioControls}
@@ -155,49 +149,49 @@ function App() {
                       allIcons={allIcons}
                       showNav={showNav}
                     />
-                  </Container>
+                  
                 </Section>
                 <Section id="skills">
-                <Container light>
+                
                     <Skills
                       skillsRef={skillsRef}
                       skillsControls={skillsControls}
                       allIcons={allIcons}
                       showNav={showNav}
                     />
-                  </Container>
+                  
                   </Section>
                 <Section id="education">
-                  <Container dark>
+                  
                     <Education
                     educationRef={educationRef}
                       educationControls={educationControls}
                       allIcons={allIcons}
                       showNav={showNav}
                     />
-                  </Container>
+                  
                   </Section>
                 <Section id="experience">
-                  <Container light>
+                  
                     <Experience
                     experienceRef={experienceRef}
                     experienceControls={experienceControls}
                       allIcons={allIcons}
                       showNav={showNav}
                     />
-                    </Container>
+                  
                 </Section>
                 <Section id="contact" >
-                <Container dark>
+                
                     <Contact
                       contactRef={contactRef}
                       contactControls={contactControls}
                       allIcons={allIcons}
                       showNav={showNav}
                       />
-                  </Container>
+                
                 </Section> */}
-              </>
+              </div>
             }
           />
         </Routes>

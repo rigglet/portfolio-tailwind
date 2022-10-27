@@ -1,5 +1,5 @@
 //framer motion and styled components
-import { motion } from "framer-motion";
+import { motion as m } from "framer-motion";
 import { HashLink } from "react-router-hash-link";
 //images
 import avatar from "../img/me-color.png";
@@ -17,10 +17,10 @@ import {
 const Home = ({ homeRef, homeControls, showNav }) => {
   
   return (
-    <div ref={homeRef} showNav={showNav} className="flex justify-around items-center w-full h-full min-h-screen">
+    <div ref={homeRef} showNav={showNav} className="w-full flex justify-between items-center h-full min-h-screen bg-bglight dark:bg-bgdark">
       
-    <div className="flex flex-col justify-around items-around gap-y-8">
-        <motion.div
+      <div className="flex flex-col gap-y-8">
+        <m.div
           className="flex flex-col gap-y-2"
           variants={headerVariants}
           initial="initial"
@@ -36,9 +36,9 @@ const Home = ({ homeRef, homeControls, showNav }) => {
                 </span>
             </div>
           
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           className="flex flex-col gap-y-4"
           variants={subheaderVariants}
           initial="initial"
@@ -47,11 +47,11 @@ const Home = ({ homeRef, homeControls, showNav }) => {
           <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-3xl">Passionate about web development</h2>
           <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-3xl">With a focus on React</h2>
           <h2 className="font-poppins text-secondary font-semibold text-3xl">Hire me today</h2>
-        </motion.div>
+        </m.div>
 
         <HashLink smooth to="/#portfolio" className="home-button">
             <Button ripple={true} variant="filled" color="#5156B8" className="bg-primary !text-textlight dark:text-textlight text-l font-bold font-nunito hover:!shadow-lg hover:!shadow-indigo-500/40">View Projects</Button>
-            {/* <motion.button
+            {/* <m.button
             className="page-btn dark-btn"
             variants={buttonVariants}
             initial="initial"
@@ -60,11 +60,11 @@ const Home = ({ homeRef, homeControls, showNav }) => {
             whileTap={{ scale: 0.95 }}
           >
             View Portfolio
-          </motion.button> */}
+          </m.button> */}
         </HashLink>
       </div>
 
-      <motion.div
+      <m.div
         className="flex flex-col w-80 h-80 justify-center items-center rounded-full bg-gradient-to-b from-primary to-secondary"
         variants={imageVariants}
         initial="initial"
@@ -73,7 +73,7 @@ const Home = ({ homeRef, homeControls, showNav }) => {
         exit="exit"
       >
         <img src={avatar} alt="Neil Rigg in a suit" className="object-contain w-full min-h-0 p-1 rounded-full"/>
-      </motion.div>
+      </m.div>
     </div>
   );
 };
