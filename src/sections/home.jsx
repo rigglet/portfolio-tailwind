@@ -56,8 +56,9 @@ const Home = ({ homeRef, homeControls, showNav }) => {
             animate={homeControls}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            className="w-1/3"
           >
-            <Button ripple={true} variant="filled" color="#5156B8" className="bg-primary !text-textlight dark:text-textlight text-l font-bold font-nunito hover:!shadow-lg hover:!shadow-indigo-500/40">View Projects</Button>
+          <Button ripple={true} variant="filled" color="#5156B8" className="bg-primary !text-textlight dark:text-textlight text-l font-bold font-nunito hover:!shadow-lg hover:!shadow-indigo-500/40">View Projects</Button>
           </m.div>
         </HashLink>
       </div>

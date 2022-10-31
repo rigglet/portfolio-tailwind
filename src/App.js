@@ -23,11 +23,11 @@ import * as faIcons from "react-icons/fa";
 import Section from "./components/Section";
 import Home from "./sections/home";
 import About from "./sections/about";
-// import Education from "./sections/education";
+import Portfolio from "./sections/portfolio";
+import Skills from "./sections/skills";
+import Education from "./sections/education";
 // import Experience from "./sections/experience";
 // import Contact from "./sections/contact";
-// import Portfolio from "./sections/portfolio";
-// import Skills from "./sections/skills";
 
 import { useCallback, useRef, useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
@@ -139,58 +139,48 @@ function App() {
                 <Section id="about">
                   <About aboutRef={aboutRef} aboutControls={aboutControls} showNav={showNav}/>  
                 </Section>
-                {/* 
                 <Section id="portfolio">
-                  
                   <Portfolio
                   portfolioRef={portfolioRef}
-                      portfolioControls={portfolioControls}
-                      portfolioInView={portfolioInView}
-                      allIcons={allIcons}
-                      showNav={showNav}
-                    />
-                  
+                  portfolioControls={portfolioControls}
+                  portfolioInView={portfolioInView}
+                  allIcons={allIcons}
+                  showNav={showNav}
+                  />
                 </Section>
                 <Section id="skills">
-                
-                    <Skills
+                    {/* <Skills
                       skillsRef={skillsRef}
                       skillsControls={skillsControls}
                       allIcons={allIcons}
                       showNav={showNav}
-                    />
-                  
-                  </Section>
+                    /> */}
+                </Section>
+                       
                 <Section id="education">
-                  
                     <Education
                     educationRef={educationRef}
                       educationControls={educationControls}
                       allIcons={allIcons}
                       showNav={showNav}
                     />
-                  
                   </Section>
                 <Section id="experience">
-                  
-                    <Experience
+                    {/* <Experience
                     experienceRef={experienceRef}
                     experienceControls={experienceControls}
                       allIcons={allIcons}
                       showNav={showNav}
-                    />
-                  
+                    /> */}
                 </Section>
                 <Section id="contact" >
-                
-                    <Contact
+                    {/* <Contact
                       contactRef={contactRef}
                       contactControls={contactControls}
                       allIcons={allIcons}
                       showNav={showNav}
-                      />
-                
-                </Section> */}
+                      />              */}
+                </Section>
               </div>
             }
           />

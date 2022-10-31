@@ -50,7 +50,7 @@ const Nav = ({
           }
           onClick={() => setShowMenu(false)}
         >
-          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">Home</h1>
+          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:font-bold hover:text-primary">Home</h1>
           <m.div
             initial={{ width: "0" }}
             animate={{ width: homeInView ? "100%" : "0" }}
@@ -67,7 +67,7 @@ const Nav = ({
           to="/#about"
           onClick={() => setShowMenu(false)}
         >
-          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">About</h1>
+          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:font-bold hover:text-primary">About</h1>
           <m.div
             initial={{ width: "0" }}
             animate={{ width: aboutInView ? "100%" : "0" }}
@@ -83,7 +83,7 @@ const Nav = ({
         to="/#portfolio"
           onClick={() => setShowMenu(false)}
         >
-          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">Portfolio</h1>
+          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:font-bold hover:text-primary">Portfolio</h1>
           <m.div
             initial={{ width: "0" }}
             animate={{ width: portfolioInView ? "100%" : "0" }}
@@ -99,7 +99,7 @@ const Nav = ({
           to="/#skills"
           onClick={() => setShowMenu(false)}
         >
-          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">Skills</h1>
+          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:font-bold hover:text-primary">Skills</h1>
           <m.div
             initial={{ width: "0" }}
             animate={{ width: skillsInView ? "100%" : "0" }}
@@ -115,7 +115,7 @@ const Nav = ({
           to="/#education"
           onClick={() => setShowMenu(false)}
           >
-          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">Education</h1>
+          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:font-bold hover:text-primary">Education</h1>
           <m.div
             initial={{ width: "0" }}
             animate={{ width: educationInView ? "100%" : "0" }}
@@ -131,7 +131,7 @@ const Nav = ({
           to="/#experience"
           onClick={() => setShowMenu(false)}
           >
-          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito">Experience</h1>
+          <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:font-bold hover:text-primary">Experience</h1>
           <m.div
             initial={{ width: "0" }}
             animate={{ width: experienceInView ? "100%" : "0" }}
@@ -147,12 +147,10 @@ const Nav = ({
           to="/#contact"
           onClick={() => setShowMenu(false)}
         >
-          <Button ripple={true} variant="outlined" color="#5156B8" className="!text-textdark dark:!text-textlight border-primary border-2 text-l font-bold font-nunito p-2">Contact</Button>
-        </HashLink> 
+          <Button ripple={true} variant="outlined" className="!text-primary dark:!text-textlight dark:border-textlight border-primary border-2 text-l font-bold font-nunito p-2">Contact</Button>
+        </HashLink>
       </m.div>
       
-          
-        {/* <Button onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}>Mode</Button> */}
         <div onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} className="absolute top-6 right-6 cursor-pointer">
             <Icon
                 icon={theme === "dark" ? "MdOutlineWbSunny":"MdOutlineDarkMode"}

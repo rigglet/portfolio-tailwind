@@ -19,11 +19,13 @@ const About = ({ aboutRef, aboutControls }) => {
         initial="initial"
         animate={aboutControls}
         className="section-header"
-          >
-              <div className="flex items-start">
-                <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative z-10">About me
-                <div className="-z-10 absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg dark:bg-darkshadow"></div></h1>
-              </div>
+        >
+            <div className="flex items-start">
+            <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative z-10">About me
+                    <div className="-z-10 absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg dark:bg-darkshadow">
+                    </div>
+                </h1>
+            </div>
         </m.div>
 
         
@@ -85,103 +87,3 @@ const About = ({ aboutRef, aboutControls }) => {
 };
 
 export default About;
-
-// const AboutSection = styled(motion.div)`
-//   padding: 0 5rem;
-//   transition: all 2s ease;
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: flex-start;
-//   align-items: center;
-//   height: 100%;
-//   width: 100%;
-  
-//   .content {
-//     width: 100%;
-//     display: flex;
-//     padding: 1rem 0;
-//     column-gap: 1rem;
-//     align-items: center;
-//     justify-content: space-evenly;
-//     flex-wrap: wrap;
-//     row-gap: 1rem;
-//     flex-grow: 1;
-//     z-index: 10;
-    
-//     /* & > * {
-//       flex: 0 0 33.3333%;
-//     } */
-//     .profile-container {
-//       display: flex;
-//       max-width: 350px;
-//       border-radius: 50%;
-//       border: 4px solid #313131;
-//       background: whitesmoke;
-//       aspect-ratio: 1/1;
-//       column-gap: 1rem;
-      
-//       .profile-image {
-//         width: 100%;
-//         max-height: 100%;
-//         border-radius: 50%;
-//         padding: 8px;
-//         object-fit: scale-down;
-//         object-position: center;
-//       }
-//     }
-//       .content-section {
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: center;
-//         padding: 0.5rem;
-//         font-weight: 200;
-//         text-align: justify;
-//         //font-size: 1.4rem;
-//         font-size: clamp(1.2rem, 1.5vw, 10rem);
-//         height: 100%;
-//         row-gap: 1rem;
-//         height: auto;
-//         flex: 0 0 20%;
-        
-//         &:nth-of-type(2){
-//           min-width: 350px;
-//           flex: 1 0 46%;
-//         }
-//       }
-//       .highlight {
-//         font-weight: 600;
-//         color: #313131;
-//       }
-//       .hi {
-//         font-size: 2rem;
-//       }
-//       .first {
-//         display: inline-block;
-//         font-size: 4rem;
-//         color: #689ed0;
-//         color: #313131;
-//         font-weight: 700;
-//         width: 100%;
-//         line-height: 70px;
-//       }
-//       .last {
-//         font-size: 6rem;
-//         color: #689ed0;
-//         font-weight: 700;
-//         width: 100%;
-//         line-height: 70px;
-//       }
-//       .dot {
-//         font-size: 6rem;
-//         color: #313131;
-//         font-weight: 700;
-//         width: 100%;
-//         line-height: 0;
-//       }
-//     }
-//   //#### RESPONSIVE SECTION ####
-//   //1000px: non-desktop devices
-//   @media screen and (max-width: 1000px) {
-//     padding: 0rem 1rem;
-//     transition: padding 2s ease;
-// `;

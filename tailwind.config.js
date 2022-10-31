@@ -1,5 +1,5 @@
 const withMT = require("@material-tailwind/react/utils/withMT");
- 
+
 module.exports = withMT({
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: 'class',
@@ -7,6 +7,19 @@ module.exports = withMT({
     extend: {
       height: {
         '15': '15vh',
+        '95': '95%',
+        '105': '105%',
+        '110': '110%',
+        '120': '120%',
+        '130': '130%',
+      },
+      width: {
+        '15': '15vh',
+        '95': '95%',
+        '105': '105%',
+        '110': '110%',
+        '120': '120%',
+        '130': '130%',
       },
     },
     fontFamily: {
@@ -16,6 +29,7 @@ module.exports = withMT({
       poppins: ["Poppins", "sans-serif"],
     },
     colors: {
+      bgportfolio: "#D0D0D0",
       bgdark: "#2f2f2f",
       bglight: "#e2e2e2",
       textdark: "#2f2f2f",
