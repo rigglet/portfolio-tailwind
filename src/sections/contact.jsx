@@ -111,7 +111,7 @@ const Contact = ({ contactRef, contactControls, showMenu, allIcons }) => {
    return (
       <section
          ref={contactRef}
-         className="py-20 flex flex-col items-start justify-around w-full min-h-screen bg-bglight dark:bg-bgdark gap-y-4"
+         className="md:py-20 flex flex-col items-start justify-around w-full min-h-screen bg-bglight dark:bg-bgdark gap-y-6"
       >
          <ToastContainer />
 
@@ -130,7 +130,7 @@ const Contact = ({ contactRef, contactControls, showMenu, allIcons }) => {
          </m.div>
 
          {/* main container */}
-         <main className="flex font-poppins gap-x-4 w-full flex-col lg:flex-row">
+         <main className="flex font-poppins gap-x-4 w-full flex-col sm:flex-row">
             {/* form container */}
             <div className="flex-1 flex flex-col items-start gap-y-4 ">
                <h2 className="text-textdark dark:text-textlight font-semibold text-2xl">
@@ -257,7 +257,7 @@ const Contact = ({ contactRef, contactControls, showMenu, allIcons }) => {
             </div>
 
             {/* Image */}
-            <div className="relative flex-1 flex">
+            <div className="relative flex-1 flex hidden md:block">
                <img
                   src={trail}
                   title="plane trail"
