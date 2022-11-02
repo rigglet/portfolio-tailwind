@@ -111,7 +111,7 @@ const Contact = ({ contactRef, contactControls, showMenu, allIcons }) => {
    return (
       <section
          ref={contactRef}
-         className="pt-20 flex flex-col items-start justify-around w-full h-full min-h-screen bg-bglight dark:bg-bgdark gap-y-4"
+         className="py-20 flex flex-col items-start justify-around w-full min-h-screen bg-bglight dark:bg-bgdark gap-y-4"
       >
          <ToastContainer />
 
@@ -130,10 +130,10 @@ const Contact = ({ contactRef, contactControls, showMenu, allIcons }) => {
          </m.div>
 
          {/* main container */}
-         <main className="flex font-poppins gap-x-4 w-full">
+         <main className="flex font-poppins gap-x-4 w-full flex-col lg:flex-row">
             {/* form container */}
-            <div className="flex-1 flex flex-col items-start gap-y-8 ">
-               <h2 className="text-textdark dark:text-textlight font-semibold text-3xl">
+            <div className="flex-1 flex flex-col items-start gap-y-4 ">
+               <h2 className="text-textdark dark:text-textlight font-semibold text-2xl">
                   Get in touch
                </h2>
                <p className="text-textdark dark:text-textlight font-normal text-xl">
@@ -262,13 +262,13 @@ const Contact = ({ contactRef, contactControls, showMenu, allIcons }) => {
                   src={trail}
                   title="plane trail"
                   alt="plane trail"
-                  className="h-2/3 absolute bottom-0 left-0 -translate-y-16 rotate-12"
+                  className="px-4 h-2/3 absolute bottom-0 left-0 -translate-y-16 rotate-12"
                />
                <img
                   src={plane}
                   title="plane flying"
                   alt="plane swooping"
-                  className="w-1/3 absolute top-0 right-0"
+                  className="py-4 w-1/3 absolute top-0 right-0"
                />
             </div>
          </main>
