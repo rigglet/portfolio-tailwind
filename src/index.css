@@ -2,21 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-*, *:before, *:after {
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+*,
+*:before,
+*:after {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
 }
 
 html {
-    overflow-x: hidden;
+   overflow-x: hidden;
 }
 
 root: {
-    --primary: #5156B8;
-    --secondary: #D478D1;
-    --color-dark: #2f2f2f;
-    --color-light: #e2e2e2;
+   --primary: #5156b8;
+   --secondary: #d478d1;
+   --color-dark: #2f2f2f;
+   --color-light: #e2e2e2;
 }
 
 /* .light {
@@ -28,14 +30,15 @@ root: {
     color: var(--color-dark);
     background: var(--color-light);
 }
+*/
 
 .primary {
-    color: var(--primary);
+   color: var(--primary);
 }
 
 .secondary {
-    color: var(--secondary);
-} */
+   color: var(--secondary);
+}
 
 //scrollbar styling
 /* ::-webkit-scrollbar — the entire scrollbar.
@@ -47,18 +50,18 @@ root: {
 ::-webkit-resizer — the draggable resizing handle that appears at the bottom corner of some elements. */
 /* The emerging W3C standard that is currently Firefox-only */
 * {
-  scrollbar-width: none;
-  scrollbar-color: #5156B8 !important;
+   scrollbar-width: none;
+   scrollbar-color: #5156b8 !important;
 }
 /* Works on Chrome/Edge/Safari */
 *::-webkit-scrollbar {
-  width: 5px;
+   width: 5px;
 }
 *::-webkit-scrollbar-track {
-  background: transparent !important;
+   background: transparent !important;
 }
 *::-webkit-scrollbar-thumb {
-  background: linear-gradient(#5156B8, #D478D1) !important;
-  border-radius: 20px;
-  border: 0px solid #5156B8 !important;
+   background: linear-gradient(#5156b8, #d478d1) !important;
+   border-radius: 20px;
+   border: 0px solid #5156b8 !important;
 }

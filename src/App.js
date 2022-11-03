@@ -26,7 +26,7 @@ import About from "./sections/about";
 import Portfolio from "./sections/portfolio";
 import Skills from "./sections/skills";
 import Education from "./sections/education";
-// import Experience from "./sections/experience";
+import Experience from "./sections/experience";
 import Contact from "./sections/contact";
 import Footer from "./sections/footer";
 
@@ -182,12 +182,12 @@ function App() {
                               />
                            </Section>
                            <Section id="experience">
-                              {/* <Experience
-                                experienceRef={experienceRef}
-                                experienceControls={experienceControls}
-                                  allIcons={allIcons}
-                                  showNav={showNav}
-                                /> */}
+                              <Experience
+                                 experienceRef={experienceRef}
+                                 experienceControls={experienceControls}
+                                 allIcons={allIcons}
+                                 showNav={showNav}
+                              />
                            </Section>
                            <Section id="contact">
                               <Contact

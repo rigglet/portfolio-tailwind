@@ -32,7 +32,7 @@ const About = ({ aboutRef, aboutControls }) => {
          </m.div>
 
          <m.div
-            className="border-2 border-black pb-8 gap-y-4 md:pb-0 md:gap-y-0 flex flex-col items-center md:flex-row md:justify-between h-auto"
+            className="pb-8 gap-y-4 md:pb-0 md:gap-y-0 flex flex-col items-center md:flex-row md:justify-between h-auto"
             variants={scaleUpRight}
             initial="initial"
             animate={aboutControls}

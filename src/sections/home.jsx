@@ -19,11 +19,11 @@ const Home = ({ homeRef, homeControls, showNav }) => {
       <div
          ref={homeRef}
          showNav={showNav}
-         className="w-full flex justify-between items-center h-full min-h-screen bg-bglight dark:bg-bgdark"
+         className="w-full flex md:flex-row flex-col-reverse items-center md:justify-between justify-center h-auto min-h-screen bg-bglight dark:bg-bgdark gap-y-4 md:gap-y-0 md:gap-x-8 gap-x-0"
       >
-         <div className="flex flex-col gap-y-8">
+         <div className="flex flex-col gap-y-8 md:items-start items-center">
             <m.div
-               className="flex flex-col gap-y-2"
+               className="flex flex-col gap-y-2 md:items-start items-center"
                variants={headerVariants}
                initial="initial"
                animate={homeControls}
@@ -50,18 +50,18 @@ const Home = ({ homeRef, homeControls, showNav }) => {
             </m.div>
 
             <m.div
-               className="flex flex-col gap-y-4"
+               className="flex flex-col gap-y-4 md:items-start items-center"
                variants={subheaderVariants}
                initial="initial"
                animate={homeControls}
             >
-               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-3xl">
+               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-3xl text-center md:text-left">
                   Passionate about web development
                </h2>
-               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-3xl">
+               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-3xl text-center md:text-left">
                   With a focus on React
                </h2>
-               <h2 className="font-poppins text-secondary font-semibold text-3xl">
+               <h2 className="font-poppins text-secondary font-semibold text-3xl text-center md:text-left">
                   Hire me today
                </h2>
             </m.div>
@@ -91,17 +91,16 @@ const Home = ({ homeRef, homeControls, showNav }) => {
          </div>
 
          <m.div
-            className="flex flex-col w-80 h-80 justify-center items-center rounded-full bg-gradient-to-b from-primary to-secondary"
+            className="aspect-square flex flex-col w-80 h-80 justify-center md:items-start items-center rounded-full bg-gradient-to-b from-primary to-secondary"
             variants={imageVariants}
             initial="initial"
-            //animate="animate"
             animate={homeControls}
             exit="exit"
          >
             <img
                src={avatar}
                alt="Neil Rigg in a suit"
-               className="object-contain w-full min-h-0 p-1 rounded-full"
+               className="object-contain w-full min-h-full p-1 rounded-full "
             />
          </m.div>
       </div>
