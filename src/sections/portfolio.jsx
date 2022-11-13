@@ -14,7 +14,7 @@ import {
 
 //components
 import Projects from "../components/projects";
-//import PortfolioExplorer from "../components/PortfolioExplorer";
+import PortfolioExplorer from "../components/portfolioExplorer";
 //import Loader from "../components/Loader";
 import Icon from "../components/Icon";
 //data
@@ -63,7 +63,7 @@ const Portfolio = ({
       <section
          ref={portfolioRef}
          showNav={showNav}
-         className="relative pt-20 flex flex-col justify-around w-full h-full min-h-screen bg-bglight dark:bg-bgdark"
+         className="flex flex-col sm:pt-10 md:pt-24 gap-y-8 w-full h-auto min-h-screen bg-bglight dark:bg-bgdark"
       >
          <m.div
             variants={fadeInOut}
@@ -89,7 +89,7 @@ const Portfolio = ({
                   <Button
                      ripple={true}
                      variant="outlined"
-                     className="!text-primary dark:!text-primary border-primary border-2 text-l font-bold font-nunito p-2"
+                     className="!text-primary dark:!text-textlight border-primary dark:border-textlight border-2 text-l font-bold font-nunito p-2"
                   >
                      All Projects
                   </Button>
@@ -97,19 +97,18 @@ const Portfolio = ({
             </div>
          </m.div>
 
-         <div className="h-full">
+         <div className="h-auto">
             {loading ? (
                <>{/* <Loader /> */}</>
             ) : (
-               <div className="projects">
+               <div className="h-auto">
                   {featuredProjects.length > 0 ? (
-                     // <Projects
-                     //   projects={featuredProjects}
-                     //   portfolio={true}
-                     //   showStar={false}
-                     //   allIcons={allIcons}
-                     // />
-                     <h1>projects</h1>
+                     <Projects
+                        projects={featuredProjects}
+                        portfolio={true}
+                        showStar={false}
+                        allIcons={allIcons}
+                     />
                   ) : (
                      <h1 className="noresult">No projects to show.</h1>
                   )}
@@ -117,15 +116,16 @@ const Portfolio = ({
             )}
 
             {showFull && (
-               <></>
-               //   <PortfolioExplorer
-               //     explorer={true}
-               //     setShowFull={setShowFull}
-               //     allIcons={allIcons}
-               //   />
+               <PortfolioExplorer
+                  explorer={true}
+                  setShowFull={setShowFull}
+                  allIcons={allIcons}
+               />
             )}
          </div>
-         <div className="absolute h-14 flex w-full rounded-lg justify-center items-center bg-gradient-to-b from-secondary to-primary">
+
+         {/* Currently working on banner */}
+         <div className=" h-14 flex w-full rounded-lg justify-center items-center bg-gradient-to-b from-secondary to-primary">
             <div className="flex items-center justify-around gap-x-4">
                <Icon
                   icon="FaLaptopCode"

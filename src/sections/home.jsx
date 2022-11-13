@@ -77,12 +77,12 @@ const Home = ({ homeRef, homeControls, showNav }) => {
                   animate={homeControls}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-1/3"
+                  className=""
                >
                   <Button
                      ripple={true}
                      variant="filled"
-                     className="bg-primary !text-textlight dark:text-textlight text-l font-bold font-nunito hover:!shadow-lg hover:!shadow-indigo-500/40"
+                     className="bg-primary !text-textlight dark:text-textlight text-l font-bold font-nunito hover:!shadow-lg hover:!shadow-indigo-500/40 w-px-100"
                   >
                      View Projects
                   </Button>
