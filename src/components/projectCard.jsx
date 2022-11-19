@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { serverBaseURL } from "../config/config";
+import { Button } from "@material-tailwind/react";
 
 //framer motion and styled components
 import { motion as m } from "framer-motion";
@@ -107,14 +108,13 @@ const ProjectCard = ({
             </div>
 
             {/* Links to sites */}
-            <div className="flex justify-around items-center border-bgdark border-2 rounded-lg p-2 text-sm font-semibold uppercase">
+            {/* <div className="flex justify-around items-center border-bgdark border-2 rounded-lg p-2 text-sm font-semibold uppercase"> */}
+            <div className="flex justify-around items-center rounded-lg p-2 text-sm font-semibold uppercase">
                {project.githubLink && (
-                  <a
-                     key={uuidv4()}
-                     href={project.githubLink}
-                     target="_blank"
-                     rel="noreferrer"
-                     className="flex gap-x-4 items-center text-primary"
+                  <Button
+                     ripple={true}
+                     variant="outlined"
+                     className="flex gap-x-4 items-center !text-primary dark:!text-textlight border-primary dark:border-textlight border-2 text-l font-bold font-nunito py-2 px-4"
                   >
                      <FaGithubSquare
                         title="Open project in github"
@@ -125,16 +125,37 @@ const ProjectCard = ({
                         }
                         size="30px"
                      />
-                     View code
-                  </a>
+                     View Code
+                  </Button>
+                  // <a
+                  //    key={uuidv4()}
+                  //    href={project.githubLink}
+                  //    target="_blank"
+                  //    rel="noreferrer"
+                  //    className="flex gap-x-4 items-center text-primary"
+                  // >
+                  //    <FaGithubSquare
+                  //       title="Open project in github"
+                  //       className={
+                  //          portfolio
+                  //             ? "project-card-link-btn-icon light-text"
+                  //             : "project-card-link-btn-icon dark-text"
+                  //       }
+                  //       size="30px"
+                  //    />
+                  //    View code
+                  // </a>
                )}
                {project.website && (
-                  <a
-                     key={uuidv4()}
-                     href={project.website}
-                     target="_blank"
-                     rel="noreferrer"
-                     className="flex gap-x-4 items-center text-primary"
+                  // <Button
+                  //    ripple={true}
+                  //    variant="outlined"
+                  //    className="flex gap-x-4 items-center !text-primary dark:!text-textlight border-primary dark:border-textlight border-2 text-l font-bold font-nunito p-1"
+                  // >
+                  <Button
+                     ripple={true}
+                     variant="filled"
+                     className="flex gap-x-4 py-2 px-4 items-center bg-primary !text-textlight dark:text-textlight text-l font-bold font-nunito hover:!shadow-lg hover:!shadow-indigo-500/40 w-px-100"
                   >
                      <HiLink
                         title="Open live project website"
@@ -146,7 +167,25 @@ const ProjectCard = ({
                         size="30px"
                      />
                      View live
-                  </a>
+                  </Button>
+                  // <a
+                  //    key={uuidv4()}
+                  //    href={project.website}
+                  //    target="_blank"
+                  //    rel="noreferrer"
+                  //    className="flex gap-x-4 items-center text-primary"
+                  // >
+                  //    <HiLink
+                  //       title="Open live project website"
+                  //       className={
+                  //          portfolio
+                  //             ? "project-card-link-btn-icon light-text"
+                  //             : "project-card-link-btn-icon dark-text"
+                  //       }
+                  //       size="30px"
+                  //    />
+                  //    View live
+                  // </a>
                )}
             </div>
          </div>

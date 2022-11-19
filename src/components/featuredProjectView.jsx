@@ -11,8 +11,9 @@ import { detailPopUp } from "../styles/animations";
 //icons
 //import { MdWeb } from "react-icons/md";
 import Icon from "./Icon";
-//import { AiOutlineCalendar } from "react-icons/ai";
+//import { AiOutlineCalendar} from "react-icons/ai";
 import underline from "../img/underline.svg";
+import placeholderImage from "../img/college.jpg";
 
 //components
 import CloseButton from "./closeButton";
@@ -26,14 +27,65 @@ import { v4 as uuidv4 } from "uuid";
 //import { DateTime } from "luxon";
 
 //image gallery
-import ImageGallery from "react-image-gallery";
-import "react-image-gallery/styles/css/image-gallery.css";
-import SectionTitle from "./sectionTitle";
+//import ImageGallery from "react-image-gallery";
+//import "react-image-gallery/styles/css/image-gallery.css";
+//import SectionTitle from "./sectionTitle";
 
-const FeaturedProject = ({ project, projectClose, allIcons }) => {
-   let [imageArray, setImageArray] = useState([]);
-   //let [mainImage, setMainImage] = useState({});
+const ImageComponent = ({
+   setShowGallery,
+   showGallery,
+   fileName,
+   allIcons,
+}) => {
+   const [loaded, setLoaded] = useState(false);
 
+   const handleImageLoad = (e) => {
+      setTimeout(() => {
+         setLoaded(() => true);
+      }, 1500);
+   };
+
+   return (
+      <div className="w-[300px] h-[150px] transition">
+         {!loaded && (
+            <Icon
+               icon="IoImageOutline"
+               className={`w-[300px] max-w-[500px] rounded-sm grow-1 ${
+                  loaded ? "invisible" : "visible"
+               }`}
+               //color="text-secondary"
+               size="100px"
+               title="Featured project"
+               allIcons={allIcons}
+            />
+         )}
+
+         <img
+            onLoad={handleImageLoad}
+            key={uuidv4()}
+            src={`${serverBaseURL()}/images/${fileName}`}
+            className={`w-[300px] max-w-[500px] rounded-sm grow-1 cursor-pointer ${
+               loaded ? "block" : "hidden"
+            } transition-all`}
+            alt="project screenshot"
+            onClick={() => {
+               setShowGallery(!showGallery);
+            }}
+         />
+      </div>
+   );
+};
+
+const FeaturedProject = ({
+   project,
+   projectClose,
+   allIcons,
+   showGallery,
+   setShowGallery,
+   setImageArray,
+   imageArray,
+   items,
+}) => {
    //console.log(project);
 
    useEffect(() => {
@@ -50,14 +102,30 @@ const FeaturedProject = ({ project, projectClose, allIcons }) => {
       //     return image._id === project?.mainImage;
       //   })[0]
       // );
-   }, [project.screenshots]);
+   }, [project.screenshots, setImageArray]);
 
    //console.log(mainImage);
 
    return (
       <section className="z-[60] fixed top-0 left-0 flex items-start justify-center w-screen h-screen bg-[rgba(256,256,256,0.5)] py-[5vh] font-poppins">
+         {/* {showGallery && (
+            <div className="w-full h-full absolute top-0 left-0 z-[100] backdrop-blur-md flex items-center justify-center">
+               <ImageGallery
+                  items={items}
+                  showPlayButton={false}
+                  thumbnailPosition={"bottom"}
+                  showIndex={true}
+                  autoPlay={false}
+                  showThumbnails={false}
+                  showBullets={false}
+                  showNav={true}
+                  showFullscreenButton={false}
+                  onClick={() => setShowGallery(!showGallery)}
+               />
+            </div>
+         )} */}
          <section
-            className="flex flex-col justify-start px-8 py-6 shadow-md shadow-secondary relative z-[70] w-[95vw] h-[100%] border-[0.05rem] border-secondary rounded-md bg-bglight dark:bg-bgdark text-textdark dark:text-textlight overflow-y-scroll"
+            className="flex flex-col justify-start px-8 py-6 shadow-md shadow-secondary relative z-[70] w-[95vw] h-[100%] border-[0.05rem] border-secondary rounded-md bg-bglight dark:bg-bgdark text-textdark  overflow-y-scroll"
             variants={detailPopUp}
             initial="initial"
             animate="animate"
@@ -75,11 +143,8 @@ const FeaturedProject = ({ project, projectClose, allIcons }) => {
             </div>
 
             <div className="flex gap-4 flex-wrap mt-4">
-               <fieldset className="details border-2 border-red-600 flex flex-col gap-y-4 items-center">
-                  <legend>
-                     <SectionTitle title="Overview" />
-                  </legend>
-                  <div className="">
+               <FeatureBox title="Overview">
+                  <div className="my-4">
                      <h1 className="font-semibold">
                         {project?.projectName
                            ? project?.projectName
@@ -91,8 +156,9 @@ const FeaturedProject = ({ project, projectClose, allIcons }) => {
                            : "Description"}
                      </p>
                   </div>
-                  <div className="version-featured flex gap-4">
-                     <div className="flex flex-col items-center gap-y-2">
+
+                  <div className="flex items-start gap-2 justify-evenly flex-wrap">
+                     <div className="flex flex-col items-center gap-y-1">
                         <label
                            htmlFor="version"
                            className="font-semibold"
@@ -101,7 +167,7 @@ const FeaturedProject = ({ project, projectClose, allIcons }) => {
                         </label>
                         <p>{project?.version ? project?.version : "Version"}</p>
                      </div>
-                     <div className="flex flex-col items-center gap-y-2">
+                     <div className="flex flex-col items-center gap-y-1">
                         <label
                            htmlFor="featured"
                            className="font-semibold"
@@ -128,10 +194,8 @@ const FeaturedProject = ({ project, projectClose, allIcons }) => {
                            )}
                         </div>
                      </div>
-                  </div>
 
-                  <div className="addresses flex gap-4">
-                     <div className="flex flex-col items-center gap-y-2">
+                     <div className="flex flex-col items-center gap-y-1">
                         <label className="font-semibold">Github</label>
                         <a href={project?.githubLink}>
                            <Icon
@@ -144,7 +208,7 @@ const FeaturedProject = ({ project, projectClose, allIcons }) => {
                         </a>
                      </div>
 
-                     <div className="flex flex-col items-center gap-y-2">
+                     <div className="flex flex-col items-center gap-y-1">
                         <label className="font-semibold">Live site</label>
                         <a href={project?.website}>
                            <Icon
@@ -157,14 +221,14 @@ const FeaturedProject = ({ project, projectClose, allIcons }) => {
                         </a>
                      </div>
 
-                     <div className="flex flex-col items-center gap-y-2">
+                     <div className="flex flex-col items-center gap-y-1">
                         <label className="font-semibold">
                            Walkthough video
                         </label>
                         <a
                            href={project?.walkthroughVideo}
                            referrerpolicy="no-referrer"
-                           rel="noreferrer"
+                           rel="noReferrer"
                            target="_blank"
                         >
                            <Icon
@@ -177,49 +241,38 @@ const FeaturedProject = ({ project, projectClose, allIcons }) => {
                         </a>
                      </div>
                   </div>
-               </fieldset>
+               </FeatureBox>
 
-               <fieldset className="images flex-1">
-                  <legend>
-                     <SectionTitle title="Screenshots" />
-                  </legend>
-
-                  {imageArray?.length > 0 ? (
-                     <ImageGallery
-                        items={imageArray}
-                        showPlayButton={false}
-                        thumbnailPosition={"bottom"}
-                        showIndex={true}
-                        autoPlay={false}
-                        //showThumbnails={false}
-                        showBullets={false}
-                        showNav={true}
-                     />
-                  ) : (
-                     <Icon
-                        icon="BsImageFill"
-                        color="#65617d"
-                        size="300px"
-                        title="project"
-                        allIcons={allIcons}
-                     />
-                  )}
-                  {/* {project.screenshots[0]?.fileName ? (
-                <img
-                  src={`${serverBaseURL()}/images/${
-                    project.screenshots[0]?.fileName
-                  }`}
-                  alt="project"
-                />
-              ) : (
-                <Icon
-                  icon="BsImageFill"
-                  color="#65617d"
-                  size="50%"
-                  title="project"
-                />
-              )} */}
-               </fieldset>
+               <FeatureBox title="Screenshots">
+                  <p className="font-semibold text-textdark my-4 text-center text-secondary">
+                     Click image to zoom, click again to close
+                  </p>
+                  <div className="w-[100%] flex flex-wrap gap-4 justify-evenly">
+                     {project.screenshots.map((screenshot) => {
+                        return (
+                           <ImageComponent
+                              setShowGallery={setShowGallery}
+                              showGallery={showGallery}
+                              fileName={screenshot.fileName}
+                              allIcons={allIcons}
+                           />
+                           // <img
+                           //    onLoad={handleImageLoad}
+                           //    key={uuidv4()}
+                           //    src={`${serverBaseURL()}/images/${
+                           //       screenshot.fileName
+                           //    }`}
+                           //    className="w-[300px] max-w-[500px] rounded-sm grow-1 cursor-pointer"
+                           //    alt="project screenshot"
+                           //    onClick={() => {
+                           //       setShowGallery(!showGallery);
+                           //       console.log(showGallery);
+                           //    }}
+                           // />
+                        );
+                     })}
+                  </div>
+               </FeatureBox>
 
                <div className="flex w-full flex-wrap gap-4">
                   {project?.features?.length > 0 && (
@@ -289,42 +342,6 @@ const FeaturedProject = ({ project, projectClose, allIcons }) => {
                      />
                   </FeatureBox>
                )}
-
-               {/* <fieldset className="dates">
-            <legend>
-              Dates <AiOutlineCalendar />
-            </legend>
-            <div className="input-item">
-              <label htmlFor="started">Started:</label>
-              <p>
-                {DateTime.fromISO(project?.startedDate)
-                  .setLocale("uk")
-                  .toLocaleString({
-                    timeZoneName: "short",
-                  })}
-              </p>
-            </div>
-            <div className="input-item">
-              <label htmlFor="started">Completed:</label>
-              <p>
-                {DateTime.fromISO(project?.completedDate)
-                  .setLocale("uk")
-                  .toLocaleString({
-                    timeZoneName: "short",
-                  })}
-              </p>
-            </div>
-            <div className="input-item">
-              <label htmlFor="started">Added:</label>
-              <p>
-                {DateTime.fromISO(project?.addedDate)
-                  .setLocale("uk")
-                  .toLocaleString({
-                    timeZoneName: "short",
-                  })}
-              </p>
-            </div>
-          </fieldset> */}
             </div>
          </section>
       </section>
