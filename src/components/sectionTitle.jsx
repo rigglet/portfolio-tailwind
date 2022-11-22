@@ -1,16 +1,12 @@
-import underline from "../img/underline.svg";
-
 const SectionTitle = ({ title }) => {
    return (
-      <div className="inline-block mb-2">
-         <h2 className="relative font-semibold font-poppins text-textdark">
-            {title}
-            <img
-               className="absolute top-6 left-0 z-50 w-full"
-               src={underline}
-               alt="underline"
-            />
-         </h2>
+      <div>
+         <div className="flex items-start">
+            <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative z-10">
+               {title}
+               <div className="-rotate-6 -z-10 absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg dark:bg-darkshadow"></div>
+            </h1>
+         </div>
       </div>
    );
 };

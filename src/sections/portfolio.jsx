@@ -17,6 +17,8 @@ import Projects from "../components/projects";
 import PortfolioExplorer from "../components/portfolioExplorer";
 //import Loader from "../components/Loader";
 import Icon from "../components/Icon";
+import SectionTitle from "../components/sectionTitle";
+
 //data
 import { getCollection } from "../api/api";
 import { buttonVariants } from "../styles/animations";
@@ -65,37 +67,25 @@ const Portfolio = ({
          showNav={showNav}
          className="flex flex-col sm:pt-10 md:pt-24 gap-y-8 w-full h-auto min-h-screen bg-bglight dark:bg-bgdark"
       >
-         <m.div
-            variants={fadeInOut}
-            initial="initial"
-            animate={portfolioControls}
-            className="section-header"
-         >
-            <div className="flex justify-between">
-               <div className="flex items-start">
-                  <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative z-10">
-                     Portfolio
-                     <div className="-rotate-6 -z-10 absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg dark:bg-darkshadow"></div>
-                  </h1>
-               </div>
+         <div className="flex justify-between">
+            <SectionTitle title="Portfolio" />
 
-               <m.div
-                  variants={buttonVariants}
-                  initial="initial"
-                  animate="animate"
-                  whileHover={{ scale: 1.05 }}
-                  onClick={handleExploreClick}
+            <m.div
+               variants={buttonVariants}
+               initial="initial"
+               animate="animate"
+               whileHover={{ scale: 1.05 }}
+               onClick={handleExploreClick}
+            >
+               <Button
+                  ripple={true}
+                  variant="outlined"
+                  className="!text-primary dark:!text-textlight border-primary dark:border-textlight border-2 text-l font-bold font-nunito p-2"
                >
-                  <Button
-                     ripple={true}
-                     variant="outlined"
-                     className="!text-primary dark:!text-textlight border-primary dark:border-textlight border-2 text-l font-bold font-nunito p-2"
-                  >
-                     All Projects
-                  </Button>
-               </m.div>
-            </div>
-         </m.div>
+                  All Projects
+               </Button>
+            </m.div>
+         </div>
 
          <div className="h-auto">
             {loading ? (

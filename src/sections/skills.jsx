@@ -5,6 +5,7 @@ import { selection, slideDown, bounceUp } from "../styles/animations";
 import { getCollection } from "../api/api";
 import FeatureBox from "../components/featureBox";
 import IconSection from "../components/IconSection";
+import SectionTitle from "../components/sectionTitle";
 
 const Skills = ({ skillsRef, skillsControls, allIcons }) => {
    const [technologies, setTechnologies] = useState([]);
@@ -59,14 +60,7 @@ const Skills = ({ skillsRef, skillsControls, allIcons }) => {
          className="pt-20 flex flex-col justify-around w-full h-full min-h-screen bg-bglight dark:bg-bgdark gap-y-8"
       >
          <section className="flex flex-col gap-8">
-            <div className="flex">
-               <div className="flex items-start">
-                  <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative z-10">
-                     Technical Skills
-                     <div className="-rotate-6 -z-10 absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg dark:bg-darkshadow"></div>
-                  </h1>
-               </div>
-            </div>
+            <SectionTitle title="Skills" />
 
             <div className="flex flex-wrap gap-8 justify-center">
                {frontend.length > 0 && (

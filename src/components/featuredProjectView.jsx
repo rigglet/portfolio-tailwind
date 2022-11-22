@@ -19,9 +19,11 @@ import placeholderImage from "../img/college.jpg";
 import CloseButton from "./closeButton";
 import IconSection from "./IconSection";
 import FeatureBox from "./featureBox";
+import ImageComponent from "./imageComponent";
 
 //uuid
 import { v4 as uuidv4 } from "uuid";
+import SectionTitle from "./sectionTitle";
 
 //dates
 //import { DateTime } from "luxon";
@@ -31,50 +33,50 @@ import { v4 as uuidv4 } from "uuid";
 //import "react-image-gallery/styles/css/image-gallery.css";
 //import SectionTitle from "./sectionTitle";
 
-const ImageComponent = ({
-   setShowGallery,
-   showGallery,
-   fileName,
-   allIcons,
-}) => {
-   const [loaded, setLoaded] = useState(false);
+// const ImageComponent = ({
+//    setShowGallery,
+//    showGallery,
+//    fileName,
+//    allIcons,
+// }) => {
+//    const [loaded, setLoaded] = useState(false);
 
-   const handleImageLoad = (e) => {
-      setTimeout(() => {
-         setLoaded(() => true);
-      }, 1500);
-   };
+//    const handleImageLoad = (e) => {
+//       setTimeout(() => {
+//          setLoaded(() => true);
+//       }, 1500);
+//    };
 
-   return (
-      <div className="w-[300px] h-[150px] transition">
-         {!loaded && (
-            <Icon
-               icon="IoImageOutline"
-               className={`w-[300px] max-w-[500px] rounded-sm grow-1 ${
-                  loaded ? "invisible" : "visible"
-               }`}
-               //color="text-secondary"
-               size="100px"
-               title="Featured project"
-               allIcons={allIcons}
-            />
-         )}
+//    return (
+//       <div className="w-[300px] transition">
+//          {!loaded && (
+//             <Icon
+//                icon="IoImageOutline"
+//                className={`w-[300px] max-w-[500px] rounded-sm grow-1 ${
+//                   loaded ? "invisible" : "visible"
+//                }`}
+//                //color="text-secondary"
+//                size="100px"
+//                title="Featured project"
+//                allIcons={allIcons}
+//             />
+//          )}
 
-         <img
-            onLoad={handleImageLoad}
-            key={uuidv4()}
-            src={`${serverBaseURL()}/images/${fileName}`}
-            className={`w-[300px] max-w-[500px] rounded-sm grow-1 cursor-pointer ${
-               loaded ? "block" : "hidden"
-            } transition-all`}
-            alt="project screenshot"
-            onClick={() => {
-               setShowGallery(!showGallery);
-            }}
-         />
-      </div>
-   );
-};
+//          <img
+//             onLoad={handleImageLoad}
+//             key={uuidv4()}
+//             src={`${serverBaseURL()}/images/${fileName}`}
+//             className={`w-[300px] max-w-[500px] rounded-sm grow-1 cursor-pointer ${
+//                loaded ? "block" : "hidden"
+//             } transition-all`}
+//             alt="project screenshot"
+//             onClick={() => {
+//                setShowGallery(!showGallery);
+//             }}
+//          />
+//       </div>
+//    );
+// };
 
 const FeaturedProject = ({
    project,
@@ -108,22 +110,6 @@ const FeaturedProject = ({
 
    return (
       <section className="z-[60] fixed top-0 left-0 flex items-start justify-center w-screen h-screen bg-[rgba(256,256,256,0.5)] py-[5vh] font-poppins">
-         {/* {showGallery && (
-            <div className="w-full h-full absolute top-0 left-0 z-[100] backdrop-blur-md flex items-center justify-center">
-               <ImageGallery
-                  items={items}
-                  showPlayButton={false}
-                  thumbnailPosition={"bottom"}
-                  showIndex={true}
-                  autoPlay={false}
-                  showThumbnails={false}
-                  showBullets={false}
-                  showNav={true}
-                  showFullscreenButton={false}
-                  onClick={() => setShowGallery(!showGallery)}
-               />
-            </div>
-         )} */}
          <section
             className="flex flex-col justify-start px-8 py-6 shadow-md shadow-secondary relative z-[70] w-[95vw] h-[100%] border-[0.05rem] border-secondary rounded-md bg-bglight dark:bg-bgdark text-textdark  overflow-y-scroll"
             variants={detailPopUp}
@@ -133,14 +119,7 @@ const FeaturedProject = ({
          >
             <CloseButton closeFunction={projectClose} />
 
-            <div className="flex">
-               <div className="flex items-start">
-                  <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative z-10">
-                     Project Details
-                     <div className="-rotate-6 -z-10 absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg dark:bg-darkshadow"></div>
-                  </h1>
-               </div>
-            </div>
+            <SectionTitle title="Project Details" />
 
             <div className="flex gap-4 flex-wrap mt-4">
                <FeatureBox title="Overview">
@@ -247,7 +226,7 @@ const FeaturedProject = ({
                   <p className="font-semibold text-textdark my-4 text-center text-secondary">
                      Click image to zoom, click again to close
                   </p>
-                  <div className="w-[100%] flex flex-wrap gap-4 justify-evenly">
+                  <div className="w-[100%] flex flex-wrap gap-4 justify-evenly p-4">
                      {project.screenshots.map((screenshot) => {
                         return (
                            <ImageComponent
@@ -256,19 +235,6 @@ const FeaturedProject = ({
                               fileName={screenshot.fileName}
                               allIcons={allIcons}
                            />
-                           // <img
-                           //    onLoad={handleImageLoad}
-                           //    key={uuidv4()}
-                           //    src={`${serverBaseURL()}/images/${
-                           //       screenshot.fileName
-                           //    }`}
-                           //    className="w-[300px] max-w-[500px] rounded-sm grow-1 cursor-pointer"
-                           //    alt="project screenshot"
-                           //    onClick={() => {
-                           //       setShowGallery(!showGallery);
-                           //       console.log(showGallery);
-                           //    }}
-                           // />
                         );
                      })}
                   </div>

@@ -9,6 +9,7 @@ import {
 } from "react-vertical-timeline-component";
 import "react-vertical-timeline-component/style.min.css";
 import Icon from "../components/Icon";
+import SectionTitle from "../components/sectionTitle";
 // import {
 //   //fadeInOut,
 //   //elementSlideInOut,
@@ -36,19 +37,7 @@ const Experience = ({ experienceRef, experienceControls, allIcons }) => {
          // animate={experienceControls}
          className="flex flex-col w-full h-auto pt-20 items-start justify-around  bg-bglight dark:bg-bgdark gap-y-4 font-poppins"
       >
-         <m.div
-            // variants={fadeInOut}
-            // initial="initial"
-            // animate={experienceControls}
-            className="section-header"
-         >
-            <div className="flex items-start">
-               <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative z-10">
-                  Experience
-                  <div className="-rotate-6 -z-10 absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg dark:bg-darkshadow"></div>
-               </h1>
-            </div>
-         </m.div>
+         <SectionTitle title="Experience" />
 
          <section className="flex w-full h-auto items-center justify-center">
             <VerticalTimeline

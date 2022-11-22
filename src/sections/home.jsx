@@ -21,7 +21,7 @@ const Home = ({ homeRef, homeControls, showNav }) => {
          showNav={showNav}
          className="w-full flex md:flex-row flex-col-reverse items-center md:justify-between justify-center h-auto min-h-screen bg-bglight dark:bg-bgdark gap-y-4 md:gap-y-0 md:gap-x-8 gap-x-0"
       >
-         <div className="flex flex-col gap-y-8 md:items-start items-center">
+         <div className="flex flex-col gap-y-12 md:items-start items-center">
             <m.div
                className="flex flex-col gap-y-2 md:items-start items-center"
                variants={headerVariants}

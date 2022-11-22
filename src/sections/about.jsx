@@ -1,5 +1,6 @@
 //framer motion
 import { motion as m } from "framer-motion";
+import SectionTitle from "../components/sectionTitle";
 import codingImage from "../img/coding.svg";
 import underline from "../img/underline.svg";
 
@@ -17,19 +18,7 @@ const About = ({ aboutRef, aboutControls }) => {
          ref={aboutRef}
          className=" sm:pt-10 md:pt-20 flex flex-col justify-around w-full h-auto min-h-screen bg-bglight dark:bg-bgdark"
       >
-         <m.div
-            variants={fadeInOut}
-            initial="initial"
-            animate={aboutControls}
-            className="section-header"
-         >
-            <div className="flex items-start">
-               <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative z-10">
-                  About me
-                  <div className="-rotate-6 -z-10 absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg dark:bg-darkshadow"></div>
-               </h1>
-            </div>
-         </m.div>
+         <SectionTitle title="About me" />
 
          <m.div
             className="pb-8 gap-y-4 md:pb-0 md:gap-y-0 flex flex-col items-center md:flex-row md:justify-between h-auto"
