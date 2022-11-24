@@ -39,13 +39,25 @@ import useScroll from "./hooks/useScroll";
 import { throttle } from "./utility/utility";
 
 function App() {
-   const [theme, setTheme] = useState("light");
+   const [theme, setTheme] = useState(null);
+   //const [userPreference, setUserPreference] = useState(null);
+   const userPref = localStorage.getItem("portfolio_theme");
 
+   // if the user is visiting for the first time the theme matches "prefers-color-scheme"
+   //else the theme will match the users last known preference, held in local storage
    useEffect(() => {
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-         setTheme("dark");
+      if (!userPref) {
+         if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+            setTheme("dark");
+         } else {
+            setTheme("light");
+         }
       } else {
-         setTheme("light");
+         if (userPref === "dark") {
+            setTheme("dark");
+         } else {
+            setTheme("light");
+         }
       }
    }, []);
 

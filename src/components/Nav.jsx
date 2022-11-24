@@ -77,6 +77,17 @@ const Nav = ({
       });
    };
 
+   //check for preference in local storage
+   //otherwise match "prefers-color-scheme" setting
+   const handleThemeChange = () => {
+      if (theme === "dark") {
+         localStorage.setItem("portfolio_theme", "light");
+      } else {
+         localStorage.setItem("portfolio_theme", "dark");
+      }
+      setTheme(theme === "dark" ? "light" : "dark");
+   };
+
    //Animation / transition
    const container = {
       hidden: { opacity: 0 },
@@ -242,7 +253,7 @@ const Nav = ({
          {/* Page up / down and theme buttons */}
          <m.div className="flex flex-col fixed top-2 right-2 gap-y-2">
             <div
-               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+               onClick={handleThemeChange}
                className="block top-2 right-10 cursor-pointer"
             >
                <Icon
