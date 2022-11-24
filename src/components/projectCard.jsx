@@ -24,7 +24,7 @@ const ProjectCard = ({
    mainImage,
 }) => {
    return (
-      <div className="h-auto w-full rounded-xl flex flex-wrap gap-y-8 font-poppins border-secondary border-1 bg-input odd:flex-row-reverse">
+      <div className="h-auto w-full rounded-xl flex flex-wrap gap-y-8 font-poppins border-secondary border-1 bg-input dark:bg-[#2B2B37] odd:flex-row-reverse">
          {/* image container */}
          <div className={`flex-1 flex items-center justify-center p-4`}>
             <div
@@ -59,9 +59,9 @@ const ProjectCard = ({
          </div>
 
          {/* Information */}
-         <div className="flex flex-col p-4 gap-y-4 flex-1 min-w-[400px] justify-between">
+         <div className="flex flex-col p-16 gap-y-4 flex-1 min-w-[400px] justify-between">
             <h4
-               className={`font-bold text-primary
+               className={`font-bold text-primary text-xl 
                ${
                   portfolio
                      ? "project-name light-text"
@@ -72,7 +72,7 @@ const ProjectCard = ({
                {project.projectName}
             </h4>
             <h5
-               className={`font-semibold text-textdark
+               className={`font-semibold text-textdark dark:text-textlight
                   ${
                      portfolio
                         ? "project-description light-text"
@@ -114,7 +114,7 @@ const ProjectCard = ({
                   <Button
                      ripple={true}
                      variant="outlined"
-                     className="flex gap-x-4 items-center !text-primary dark:!text-textlight border-primary dark:border-textlight border-2 text-l font-bold font-nunito py-2 px-4"
+                     className="flex gap-x-4 items-center !text-primary border-primary border-2 text-l font-bold font-nunito py-2 px-4"
                   >
                      <FaGithubSquare
                         title="Open project in github"

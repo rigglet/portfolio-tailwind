@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const IconSection = ({ arrIcons, allIcons }) => {
    return (
-      <div className="flex flex-wrap gap-6 justify-center text-textdark">
+      <div className="flex flex-wrap gap-6 justify-center text-textdark dark:text-textlight">
          {arrIcons.map((icon) => {
             return (
                <div key={uuidv4()}>

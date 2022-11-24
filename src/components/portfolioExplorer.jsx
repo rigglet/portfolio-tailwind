@@ -127,11 +127,11 @@ const PortfolioExplorer = ({
       }
    };
 
-   const filterProjects = () => {
+   const getFilteredProjectsBySelection = () => {
       const filteredProjects = filterByType();
 
-      //filter projects by technology
-      //map over technology names for each project then check if resulting array includes the currently selected technology
+      //filter projects by selection
+      //map over selction names for each project then check if resulting array includes the currently selected item
       //if so return as part of the filtered array
       if (tech !== "all") {
          return filteredProjects.filter((proj) => {
@@ -147,6 +147,33 @@ const PortfolioExplorer = ({
          return [...filteredProjects];
       }
    };
+
+   const getTechnologiesForFilteredProjects = () => {
+      let projectSet = new Set();
+
+      filteredProjects.map((project) => {
+         project.technologies.map((t) => projectSet.add(t.name));
+      });
+
+      return projectSet;
+   };
+
+   const getLibrariesForFilteredProjects = () => {
+      let projectSet = new Set();
+
+      filteredProjects.map((project) => {
+         project.libraries.map((l) => projectSet.add(l.name));
+      });
+
+      return projectSet;
+   };
+
+   let filteredProjects = getFilteredProjectsBySelection();
+   let technologiesForFilteredProjects = [
+      ...getTechnologiesForFilteredProjects(),
+   ];
+   let librariesForFilteredProjects = [...getLibrariesForFilteredProjects()];
+   console.log(librariesForFilteredProjects);
 
    const projectClose = () => {
       setShowFull(false);
@@ -184,7 +211,7 @@ const PortfolioExplorer = ({
                                  htmlFor="type"
                                  className="font-semibold"
                               >
-                                 Type
+                                 {`Type (${filteredProjects.length})`}
                               </label>
                               <select
                                  name="type"
@@ -212,7 +239,7 @@ const PortfolioExplorer = ({
                                  htmlFor="name"
                                  className="font-semibold"
                               >
-                                 Name
+                                 {`Name (${technologiesForFilteredProjects.length})`}
                               </label>
                               <select
                                  name="name"
@@ -221,14 +248,22 @@ const PortfolioExplorer = ({
                                  className="rounded-md border-primary text-sm"
                               >
                                  <option value="all">All</option>
-                                 {projects.map((project) => (
-                                    <option
-                                       value={project.projectName}
-                                       key={project.projectName}
-                                    >
-                                       {project.projectName}
-                                    </option>
-                                 ))}
+                                 {projects.map((project) => {
+                                    if (
+                                       (type === "featured" &&
+                                          project.featured) ||
+                                       type === "all"
+                                    ) {
+                                       return (
+                                          <option
+                                             value={project.projectName}
+                                             key={project.projectName}
+                                          >
+                                             {project.projectName}
+                                          </option>
+                                       );
+                                    }
+                                 })}
                               </select>
                            </div>
                            <h5>OR</h5>
@@ -237,7 +272,7 @@ const PortfolioExplorer = ({
                                  htmlFor="technology"
                                  className="font-semibold"
                               >
-                                 Technology
+                                 {`Technology (${technologiesForFilteredProjects.length})`}
                               </label>
                               <select
                                  name="technology"
@@ -246,14 +281,16 @@ const PortfolioExplorer = ({
                                  className="rounded-md border-primary text-sm"
                               >
                                  <option value="all">All</option>
-                                 {technologies.map((tech) => (
-                                    <option
-                                       value={tech.name}
-                                       key={tech.name}
-                                    >
-                                       {tech.name}
-                                    </option>
-                                 ))}
+                                 {technologiesForFilteredProjects.map(
+                                    (tech) => (
+                                       <option
+                                          value={tech}
+                                          key={tech}
+                                       >
+                                          {tech}
+                                       </option>
+                                    )
+                                 )}
                               </select>
                            </div>
                            <h5>OR</h5>
@@ -263,7 +300,7 @@ const PortfolioExplorer = ({
                                  htmlFor="library"
                                  className="font-semibold"
                               >
-                                 Library
+                                 {`Library (${librariesForFilteredProjects.length})`}
                               </label>
                               <select
                                  name="library"
@@ -272,29 +309,31 @@ const PortfolioExplorer = ({
                                  className="rounded-md border-primary text-sm"
                               >
                                  <option value="all">All</option>
-                                 {libraries.map((library) => (
-                                    <option
-                                       value={library.name}
-                                       key={library.name}
-                                    >
-                                       {library.name}
-                                    </option>
-                                 ))}
+                                 {librariesForFilteredProjects.map(
+                                    (library) => (
+                                       <option
+                                          value={library}
+                                          key={library}
+                                       >
+                                          {library}
+                                       </option>
+                                    )
+                                 )}
                               </select>
                            </div>
                         </div>
                         <h4>
                            No. of projects:{" "}
                            <span className="projectNumber">
-                              {filterProjects().length}
+                              {getFilteredProjectsBySelection().length}
                            </span>
                         </h4>
                      </div>
                      {/* <StyledLine /> */}
                      <div className="projects">
-                        {filterProjects().length > 0 ? (
+                        {getFilteredProjectsBySelection().length > 0 ? (
                            <ExplorerProjects
-                              projects={filterProjects()}
+                              projects={getFilteredProjectsBySelection()}
                               allIcons={allIcons}
                            />
                         ) : (

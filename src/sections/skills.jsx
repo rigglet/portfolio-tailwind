@@ -115,34 +115,18 @@ const Skills = ({ skillsRef, skillsControls, allIcons }) => {
          </section>
 
          <section className="flex flex-col justify-start gap-y-4">
-            <m.div
-               // variants={fadeInOut}
-               // initial="initial"
-               // animate={skillsControls}
-               className="flex items-start justify-start"
-            >
-               <div className="flex items-start">
-                  <h1 className="text-textdark dark:text-textlight uppercase text-xl font-extrabold font-montserrat px-0 relative z-10">
-                     Soft Skills
-                     <div className="-rotate-6 -z-10 absolute bg-white w-full h-full top-2 left-2 blur-sm rounded-lg dark:bg-darkshadow"></div>
-                  </h1>
-               </div>
-            </m.div>
+            <SectionTitle title="Soft Skills" />
 
-            <m.div
-               className="border-primary border-2 bg-white rounded-lg p-4 font-poppins"
-               // variants={slideDown}
-               // initial="initial"
-               // animate={skillsControls}
-            >
-               <p>Effective communicator</p>
-               <p>Pramatic approach</p>
-               <p>
-                  Organised. Able to plan time and work autonomously to achieve
-                  goals.
-               </p>
-               <p>All round good egg</p>
-            </m.div>
+            <FeatureBox>
+               <div className="text-textdark dark:text-textlight">
+                  <p>Effective communicator</p>
+                  <p>Pramatic approach</p>
+                  <p>
+                     Organised. Able to plan time and work autonomously to
+                     achieve goals.
+                  </p>
+               </div>
+            </FeatureBox>
          </section>
       </main>
    );

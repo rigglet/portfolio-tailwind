@@ -26,7 +26,7 @@ const ImageComponent = ({
                   loaded ? "invisible" : "visible"
                }`}
                //color="text-secondary"
-               size="100px"
+               size="200px"
                title="Featured project"
                allIcons={allIcons}
             />
