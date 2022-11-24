@@ -19,9 +19,9 @@ const Home = ({ homeRef, homeControls, showNav }) => {
       <div
          ref={homeRef}
          showNav={showNav}
-         className="w-full flex md:flex-row flex-col-reverse items-center md:justify-between justify-center h-auto min-h-screen bg-bglight dark:bg-bgdark gap-y-4 md:gap-y-0 md:gap-x-8 gap-x-0"
+         className="w-full flex md:flex-row flex-col-reverse items-center md:justify-between justify-center h-auto min-h-screen bg-bglight dark:bg-bgdark gap-y-2 md:gap-y-0 md:gap-x-8 gap-x-0 mt-4"
       >
-         <div className="flex flex-col gap-y-12 md:items-start items-center">
+         <div className="flex flex-col gap-y-8 md:items-start items-center">
             <m.div
                className="flex flex-col gap-y-2 md:items-start items-center"
                variants={headerVariants}
@@ -91,7 +91,7 @@ const Home = ({ homeRef, homeControls, showNav }) => {
          </div>
 
          <m.div
-            className="aspect-square flex flex-col w-80 h-80 justify-center md:items-start items-center rounded-full bg-gradient-to-b from-primary to-secondary"
+            className="aspect-square flex flex-col w-60 h-60 md:w-80 md:h-80 justify-center md:items-start items-center rounded-full bg-gradient-to-b from-primary to-secondary"
             variants={imageVariants}
             initial="initial"
             animate={homeControls}

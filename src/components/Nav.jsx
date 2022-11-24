@@ -103,11 +103,8 @@ const Nav = ({
       show: { opacity: 1 },
    };
    return (
-      // <nav className={showNav ? "showNav" : "hideNav"} showNav={showNav}>
       <nav
-         className={
-            "z-50 flex h-12 w-full px-64 justify-between items-center fixed backdrop-blur-md bg-bglight/30 dark:bg-bgdark/30 z-10"
-         }
+         className={`z-50 h-5 md:h-12 flex w-full px-4 md:px-64 justify-between items-center fixed backdrop-blur-md bg-bglight/30 dark:bg-bgdark/30 z-10`}
          showNav={showNav}
       >
          <h1 className="text-textdark dark:text-textlight uppercase text-2xl font-bold font-montserrat px-0 relative">
@@ -115,9 +112,8 @@ const Nav = ({
             <div className="absolute bg-white -rotate-6 w-full h-full top-2 left-2 blur-sm rounded-lg -z-10 dark:bg-darkshadow"></div>
          </h1>
 
-         {/* <m.div className={showDropMenu ? "menu" : "menu mob-menu-hide"}> */}
          <m.div
-            className={"flex justify-around items-center gap-8 relative "}
+            className={`md:!flex !hidden justify-around items-center gap-8 relative`}
             variants={container}
             initial="hidden"
             animate="show"
@@ -251,7 +247,7 @@ const Nav = ({
          </m.div>
 
          {/* Page up / down and theme buttons */}
-         <m.div className="flex flex-col fixed top-2 right-2 gap-y-2">
+         <m.div className="flex flex-col fixed top-16 md:top-2 right-2 gap-y-2">
             <div
                onClick={handleThemeChange}
                className="block top-2 right-10 cursor-pointer"
@@ -297,29 +293,37 @@ const Nav = ({
             </div>
          </m.div>
 
-         {/* {showDropMenu ? (
-        <NavbarIcon
-        icon="CgClose"
-        color="white"
-        size="30px"
-        title="Close"
-          className="toggle-button"
-          func={setShowMenu}
-          showDropMenu={showDropMenu}
-          allIcons={allIcons}
-          />
-          ) : (
-          <NavbarIcon
-          icon="FiMenu"
-          color="white"
-          size="30px"
-          title="Menu"
-          className="toggle-button"
-          func={setShowMenu}
-          showDropMenu={showDropMenu}
-          allIcons={allIcons}
-          />
-          )} */}
+         <div className={`!inline-block md:!hidden`}>
+            {showDropMenu ? (
+               <div
+                  onClick={() => setShowMenu(!showDropMenu)}
+                  className="text-textdark dark:text-textlight"
+               >
+                  <Icon
+                     icon="CgClose"
+                     color="white"
+                     size="30px"
+                     title="Close"
+                     allIcons={allIcons}
+                     className="toggle-button"
+                  />
+               </div>
+            ) : (
+               <div
+                  onClick={() => setShowMenu(!showDropMenu)}
+                  className="text-textdark dark:text-textlight"
+               >
+                  <Icon
+                     icon="FiMenu"
+                     color="white"
+                     size="30px"
+                     title="Menu"
+                     allIcons={allIcons}
+                     className=""
+                  />
+               </div>
+            )}
+         </div>
       </nav>
    );
 };
