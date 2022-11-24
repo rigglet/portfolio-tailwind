@@ -109,49 +109,21 @@ const ProjectCard = ({
 
             {/* Links to sites */}
             {/* <div className="flex justify-around items-center border-bgdark border-2 rounded-lg p-2 text-sm font-semibold uppercase"> */}
-            <div className="flex justify-around items-center rounded-lg p-2 text-sm font-semibold uppercase">
+            <div className="flex justify-around items-center rounded-lg gap-x-8 text-sm font-semibold uppercase">
                {project.githubLink && (
                   <Button
                      ripple={true}
                      variant="outlined"
-                     className="flex gap-x-4 items-center !text-primary border-primary border-2 text-l font-bold font-nunito py-2 px-4"
+                     className="flex gap-x-4 items-center !text-primary border-primary dark:border-textlight dark:!text-textlight border-2 text-l font-bold font-nunito py-2 px-4"
                   >
                      <FaGithubSquare
                         title="Open project in github"
-                        className={
-                           portfolio
-                              ? "project-card-link-btn-icon light-text"
-                              : "project-card-link-btn-icon dark-text"
-                        }
                         size="30px"
                      />
                      View Code
                   </Button>
-                  // <a
-                  //    key={uuidv4()}
-                  //    href={project.githubLink}
-                  //    target="_blank"
-                  //    rel="noreferrer"
-                  //    className="flex gap-x-4 items-center text-primary"
-                  // >
-                  //    <FaGithubSquare
-                  //       title="Open project in github"
-                  //       className={
-                  //          portfolio
-                  //             ? "project-card-link-btn-icon light-text"
-                  //             : "project-card-link-btn-icon dark-text"
-                  //       }
-                  //       size="30px"
-                  //    />
-                  //    View code
-                  // </a>
                )}
                {project.website && (
-                  // <Button
-                  //    ripple={true}
-                  //    variant="outlined"
-                  //    className="flex gap-x-4 items-center !text-primary dark:!text-textlight border-primary dark:border-textlight border-2 text-l font-bold font-nunito p-1"
-                  // >
                   <Button
                      ripple={true}
                      variant="filled"
@@ -159,33 +131,10 @@ const ProjectCard = ({
                   >
                      <HiLink
                         title="Open live project website"
-                        className={
-                           portfolio
-                              ? "project-card-link-btn-icon light-text"
-                              : "project-card-link-btn-icon dark-text"
-                        }
                         size="30px"
                      />
                      View live
                   </Button>
-                  // <a
-                  //    key={uuidv4()}
-                  //    href={project.website}
-                  //    target="_blank"
-                  //    rel="noreferrer"
-                  //    className="flex gap-x-4 items-center text-primary"
-                  // >
-                  //    <HiLink
-                  //       title="Open live project website"
-                  //       className={
-                  //          portfolio
-                  //             ? "project-card-link-btn-icon light-text"
-                  //             : "project-card-link-btn-icon dark-text"
-                  //       }
-                  //       size="30px"
-                  //    />
-                  //    View live
-                  // </a>
                )}
             </div>
          </div>

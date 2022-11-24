@@ -16,7 +16,7 @@ const About = ({ aboutRef, aboutControls }) => {
    return (
       <section
          ref={aboutRef}
-         className=" sm:pt-10 md:pt-20 flex flex-col justify-around w-full h-auto min-h-screen bg-bglight dark:bg-bgdark"
+         className=" py-10 md:pt-20 flex flex-col justify-around w-full h-auto min-h-screen bg-bglight dark:bg-bgdark mb-4"
       >
          <SectionTitle title="About me" />
 
@@ -27,7 +27,7 @@ const About = ({ aboutRef, aboutControls }) => {
             animate={aboutControls}
          >
             <m.img
-               className="w-1/2 h-auto"
+               className="w-full md:w-1/2 h-auto"
                src={codingImage}
                alt="Author of portfolio Neil Rigg"
             />
@@ -36,12 +36,12 @@ const About = ({ aboutRef, aboutControls }) => {
                variants={slideUp}
                initial="initial"
                animate={aboutControls}
-               className="flex flex-col gap-y-4 justify-center items-end"
+               className="flex flex-col gap-y-4 justify-center items-center md:items-end w-full"
             >
                <p className="font-poppins text-textdark dark:text-textlight font-normal text-4xl">
                   Hi, I'm
                </p>
-               <div className="flex flex-col gap-y-2 items-end">
+               <div className="flex flex-col gap-y-2 items-center md:items-end">
                   <p className="font-montserrat text-textdark dark:text-textlight font-semibold text-7xl">
                      Neil{" "}
                   </p>

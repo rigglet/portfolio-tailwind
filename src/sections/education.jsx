@@ -15,7 +15,7 @@ const Education = ({ educationRef, educationControls, allIcons }) => {
       >
          <SectionTitle title="Education" />
 
-         <div className="flex w-full flex-wrap justify-between gap-4">
+         <div className="flex w-full flex-wrap justify-center md:justify-evenly gap-4">
             {cardData.map((institution) => (
                <Card
                   key={uuidv4()}
