@@ -10,12 +10,16 @@ import SectionTitle from "../components/sectionTitle";
 const Skills = ({ skillsRef, skillsControls, allIcons }) => {
    const [technologies, setTechnologies] = useState([]);
    const [tools, setTools] = useState([]);
+   const [text, setText] = useState([]);
 
    async function getTechnologies() {
       return await getCollection("technologies");
    }
    async function getTools() {
       return await getCollection("tools");
+   }
+   async function getText() {
+      return await getCollection("texts");
    }
 
    useEffect(() => {
@@ -38,6 +42,16 @@ const Skills = ({ skillsRef, skillsControls, allIcons }) => {
          .catch((err) => {
             console.log(err);
          });
+
+      getText()
+         .then((results) => {
+            if (results.status === 200) {
+               setText(results.data);
+            }
+         })
+         .catch((err) => {
+            console.log(err);
+         });
    }, []);
 
    const frontend = technologies.filter((t) => t.category === "frontend");
@@ -53,6 +67,8 @@ const Skills = ({ skillsRef, skillsControls, allIcons }) => {
          t.category !== "database" &&
          t.category !== "infrastructure"
    );
+
+   const softSkills = text.filter((t) => t.name === "soft_skill");
 
    return (
       <main
@@ -114,20 +130,19 @@ const Skills = ({ skillsRef, skillsControls, allIcons }) => {
             </div>
          </section>
 
-         <section className="flex flex-col justify-start gap-y-4">
-            <SectionTitle title="Soft Skills" />
+         {softSkills.length > 0 && (
+            <section className="flex flex-col justify-start gap-y-4">
+               <SectionTitle title="Soft Skills" />
 
-            <FeatureBox>
-               <div className="text-textdark dark:text-textlight">
-                  <p>Effective communicator</p>
-                  <p>Pramatic approach</p>
-                  <p>
-                     Organised. Able to plan time and work autonomously to
-                     achieve goals.
-                  </p>
-               </div>
-            </FeatureBox>
-         </section>
+               <FeatureBox>
+                  <div className="text-textdark dark:text-textlight">
+                     {softSkills.map((skill) => (
+                        <p>{skill.content}</p>
+                     ))}
+                  </div>
+               </FeatureBox>
+            </section>
+         )}
       </main>
    );
 };

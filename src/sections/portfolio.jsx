@@ -114,7 +114,7 @@ const Portfolio = ({
             )}
          </div>
 
-         {/* Currently working on banner */}
+         {/* "Currently working on" banner */}
          <div className=" h-14 flex w-full rounded-lg justify-center items-center bg-gradient-to-b from-secondary to-primary">
             <div className="flex items-center justify-around gap-x-4">
                <Icon

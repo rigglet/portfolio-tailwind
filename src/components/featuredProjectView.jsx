@@ -25,59 +25,6 @@ import ImageComponent from "./imageComponent";
 import { v4 as uuidv4 } from "uuid";
 import SectionTitle from "./sectionTitle";
 
-//dates
-//import { DateTime } from "luxon";
-
-//image gallery
-//import ImageGallery from "react-image-gallery";
-//import "react-image-gallery/styles/css/image-gallery.css";
-//import SectionTitle from "./sectionTitle";
-
-// const ImageComponent = ({
-//    setShowGallery,
-//    showGallery,
-//    fileName,
-//    allIcons,
-// }) => {
-//    const [loaded, setLoaded] = useState(false);
-
-//    const handleImageLoad = (e) => {
-//       setTimeout(() => {
-//          setLoaded(() => true);
-//       }, 1500);
-//    };
-
-//    return (
-//       <div className="w-[300px] transition">
-//          {!loaded && (
-//             <Icon
-//                icon="IoImageOutline"
-//                className={`w-[300px] max-w-[500px] rounded-sm grow-1 ${
-//                   loaded ? "invisible" : "visible"
-//                }`}
-//                //color="text-secondary"
-//                size="100px"
-//                title="Featured project"
-//                allIcons={allIcons}
-//             />
-//          )}
-
-//          <img
-//             onLoad={handleImageLoad}
-//             key={uuidv4()}
-//             src={`${serverBaseURL()}/images/${fileName}`}
-//             className={`w-[300px] max-w-[500px] rounded-sm grow-1 cursor-pointer ${
-//                loaded ? "block" : "hidden"
-//             } transition-all`}
-//             alt="project screenshot"
-//             onClick={() => {
-//                setShowGallery(!showGallery);
-//             }}
-//          />
-//       </div>
-//    );
-// };
-
 const FeaturedProject = ({
    project,
    projectClose,
@@ -88,8 +35,6 @@ const FeaturedProject = ({
    imageArray,
    items,
 }) => {
-   //console.log(project);
-
    useEffect(() => {
       setImageArray(
          project.screenshots?.map((image) => {
@@ -106,8 +51,6 @@ const FeaturedProject = ({
       // );
    }, [project.screenshots, setImageArray]);
 
-   //console.log(mainImage);
-
    return (
       <section className="z-[60] fixed top-0 left-0 flex items-start justify-center w-screen h-screen bg-[rgba(256,256,256,0.5)] py-[5vh] font-poppins">
          <section
@@ -123,7 +66,7 @@ const FeaturedProject = ({
 
             <div className="flex gap-4 flex-wrap mt-4">
                <FeatureBox title="Overview">
-                  <div className="my-4">
+                  <div className="my-4 text-textdark dark:text-textlight">
                      <h1 className="font-semibold">
                         {project?.projectName
                            ? project?.projectName
@@ -136,7 +79,7 @@ const FeaturedProject = ({
                      </p>
                   </div>
 
-                  <div className="flex items-start gap-2 justify-evenly flex-wrap">
+                  <div className="flex items-start gap-2 justify-evenly flex-wrap text-textdark dark:text-textlight">
                      <div className="flex flex-col items-center gap-y-1">
                         <label
                            htmlFor="version"
@@ -234,13 +177,14 @@ const FeaturedProject = ({
                               showGallery={showGallery}
                               fileName={screenshot.fileName}
                               allIcons={allIcons}
+                              key={uuidv4()}
                            />
                         );
                      })}
                   </div>
                </FeatureBox>
 
-               <div className="flex w-full flex-wrap gap-4">
+               <div className="flex w-full flex-wrap gap-4 text-textdark dark:text-textlight">
                   {project?.features?.length > 0 && (
                      <FeatureBox title="Features">
                         {project?.features?.map((feature) => (
