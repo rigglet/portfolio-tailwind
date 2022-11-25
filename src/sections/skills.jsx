@@ -6,6 +6,7 @@ import { getCollection } from "../api/api";
 import FeatureBox from "../components/featureBox";
 import IconSection from "../components/IconSection";
 import SectionTitle from "../components/sectionTitle";
+import { v4 as uuidv4 } from "uuid";
 
 const Skills = ({ skillsRef, skillsControls, allIcons }) => {
    const [technologies, setTechnologies] = useState([]);
@@ -137,7 +138,7 @@ const Skills = ({ skillsRef, skillsControls, allIcons }) => {
                <FeatureBox>
                   <div className="text-textdark dark:text-textlight">
                      {softSkills.map((skill) => (
-                        <p>{skill.content}</p>
+                        <p key={uuidv4()}>{skill.content}</p>
                      ))}
                   </div>
                </FeatureBox>

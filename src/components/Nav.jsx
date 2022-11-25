@@ -301,11 +301,10 @@ const Nav = ({
                >
                   <Icon
                      icon="CgClose"
-                     color="white"
+                     color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
                      size="30px"
                      title="Close"
                      allIcons={allIcons}
-                     className="toggle-button"
                   />
                </div>
             ) : (
@@ -315,11 +314,10 @@ const Nav = ({
                >
                   <Icon
                      icon="FiMenu"
-                     color="white"
+                     color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
                      size="30px"
                      title="Menu"
                      allIcons={allIcons}
-                     className=""
                   />
                </div>
             )}
