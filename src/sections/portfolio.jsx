@@ -110,6 +110,7 @@ const Portfolio = ({
                   explorer={true}
                   setShowFull={setShowFull}
                   allIcons={allIcons}
+                  projects={projects}
                />
             )}
          </div>

@@ -239,7 +239,7 @@ const Nav = ({
                <Button
                   ripple={true}
                   variant="outlined"
-                  className="ring-primary !text-primary dark:!text-textlight dark:border-textlight border-primary border-2 text-l font-bold font-nunito p-2"
+                  className=" ring-0 !text-primary dark:!text-textlight dark:border-textlight border-primary border-2 text-l font-bold font-nunito p-2"
                >
                   Contact
                </Button>
@@ -247,7 +247,7 @@ const Nav = ({
          </m.div>
 
          {/* Page up / down and theme buttons */}
-         <m.div className="flex flex-col fixed top-16 md:top-2 right-2 gap-y-2">
+         <m.div className="flex flex-col justify-between fixed top-16 md:top-2 right-2 gap-y-2 h-[98vh]">
             <div
                onClick={handleThemeChange}
                className="block top-2 right-10 cursor-pointer"
@@ -256,40 +256,45 @@ const Nav = ({
                   icon={
                      theme === "dark" ? "MdOutlineWbSunny" : "MdOutlineDarkMode"
                   }
-                  color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
-                  //className={theme === "dark" ? "light" : "dark"}
+                  className={
+                     theme === "dark"
+                        ? "text-textlight hover:text-secondary"
+                        : "text-textdark hover:text-primary"
+                  }
                   size="25px"
                   allIcons={allIcons}
                />
             </div>
 
-            <div
-               onClick={handlePageUp}
-               className={`${
-                  topVisible ? "block" : "hidden"
-               } top-2 right-2 cursor-pointer`}
-            >
-               <Icon
-                  icon="BsArrowUpCircleFill"
-                  color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
-                  //className={theme === "dark" ? "light" : "dark"}
-                  size="25px"
-                  allIcons={allIcons}
-               />
-            </div>
+            <div className="flex flex-col gap-y-4">
+               <div
+                  onClick={handlePageUp}
+                  className={`${
+                     topVisible ? "visible" : "invisible"
+                  } top-2 right-2 cursor-pointer`}
+               >
+                  <Icon
+                     icon="BsArrowUpCircleFill"
+                     color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
+                     //className={theme === "dark" ? "light" : "dark"}
+                     size="25px"
+                     allIcons={allIcons}
+                  />
+               </div>
 
-            <div
-               onClick={handlePageDown}
-               className={`${
-                  bottomVisible ? "block" : "hidden"
-               } bottom-2 right-2 cursor-pointer`}
-            >
-               <Icon
-                  icon="BsArrowDownCircleFill"
-                  color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
-                  size="25px"
-                  allIcons={allIcons}
-               />
+               <div
+                  onClick={handlePageDown}
+                  className={`${
+                     bottomVisible ? "visible" : "invisible"
+                  } bottom-2 right-2 cursor-pointer`}
+               >
+                  <Icon
+                     icon="BsArrowDownCircleFill"
+                     color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
+                     size="25px"
+                     allIcons={allIcons}
+                  />
+               </div>
             </div>
          </m.div>
 

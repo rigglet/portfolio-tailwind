@@ -1,5 +1,5 @@
 //react
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 //framer motion and styled components
 //import { motion as m } from "framer-motion";
@@ -8,7 +8,7 @@ import { detailPopUp } from "../styles/animations";
 import ExplorerProjects from "../components/explorerProjects";
 
 //data
-import { getCollection } from "../api/api";
+//import { getCollection } from "../api/api";
 
 //components
 import CloseButton from "./closeButton";
@@ -17,70 +17,18 @@ import SectionTitle from "./sectionTitle";
 //icons
 import Icon from "./Icon";
 
-const PortfolioExplorer = ({ setShowFull, allIcons }) => {
-   const [projects, setProjects] = useState([]);
+const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
+   //const [projects, setProjects] = useState([]);
 
-   const [loading, setLoading] = useState(true);
+   const includedProjects = projects.filter(
+      (project) => project.included === true
+   );
+
+   //const [loading, setLoading] = useState(true);
    const [type, setType] = useState("all");
    const [tech, setTech] = useState("all");
    const [library, setLibrary] = useState("all");
    const [name, setName] = useState("all");
-   const [technologies, setTechnologies] = useState([]);
-   const [libraries, setLibraries] = useState([]);
-   let noOfProjects = 0;
-
-   useEffect(() => {
-      async function getProjects() {
-         return await getCollection("projects");
-      }
-      async function getTechnologies() {
-         return await getCollection("technologies");
-      }
-      async function getLibraries() {
-         return await getCollection("libraries");
-      }
-
-      getProjects()
-         .then((results) => {
-            if (results.status === 200) {
-               setProjects(
-                  results.data.filter((project) => project.included === true)
-               );
-            }
-         })
-         .then(() => {
-            setLoading(false);
-         })
-         .catch((err) => {
-            console.log(err);
-         });
-
-      getTechnologies()
-         .then((results) => {
-            if (results.status === 200) {
-               setTechnologies(results.data);
-            }
-         })
-         .then(() => {
-            setLoading(false);
-         })
-         .catch((err) => {
-            console.log(err);
-         });
-
-      getLibraries()
-         .then((results) => {
-            if (results.status === 200) {
-               setLibraries(results.data);
-            }
-         })
-         .then(() => {
-            setLoading(false);
-         })
-         .catch((err) => {
-            console.log(err);
-         });
-   }, []);
 
    const handleTypeChange = (e) => {
       setType(e.target.value);
@@ -101,61 +49,70 @@ const PortfolioExplorer = ({ setShowFull, allIcons }) => {
       setLibrary("all");
    };
 
-   const filterByType = () => {
+   const filterByType = (arrProjects = []) => {
       switch (type) {
          case "featured":
-            return projects.filter((project) => project.featured === true);
+            return arrProjects.filter((project) => project.featured === true);
          case "all":
-            return [...projects];
+            return [...arrProjects];
          default:
-            return [...projects];
+            return [...arrProjects];
       }
    };
 
-   let filteredProjects = filterByType();
-
-   const getFilteredProjectsBySelection = () => {
+   const getFilteredProjectsBySelection = (arrProjects = []) => {
       //filter projects by selection
       //map over selection names for each project then check if resulting array includes the currently selected item
       //if so return as part of the filtered array
       if (tech !== "all") {
-         return filteredProjects.filter((proj) => {
+         return arrProjects.filter((proj) => {
             return proj.technologies.map((t) => t.name).includes(tech);
          });
       } else if (library !== "all") {
-         return filteredProjects.filter((proj) => {
+         return arrProjects.filter((proj) => {
             return proj.libraries.map((l) => l.name).includes(library);
          });
       } else if (name !== "all") {
-         return filteredProjects.filter((proj) => proj.projectName === name);
+         return arrProjects.filter((proj) => proj.projectName === name);
       } else {
-         return [...filteredProjects];
+         return [...arrProjects];
       }
    };
 
-   const getTechnologiesForAllProjects = () => {
+   let projectsByType = filterByType(includedProjects);
+   let filteredProjects = filterByType(includedProjects);
+   //getFilteredProjectsBySelection()
+   // getFilteredProjectsBySelection(filteredProjects);
+   // let filteredProjects = getFilteredProjectsBySelection(
+   //    filterByType(includedProjects)
+   // );
+
+   const getTechnologiesForAllProjects = (projects) => {
       let projectSet = new Set();
 
-      filteredProjects.map((project) => {
-         project.technologies.map((t) => projectSet.add(t.name));
+      projects.map((project) => {
+         return project.technologies.map((t) => projectSet.add(t.name));
       });
 
       return projectSet;
    };
 
-   const getLibrariesForAllProjects = () => {
+   const getLibrariesForAllProjects = (projects) => {
       let projectSet = new Set();
 
-      filteredProjects.map((project) => {
-         project.libraries.map((l) => projectSet.add(l.name));
+      projects.map((project) => {
+         return project.libraries.map((l) => projectSet.add(l.name));
       });
 
       return projectSet;
    };
 
-   //let filteredProjects = getFilteredProjectsBySelection();
-   let technologiesForAllProjects = [...getTechnologiesForAllProjects()];
-   let librariesForAllProjects = [...getLibrariesForAllProjects()];
+   let technologiesForAllProjects = [
+      ...getTechnologiesForAllProjects(projectsByType),
+   ];
+   let librariesForAllProjects = [
+      ...getLibrariesForAllProjects(projectsByType),
+   ];
 
    //close modal
    const projectClose = () => {
@@ -163,7 +120,7 @@ const PortfolioExplorer = ({ setShowFull, allIcons }) => {
    };
 
    return (
-      <div className="z-[60] fixed top-0 left-0 flex items-start justify-center w-screen h-screen bg-[rgba(256,256,256,0.5)] py-[5vh] font-poppins">
+      <div className="overscroll-contain z-[60] fixed top-0 left-0 flex items-start justify-center w-screen h-screen bg-[rgba(256,256,256,0.5)] py-[5vh] font-poppins">
          <main
             className="flex flex-col justify-start px-8 py-6 shadow-md shadow-secondary relative z-[70] w-[95vw] h-[100%] border-[0.05rem] border-secondary rounded-md bg-bglight dark:bg-bgdark text-textdark  overflow-y-scroll"
             variants={detailPopUp}
@@ -175,152 +132,154 @@ const PortfolioExplorer = ({ setShowFull, allIcons }) => {
             <SectionTitle title="Explore Projects" />
 
             <div className="flex flex-col gap-y-8">
-               {loading ? (
-                  <>{/* <Loader /> */}</>
+               {/* {loading ? (
+                  <>{/* <Loader /> }</>
                ) : (
-                  <>
-                     <div className="w-full rounded-md flex flex-col p-2 gap-4 justify-center items-center text-sm mt-6">
-                        <div className="flex flex-col md:flex-row items-center justify-evenly flex-wrap w-full gap-2">
-                           <Icon
-                              icon="FiFilter"
-                              //color="#d478d1"
-                              color="#5156b8"
-                              size="30px"
-                              className="title-icon"
-                              allIcons={allIcons}
-                           />
-                           <div className="flex flex-col gap-y-1 items-center">
-                              <label
-                                 htmlFor="type"
-                                 className="font-semibold"
-                              >
-                                 {`Type`}
-                              </label>
-                              <select
-                                 name="type"
-                                 onChange={handleTypeChange}
-                                 value={type}
-                                 className="rounded-md border-primary text-sm"
-                              >
-                                 <option
-                                    key="all"
-                                    value="all"
-                                 >
-                                    All
-                                 </option>
-                                 <option
-                                    key="featured"
-                                    value="featured"
-                                 >
-                                    Featured
-                                 </option>
-                              </select>
-                           </div>
-                           <h5>AND</h5>
-                           <div className="flex flex-col gap-y-1 items-center">
-                              <label
-                                 htmlFor="name"
-                                 className="font-semibold"
-                              >
-                                 {`Name (${filterByType().length})`}
-                              </label>
-                              <select
-                                 name="name"
-                                 onChange={handleNameChange}
-                                 value={name}
-                                 className="rounded-md border-primary text-sm"
-                              >
-                                 <option value="all">All</option>
-                                 {projects.map((project) => {
-                                    if (
-                                       (type === "featured" &&
-                                          project.featured) ||
-                                       type === "all"
-                                    ) {
-                                       return (
-                                          <option
-                                             value={project.projectName}
-                                             key={project.projectName}
-                                          >
-                                             {project.projectName}
-                                          </option>
-                                       );
-                                    }
-                                 })}
-                              </select>
-                           </div>
-                           <h5>OR</h5>
-                           <div className="flex flex-col gap-y-1 items-center">
-                              <label
-                                 htmlFor="technology"
-                                 className="font-semibold"
-                              >
-                                 {`Technology (${technologiesForAllProjects.length})`}
-                              </label>
-                              <select
-                                 name="technology"
-                                 onChange={handleTechChange}
-                                 value={tech}
-                                 className="rounded-md border-primary text-sm"
-                              >
-                                 <option value="all">All</option>
-                                 {technologiesForAllProjects.map((tech) => (
-                                    <option
-                                       value={tech}
-                                       key={tech}
-                                    >
-                                       {tech}
-                                    </option>
-                                 ))}
-                              </select>
-                           </div>
-                           <h5>OR</h5>
+                  <> */}
+               <div className="w-full rounded-md flex flex-col p-2 gap-4 justify-center items-center text-sm mt-6">
+                  <div className="flex flex-col md:flex-row items-center justify-evenly flex-wrap w-full gap-2">
+                     <Icon
+                        icon="FiFilter"
+                        //color="#d478d1"
+                        color="#5156b8"
+                        size="30px"
+                        className="title-icon"
+                        allIcons={allIcons}
+                     />
+                     <div className="flex flex-col gap-y-1 items-center">
+                        <label
+                           htmlFor="type"
+                           className="font-semibold"
+                        >
+                           {`Type`}
+                        </label>
+                        <select
+                           name="type"
+                           onChange={handleTypeChange}
+                           value={type}
+                           className="rounded-md border-primary text-sm"
+                        >
+                           <option
+                              key="all"
+                              value="all"
+                           >
+                              All
+                           </option>
+                           <option
+                              key="featured"
+                              value="featured"
+                           >
+                              Featured
+                           </option>
+                        </select>
+                     </div>
+                     <h5>AND</h5>
+                     <div className="flex flex-col gap-y-1 items-center">
+                        <label
+                           htmlFor="name"
+                           className="font-semibold"
+                        >
+                           {`Name (${projectsByType.length})`}
+                        </label>
+                        <select
+                           name="name"
+                           onChange={handleNameChange}
+                           value={name}
+                           className="rounded-md border-primary text-sm"
+                        >
+                           <option value="all">All</option>
 
-                           <div className="flex flex-col gap-y-1 items-center">
-                              <label
-                                 htmlFor="library"
-                                 className="font-semibold"
-                              >
-                                 {`Library (${librariesForAllProjects.length})`}
-                              </label>
-                              <select
-                                 name="library"
-                                 onChange={handleLibraryChange}
-                                 value={library}
-                                 className="rounded-md border-primary text-sm"
-                              >
-                                 <option value="all">All</option>
-                                 {librariesForAllProjects.map((library) => (
+                           {includedProjects.map((project) => {
+                              if (
+                                 (type === "featured" && project.featured) ||
+                                 type === "all"
+                              ) {
+                                 return (
                                     <option
-                                       value={library}
-                                       key={library}
+                                       value={project.projectName}
+                                       key={project.projectName}
                                     >
-                                       {library}
+                                       {project.projectName}
                                     </option>
-                                 ))}
-                              </select>
-                           </div>
-                        </div>
-                        <h4>
-                           No. of projects:{" "}
-                           <span className="font-semibold">
-                              {getFilteredProjectsBySelection().length}
-                           </span>
-                        </h4>
+                                 );
+                              }
+                           })}
+                        </select>
                      </div>
-                     {/* <StyledLine /> */}
-                     <div className="projects">
-                        {getFilteredProjectsBySelection().length > 0 ? (
-                           <ExplorerProjects
-                              projects={getFilteredProjectsBySelection()}
-                              allIcons={allIcons}
-                           />
-                        ) : (
-                           <h1 className="noresult">No projects to show.</h1>
-                        )}
+                     <h5>OR</h5>
+                     <div className="flex flex-col gap-y-1 items-center">
+                        <label
+                           htmlFor="technology"
+                           className="font-semibold"
+                        >
+                           {`Technology (${includedProjects.length})`}
+                        </label>
+                        <select
+                           name="technology"
+                           onChange={handleTechChange}
+                           value={tech}
+                           className="rounded-md border-primary text-sm"
+                        >
+                           <option value="all">All</option>
+                           {technologiesForAllProjects.map((tech) => (
+                              <option
+                                 value={tech}
+                                 key={tech}
+                              >
+                                 {tech}
+                              </option>
+                           ))}
+                        </select>
                      </div>
-                  </>
-               )}
+                     <h5>OR</h5>
+
+                     <div className="flex flex-col gap-y-1 items-center">
+                        <label
+                           htmlFor="library"
+                           className="font-semibold"
+                        >
+                           {`Library (${librariesForAllProjects.length})`}
+                        </label>
+                        <select
+                           name="library"
+                           onChange={handleLibraryChange}
+                           value={library}
+                           className="rounded-md border-primary text-sm"
+                        >
+                           <option value="all">All</option>
+                           {librariesForAllProjects.map((library) => (
+                              <option
+                                 value={library}
+                                 key={library}
+                              >
+                                 {library}
+                              </option>
+                           ))}
+                        </select>
+                     </div>
+                  </div>
+                  {/* No of projects in filtered results */}
+                  <h4>
+                     No. of projects:{" "}
+                     <span className="font-semibold">
+                        {filteredProjects.length}
+                     </span>
+                  </h4>
+               </div>
+
+               {/* Filtered projects */}
+               <div className="projects">
+                  {filteredProjects.length > 0 ? (
+                     <ExplorerProjects
+                        projects={filteredProjects}
+                        allIcons={allIcons}
+                     />
+                  ) : (
+                     <h1 className="noresult">No projects to show.</h1>
+                  )}
+               </div>
+               {/* </>
+               )} */}
             </div>
          </main>
       </div>

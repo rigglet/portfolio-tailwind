@@ -1,20 +1,32 @@
-import { useMemo} from "react";
+import { useMemo } from "react";
 //import PropTypes from "prop-types";
 //icons
 import { IconContext } from "react-icons";
 
 const Icon = ({ icon, color, size, title, className, allIcons }) => {
-  
-  let DynamicIcon = allIcons[icon];
+   let DynamicIcon = allIcons[icon];
 
-  return (
-    <IconContext.Provider value={{ color, size, title, className }}>
-      {useMemo(
-        () => DynamicIcon !== undefined && <DynamicIcon />,
-        [DynamicIcon]
-      )}
-    </IconContext.Provider>
-  );
+   if (color === undefined) {
+      console.log("undefined");
+   } else {
+      console.log("");
+   }
+
+   return (
+      <IconContext.Provider
+         value={{
+            color,
+            size,
+            title,
+            className: color === undefined ? className : false,
+         }}
+      >
+         {useMemo(
+            () => DynamicIcon !== undefined && <DynamicIcon />,
+            [DynamicIcon]
+         )}
+      </IconContext.Provider>
+   );
 };
 
 // Icon.propTypes = {
