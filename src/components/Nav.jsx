@@ -275,8 +275,11 @@ const Nav = ({
                >
                   <Icon
                      icon="BsArrowUpCircleFill"
-                     color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
-                     //className={theme === "dark" ? "light" : "dark"}
+                     className={
+                        theme === "dark"
+                           ? "text-textlight hover:text-secondary"
+                           : "text-textdark hover:text-primary"
+                     }
                      size="25px"
                      allIcons={allIcons}
                   />
@@ -290,7 +293,11 @@ const Nav = ({
                >
                   <Icon
                      icon="BsArrowDownCircleFill"
-                     color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
+                     className={
+                        theme === "dark"
+                           ? "text-textlight hover:text-secondary"
+                           : "text-textdark hover:text-primary"
+                     }
                      size="25px"
                      allIcons={allIcons}
                   />
@@ -306,7 +313,11 @@ const Nav = ({
                >
                   <Icon
                      icon="CgClose"
-                     color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
+                     className={
+                        theme === "dark"
+                           ? "text-textlight hover:text-secondary"
+                           : "text-textdark hover:text-primary"
+                     }
                      size="30px"
                      title="Close"
                      allIcons={allIcons}
@@ -319,7 +330,11 @@ const Nav = ({
                >
                   <Icon
                      icon="FiMenu"
-                     color={theme === "dark" ? "#e2e2e2" : "#2f2f2f"}
+                     className={
+                        theme === "dark"
+                           ? "text-textlight hover:text-secondary"
+                           : "text-textdark hover:text-primary"
+                     }
                      size="30px"
                      title="Menu"
                      allIcons={allIcons}

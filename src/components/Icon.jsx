@@ -6,12 +6,6 @@ import { IconContext } from "react-icons";
 const Icon = ({ icon, color, size, title, className, allIcons }) => {
    let DynamicIcon = allIcons[icon];
 
-   if (color === undefined) {
-      console.log("undefined");
-   } else {
-      console.log("");
-   }
-
    return (
       <IconContext.Provider
          value={{
