@@ -3,7 +3,7 @@ import Icon from "../components/Icon";
 const Footer = ({ allIcons, showDropMenu }) => {
    return (
       <main
-         className={`h-auto gap-y-6 md:h-15 p-4 md:p-0 md:py-0 flex flex-col md:flex-row w-full justify-evenly items-center bg-gradient-to-b from-secondary to-primary ${
+         className={`h-auto gap-y-6 lg:h-15 p-4 lg:p-0 lg:py-0 flex flex-col lg:flex-row w-full justify-evenly items-center bg-gradient-to-b from-secondary to-primary ${
             showDropMenu && "blur-sm"
          }`}
       >
