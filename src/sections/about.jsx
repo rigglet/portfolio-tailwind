@@ -12,11 +12,13 @@ import {
    slideUp,
 } from "../styles/animations";
 
-const About = ({ aboutRef, aboutControls }) => {
+const About = ({ aboutRef, aboutControls, showDropMenu }) => {
    return (
       <section
          ref={aboutRef}
-         className=" py-10 md:pt-20 flex flex-col justify-around w-full h-auto min-h-screen bg-bglight dark:bg-bgdark mb-4"
+         className={`py-10 md:pt-20 flex flex-col justify-around w-full h-auto min-h-screen bg-bglight dark:bg-bgdark mb-4 ${
+            showDropMenu && "blur-sm"
+         }`}
       >
          <SectionTitle title="About me" />
 

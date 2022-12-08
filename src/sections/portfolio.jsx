@@ -29,6 +29,7 @@ const Portfolio = ({
    //portfolioInView,
    allIcons,
    showNav,
+   showDropMenu,
 }) => {
    const [loading, setLoading] = useState(true);
    const [showFull, setShowFull] = useState(false);
@@ -65,7 +66,9 @@ const Portfolio = ({
       <section
          ref={portfolioRef}
          showNav={showNav}
-         className="flex flex-col sm:pt-10 md:pt-24 gap-y-8 w-full h-auto min-h-screen bg-bglight dark:bg-bgdark"
+         className={`flex flex-col sm:pt-10 md:pt-24 gap-y-8 w-full h-auto min-h-screen bg-bglight dark:bg-bgdark ${
+            showDropMenu && "blur-sm"
+         }`}
       >
          <div className="flex justify-between">
             <SectionTitle title="Portfolio" />

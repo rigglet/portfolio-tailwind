@@ -7,11 +7,18 @@ import { cardData } from "../data/data";
 import { v4 as uuidv4 } from "uuid";
 import SectionTitle from "../components/sectionTitle";
 
-const Education = ({ educationRef, educationControls, allIcons }) => {
+const Education = ({
+   educationRef,
+   educationControls,
+   allIcons,
+   showDropMenu,
+}) => {
    return (
       <section
          ref={educationRef}
-         className="pt-20 flex flex-col items-start justify-around w-full h-full min-h-screen bg-bglight dark:bg-bgdark gap-y-4"
+         className={`pt-20 flex flex-col items-start justify-around w-full h-full min-h-screen bg-bglight dark:bg-bgdark gap-y-4 ${
+            showDropMenu && "blur-sm"
+         }`}
       >
          <SectionTitle title="Education" />
 

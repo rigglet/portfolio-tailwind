@@ -59,7 +59,7 @@ function App() {
             setTheme("light");
          }
       }
-   }, []);
+   }, [userPref]);
 
    useEffect(() => {
       if (theme === "dark") {
@@ -76,6 +76,8 @@ function App() {
    const [educationRef, educationControls, educationInView] = useScroll();
    const [experienceRef, experienceControls, experienceInView] = useScroll();
    const [contactRef, contactControls, contactInView] = useScroll();
+   //showDropMenu manages state of mobile dropdown menu
+   const [showDropMenu, setShowMenu] = useState(false);
 
    //icons
    let allIcons = {
@@ -127,7 +129,7 @@ function App() {
       <div
          onScroll={handleScroll}
          ref={elementRef}
-         className="bg-bglight dark:bg-bgdark"
+         className={`bg-bglight dark:bg-bgdark`}
       >
          <AnimatePresence
             initial={false}
@@ -143,9 +145,11 @@ function App() {
                   experienceInView={experienceInView}
                   contactInView={contactInView}
                   allIcons={allIcons}
-                  showNav={showNav}
+                  shownav={showNav}
                   theme={theme}
                   setTheme={setTheme}
+                  showDropMenu={showDropMenu}
+                  setShowMenu={setShowMenu}
                />
                <Routes>
                   <Route
@@ -158,6 +162,7 @@ function App() {
                                  homeRef={homeRef}
                                  homeControls={homeControls}
                                  showNav={showNav}
+                                 showDropMenu={showDropMenu}
                               />
                            </Section>
                            <Section id="about">
@@ -165,6 +170,7 @@ function App() {
                                  aboutRef={aboutRef}
                                  aboutControls={aboutControls}
                                  showNav={showNav}
+                                 showDropMenu={showDropMenu}
                               />
                            </Section>
                            <Section id="portfolio">
@@ -174,6 +180,7 @@ function App() {
                                  portfolioInView={portfolioInView}
                                  allIcons={allIcons}
                                  showNav={showNav}
+                                 showDropMenu={showDropMenu}
                               />
                            </Section>
                            <Section id="skills">
@@ -182,6 +189,7 @@ function App() {
                                  skillsControls={skillsControls}
                                  allIcons={allIcons}
                                  showNav={showNav}
+                                 showDropMenu={showDropMenu}
                               />
                            </Section>
 
@@ -191,6 +199,7 @@ function App() {
                                  educationControls={educationControls}
                                  allIcons={allIcons}
                                  showNav={showNav}
+                                 showDropMenu={showDropMenu}
                               />
                            </Section>
                            <Section id="experience">
@@ -199,6 +208,7 @@ function App() {
                                  experienceControls={experienceControls}
                                  allIcons={allIcons}
                                  showNav={showNav}
+                                 showDropMenu={showDropMenu}
                               />
                            </Section>
                            <Section id="contact">
@@ -207,13 +217,17 @@ function App() {
                                  contactControls={contactControls}
                                  allIcons={allIcons}
                                  showNav={showNav}
+                                 showDropMenu={showDropMenu}
                               />
                            </Section>
                         </div>
                      }
                   />
                </Routes>
-               <Footer allIcons={allIcons} />
+               <Footer
+                  allIcons={allIcons}
+                  showDropMenu={showDropMenu}
+               />
             </Router>
          </AnimatePresence>
       </div>

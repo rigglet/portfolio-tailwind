@@ -16,7 +16,12 @@ import SectionTitle from "../components/sectionTitle";
 //   //containerSlideInOutLeft,
 // } from "../styles/animations";
 
-const Experience = ({ experienceRef, experienceControls, allIcons }) => {
+const Experience = ({
+   experienceRef,
+   experienceControls,
+   allIcons,
+   showDropMenu,
+}) => {
    const iconStyle = { background: "#d9d9d9" };
    const contentStyle = {
       background: "linear-gradient(45deg, #d478d1, #5156b8)",
@@ -35,7 +40,9 @@ const Experience = ({ experienceRef, experienceControls, allIcons }) => {
          // variants={containerSlideInOutLeft}
          // initial="initial"
          // animate={experienceControls}
-         className="flex flex-col w-full h-auto pt-20 items-start justify-around  bg-bglight dark:bg-bgdark gap-y-4 font-poppins"
+         className={`flex flex-col w-full h-auto pt-20 items-start justify-around  bg-bglight dark:bg-bgdark gap-y-4 font-poppins ${
+            showDropMenu && "blur-sm"
+         }`}
       >
          <SectionTitle title="Experience" />
 

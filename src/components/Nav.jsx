@@ -4,21 +4,6 @@ import { HashLink } from "react-router-hash-link";
 import { Button } from "@material-tailwind/react";
 import Icon from "../components/Icon";
 
-//import NavbarIcon from "../components/NavbarIcon";
-
-// const NavLine = ({ homeInView }) => {
-//    return (
-//       <m.div
-//          initial={{ width: "0" }}
-//          animate={{ width: homeInView ? "100" : "0" }}
-//          transition={{ duration: 2 }}
-//          className="bg-primary rounded-xl h-1"
-//       >
-//          {" "}
-//       </m.div>
-//    );
-// };
-
 const Nav = ({
    homeInView,
    aboutInView,
@@ -31,11 +16,11 @@ const Nav = ({
    showNav,
    theme,
    setTheme,
+   showDropMenu,
+   setShowMenu,
 }) => {
    //console.log("showNav => ", showNav);
 
-   //showDropMenu manages state of mobile dropdown menu
-   const [showDropMenu, setShowMenu] = useState(false);
    const [topVisible, setTopVisible] = useState(false);
    const [bottomVisible, setBottomVisible] = useState(false);
 
@@ -98,14 +83,15 @@ const Nav = ({
          },
       },
    };
-   const item = {
-      hidden: { opacity: 0 },
-      show: { opacity: 1 },
-   };
+
+   // const item = {
+   //    hidden: { opacity: 0 },
+   //    show: { opacity: 1 },
+   // };
+
    return (
       <nav
-         className={`z-50 h-5 md:h-12 flex w-full px-4 md:px-64 justify-between items-center fixed backdrop-blur-md bg-bglight/30 dark:bg-bgdark/30 z-10`}
-         showNav={showNav}
+         className={`z-30 h-5 lg:h-12 flex w-full px-4 lg:px-64 justify-between items-center backdrop-blur-md bg-bglight/30 dark:bg-bgdark/30 fixed`}
       >
          <h1 className="text-textdark dark:text-textlight uppercase text-2xl font-bold font-montserrat px-0 relative">
             Neil Rigg
@@ -113,11 +99,37 @@ const Nav = ({
          </h1>
 
          <m.div
-            className={`md:!flex !hidden justify-around items-center gap-8 relative`}
+            className={`lg:flex justify-around items-center lg:gap-8 bg-bglight dark:bg-bgdark ${
+               showDropMenu
+                  ? "flex flex-col p-4 gap-y-2 h-auto w-[100vw] absolute top-0 left-0 z-[50] border-b-4 border-primary"
+                  : "hidden"
+            }`}
             variants={container}
             initial="hidden"
             animate="show"
          >
+            {/* Mobile menu icons */}
+            {showDropMenu && (
+               <div
+                  onClick={() => setShowMenu(!showDropMenu)}
+                  className="!inline-block lg:!hidden absolute top-2 right-2 text-textdark dark:text-textlight"
+               >
+                  <Icon
+                     icon="CgClose"
+                     className={` cursor-pointer
+                        ${
+                           theme === "dark"
+                              ? "text-textlight hover:text-secondary"
+                              : "text-textdark hover:text-primary"
+                        }
+                     `}
+                     size="30px"
+                     title="Close"
+                     allIcons={allIcons}
+                  />
+               </div>
+            )}
+
             <HashLink
                className="link"
                smooth
@@ -246,8 +258,30 @@ const Nav = ({
             </HashLink>
          </m.div>
 
+         {/* Mobile menu show icon */}
+         {!showDropMenu && (
+            <div
+               onClick={() => setShowMenu(!showDropMenu)}
+               className="inline-block lg:hidden text-textdark dark:text-textlight"
+            >
+               <Icon
+                  icon="FiMenu"
+                  className={`z-[50] cursor-pointer
+                        ${
+                           theme === "dark"
+                              ? "text-textlight hover:text-secondary"
+                              : "text-textdark hover:text-primary"
+                        }
+                     `}
+                  size="30px"
+                  title="Close"
+                  allIcons={allIcons}
+               />
+            </div>
+         )}
+
          {/* Page up / down and theme buttons */}
-         <m.div className="flex flex-col justify-between fixed top-16 md:top-2 right-2 gap-y-2 h-[98vh]">
+         <m.div className="flex flex-col justify-between fixed top-16 lg:top-2 right-2 gap-y-2 lg:h-[98vh]">
             <div
                onClick={handleThemeChange}
                className="block top-2 right-10 cursor-pointer"
@@ -304,44 +338,6 @@ const Nav = ({
                </div>
             </div>
          </m.div>
-
-         <div className={`!inline-block md:!hidden`}>
-            {showDropMenu ? (
-               <div
-                  onClick={() => setShowMenu(!showDropMenu)}
-                  className="text-textdark dark:text-textlight"
-               >
-                  <Icon
-                     icon="CgClose"
-                     className={
-                        theme === "dark"
-                           ? "text-textlight hover:text-secondary"
-                           : "text-textdark hover:text-primary"
-                     }
-                     size="30px"
-                     title="Close"
-                     allIcons={allIcons}
-                  />
-               </div>
-            ) : (
-               <div
-                  onClick={() => setShowMenu(!showDropMenu)}
-                  className="text-textdark dark:text-textlight"
-               >
-                  <Icon
-                     icon="FiMenu"
-                     className={
-                        theme === "dark"
-                           ? "text-textlight hover:text-secondary"
-                           : "text-textdark hover:text-primary"
-                     }
-                     size="30px"
-                     title="Menu"
-                     allIcons={allIcons}
-                  />
-               </div>
-            )}
-         </div>
       </nav>
    );
 };

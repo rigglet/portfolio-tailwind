@@ -21,13 +21,17 @@ import emailjs from "@emailjs/browser";
 import { ToastContainer, toast, Zoom } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-//icon
-import Icon from "../components/Icon";
 //SVGs
 import plane from "../img/plane.svg";
 import trail from "../img/trail.svg";
 
-const Contact = ({ contactRef, contactControls, showMenu, allIcons }) => {
+const Contact = ({
+   contactRef,
+   contactControls,
+   showMenu,
+   allIcons,
+   showDropMenu,
+}) => {
    //Toast settings
    const notify = (type) => {
       const toastStyle = {
@@ -111,7 +115,9 @@ const Contact = ({ contactRef, contactControls, showMenu, allIcons }) => {
    return (
       <section
          ref={contactRef}
-         className="md:py-20 flex flex-col items-start justify-around w-full min-h-screen bg-bglight dark:bg-bgdark gap-y-6"
+         className={`md:py-20 flex flex-col items-start justify-around w-full min-h-screen bg-bglight dark:bg-bgdark gap-y-6 ${
+            showDropMenu && "blur-sm"
+         }`}
       >
          <ToastContainer />
 

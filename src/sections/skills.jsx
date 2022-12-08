@@ -8,7 +8,7 @@ import IconSection from "../components/IconSection";
 import SectionTitle from "../components/sectionTitle";
 import { v4 as uuidv4 } from "uuid";
 
-const Skills = ({ skillsRef, skillsControls, allIcons }) => {
+const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
    const [technologies, setTechnologies] = useState([]);
    const [tools, setTools] = useState([]);
    const [text, setText] = useState([]);
@@ -74,7 +74,9 @@ const Skills = ({ skillsRef, skillsControls, allIcons }) => {
    return (
       <main
          ref={skillsRef}
-         className="pt-20 flex flex-col justify-around w-full h-full min-h-screen bg-bglight dark:bg-bgdark gap-y-8"
+         className={`pt-20 flex flex-col justify-around w-full h-full min-h-screen bg-bglight dark:bg-bgdark gap-y-8 ${
+            showDropMenu && "blur-sm"
+         }`}
       >
          <section className="flex flex-col gap-8">
             <SectionTitle title="Skills" />

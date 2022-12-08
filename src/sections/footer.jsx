@@ -1,8 +1,12 @@
 import Icon from "../components/Icon";
 
-const Footer = ({ allIcons }) => {
+const Footer = ({ allIcons, showDropMenu }) => {
    return (
-      <main className="h-auto gap-y-6 md:h-15 p-4 md:p-0 md:py-0 flex flex-col md:flex-row w-full justify-evenly items-center bg-gradient-to-b from-secondary to-primary">
+      <main
+         className={`h-auto gap-y-6 md:h-15 p-4 md:p-0 md:py-0 flex flex-col md:flex-row w-full justify-evenly items-center bg-gradient-to-b from-secondary to-primary ${
+            showDropMenu && "blur-sm"
+         }`}
+      >
          <div className="flex flex-col md:flex-row items-center justify-around gap-x-4 gap-y-4 h-auto gap">
             <Icon
                icon="FaGithub"
