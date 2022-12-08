@@ -136,7 +136,7 @@ const Contact = ({
          </m.div>
 
          {/* main container */}
-         <main className="flex font-poppins gap-x-4 w-full flex-col sm:flex-row">
+         <main className="flex font-poppins gap-x-4 w-full flex-col lg:flex-row">
             {/* form container */}
             <div className="flex-1 flex flex-col items-start gap-y-4 ">
                <h2 className="text-textdark dark:text-textlight font-semibold text-2xl">
@@ -263,12 +263,12 @@ const Contact = ({
             </div>
 
             {/* Image */}
-            <div className="relative flex-1 flex hidden md:block">
+            <div className="relative flex-1 flex hidden xl:block">
                <img
                   src={trail}
                   title="plane trail"
                   alt="plane trail"
-                  className="px-4 h-2/3 absolute bottom-0 left-0 -translate-y-16 rotate-12"
+                  className="px-4 h-2/3 absolute bottom-0 left-8 -translate-y-16 rotate-[5deg]"
                />
                <img
                   src={plane}

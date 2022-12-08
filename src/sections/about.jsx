@@ -16,20 +16,20 @@ const About = ({ aboutRef, aboutControls, showDropMenu }) => {
    return (
       <section
          ref={aboutRef}
-         className={`py-10 md:pt-20 flex flex-col justify-around w-full h-auto min-h-screen bg-bglight dark:bg-bgdark mb-4 ${
+         className={`py-10 lg:pt-20 flex flex-col justify-around w-full h-auto min-h-screen bg-bglight dark:bg-bgdark mb-4 ${
             showDropMenu && "blur-sm"
          }`}
       >
          <SectionTitle title="About me" />
 
          <m.div
-            className="pb-8 gap-y-4 md:pb-0 md:gap-y-0 flex flex-col items-center md:flex-row md:justify-between h-auto"
+            className="pb-8 gap-y-4 lg:pb-0 lg:gap-y-0 flex flex-col items-center lg:flex-row lg:justify-between h-auto"
             variants={scaleUpRight}
             initial="initial"
             animate={aboutControls}
          >
             <m.img
-               className="w-full md:w-1/2 h-auto"
+               className="w-full lg:w-1/2 h-auto"
                src={codingImage}
                alt="Author of portfolio Neil Rigg"
             />
@@ -38,12 +38,12 @@ const About = ({ aboutRef, aboutControls, showDropMenu }) => {
                variants={slideUp}
                initial="initial"
                animate={aboutControls}
-               className="flex flex-col gap-y-4 justify-center items-center md:items-end w-full"
+               className="flex flex-col gap-y-4 justify-center items-center lg:items-end w-full"
             >
                <p className="font-poppins text-textdark dark:text-textlight font-normal text-4xl">
                   Hi, I'm
                </p>
-               <div className="flex flex-col gap-y-2 items-center md:items-end">
+               <div className="flex flex-col gap-y-2 items-center lg:items-end">
                   <p className="font-montserrat text-textdark dark:text-textlight font-semibold text-7xl">
                      Neil{" "}
                   </p>

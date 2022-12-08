@@ -24,9 +24,11 @@ const ProjectCard = ({
    mainImage,
 }) => {
    return (
-      <div className="h-auto w-full rounded-xl flex flex-wrap gap-y-8 font-poppins border-secondary border-1 bg-input dark:bg-[#2B2B37] odd:flex-row-reverse">
+      <div className="h-auto w-full rounded-xl flex flex-wrap gap-y-2 lg:gap-y-8 font-poppins border-secondary border-1 bg-input dark:bg-[#2B2B37] odd:flex-row-reverse">
          {/* image container */}
-         <div className={`flex-1 flex items-center justify-center p-4`}>
+         <div
+            className={`flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8`}
+         >
             <div
                className={`z-10 flex items-center justify-center relative h-full`}
             >
@@ -59,7 +61,7 @@ const ProjectCard = ({
          </div>
 
          {/* Information */}
-         <div className="flex flex-col p-16 gap-y-4 flex-1 min-w-[400px] justify-between">
+         <div className="flex flex-col p-4 sm:p-6 md:p-8 lg:p-16 gap-y-4 flex-1 min-w-[400px] justify-between">
             <h4
                className={`font-bold text-primary text-xl 
                ${
