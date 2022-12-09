@@ -7,11 +7,14 @@ import FeatureBox from "../components/featureBox";
 import IconSection from "../components/IconSection";
 import SectionTitle from "../components/sectionTitle";
 import { v4 as uuidv4 } from "uuid";
+import Loader from "../components/loader";
 
 const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
    const [technologies, setTechnologies] = useState([]);
    const [tools, setTools] = useState([]);
    const [text, setText] = useState([]);
+   const [loadingSkills, setLoadingSkills] = useState(true);
+   const [loadingTexts, setLoadingTexts] = useState(true);
 
    async function getTechnologies() {
       return await getCollection("technologies");
@@ -28,6 +31,7 @@ const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
          .then((results) => {
             if (results.status === 200) {
                setTechnologies(results.data);
+               setLoadingSkills(() => false);
             }
          })
          .catch((err) => {
@@ -48,6 +52,7 @@ const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
          .then((results) => {
             if (results.status === 200) {
                setText(results.data);
+               setLoadingTexts(() => false);
             }
          })
          .catch((err) => {
@@ -80,70 +85,78 @@ const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
       >
          <section className="flex flex-col gap-8">
             <SectionTitle title="Skills" />
-
-            <div className="flex flex-wrap gap-8 justify-center">
-               {frontend.length > 0 && (
-                  <FeatureBox title="Frontend">
-                     <IconSection
-                        allIcons={allIcons}
-                        arrIcons={frontend}
-                     />
-                  </FeatureBox>
-               )}
-               {backend.length > 0 && (
-                  <FeatureBox title="Backend">
-                     <IconSection
-                        allIcons={allIcons}
-                        arrIcons={backend}
-                     />
-                  </FeatureBox>
-               )}
-               {database.length > 0 && (
-                  <FeatureBox title="Database">
-                     <IconSection
-                        allIcons={allIcons}
-                        arrIcons={database}
-                     />
-                  </FeatureBox>
-               )}
-               {infrastructure.length > 0 && (
-                  <FeatureBox title="Deployment">
-                     <IconSection
-                        allIcons={allIcons}
-                        arrIcons={infrastructure}
-                     />
-                  </FeatureBox>
-               )}
-               {other.length > 0 && (
-                  <FeatureBox title="Other">
-                     <IconSection
-                        allIcons={allIcons}
-                        arrIcons={other}
-                     />
-                  </FeatureBox>
-               )}
-               {tools.length > 0 && (
-                  <FeatureBox title="Tools">
-                     <IconSection
-                        allIcons={allIcons}
-                        arrIcons={tools}
-                     />
-                  </FeatureBox>
-               )}
-            </div>
+            {loadingSkills ? (
+               <Loader rows="2" />
+            ) : (
+               <div className="flex flex-wrap gap-8 justify-center">
+                  {frontend.length > 0 && (
+                     <FeatureBox title="Frontend">
+                        <IconSection
+                           allIcons={allIcons}
+                           arrIcons={frontend}
+                        />
+                     </FeatureBox>
+                  )}
+                  {backend.length > 0 && (
+                     <FeatureBox title="Backend">
+                        <IconSection
+                           allIcons={allIcons}
+                           arrIcons={backend}
+                        />
+                     </FeatureBox>
+                  )}
+                  {database.length > 0 && (
+                     <FeatureBox title="Database">
+                        <IconSection
+                           allIcons={allIcons}
+                           arrIcons={database}
+                        />
+                     </FeatureBox>
+                  )}
+                  {infrastructure.length > 0 && (
+                     <FeatureBox title="Deployment">
+                        <IconSection
+                           allIcons={allIcons}
+                           arrIcons={infrastructure}
+                        />
+                     </FeatureBox>
+                  )}
+                  {other.length > 0 && (
+                     <FeatureBox title="Other">
+                        <IconSection
+                           allIcons={allIcons}
+                           arrIcons={other}
+                        />
+                     </FeatureBox>
+                  )}
+                  {tools.length > 0 && (
+                     <FeatureBox title="Tools">
+                        <IconSection
+                           allIcons={allIcons}
+                           arrIcons={tools}
+                        />
+                     </FeatureBox>
+                  )}
+               </div>
+            )}
          </section>
 
          {softSkills.length > 0 && (
             <section className="flex flex-col justify-start gap-y-4">
                <SectionTitle title="Soft Skills" />
 
-               <FeatureBox>
-                  <div className="text-textdark dark:text-textlight">
-                     {softSkills.map((skill) => (
-                        <p key={uuidv4()}>{skill.content}</p>
-                     ))}
-                  </div>
-               </FeatureBox>
+               <SectionTitle title="Skills" />
+               {loadingTexts ? (
+                  <Loader rows="1" />
+               ) : (
+                  <FeatureBox>
+                     <div className="text-textdark dark:text-textlight">
+                        {softSkills.map((skill) => (
+                           <p key={uuidv4()}>{skill.content}</p>
+                        ))}
+                     </div>
+                  </FeatureBox>
+               )}
             </section>
          )}
       </main>

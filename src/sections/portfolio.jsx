@@ -18,6 +18,7 @@ import PortfolioExplorer from "../components/portfolioExplorer";
 //import Loader from "../components/Loader";
 import Icon from "../components/Icon";
 import SectionTitle from "../components/sectionTitle";
+import Loader from "../components/loader";
 
 //data
 import { getCollection } from "../api/api";
@@ -92,7 +93,9 @@ const Portfolio = ({
 
          <div className="h-auto">
             {loading ? (
-               <>{/* <Loader /> */}</>
+               <div className="w-full flex justify-center items-start p-8 h-full">
+                  <Loader rows="3" />
+               </div>
             ) : (
                <div className="h-auto">
                   {featuredProjects.length > 0 ? (
