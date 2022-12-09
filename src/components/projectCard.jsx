@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { serverBaseURL } from "../config/config";
 import { Button } from "@material-tailwind/react";
 

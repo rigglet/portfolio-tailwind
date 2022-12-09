@@ -60,24 +60,24 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
       }
    };
 
-   const getFilteredProjectsBySelection = (arrProjects = []) => {
-      //filter projects by selection
-      //map over selection names for each project then check if resulting array includes the currently selected item
-      //if so return as part of the filtered array
-      if (tech !== "all") {
-         return arrProjects.filter((proj) => {
-            return proj.technologies.map((t) => t.name).includes(tech);
-         });
-      } else if (library !== "all") {
-         return arrProjects.filter((proj) => {
-            return proj.libraries.map((l) => l.name).includes(library);
-         });
-      } else if (name !== "all") {
-         return arrProjects.filter((proj) => proj.projectName === name);
-      } else {
-         return [...arrProjects];
-      }
-   };
+   // const getFilteredProjectsBySelection = (arrProjects = []) => {
+   //    //filter projects by selection
+   //    //map over selection names for each project then check if resulting array includes the currently selected item
+   //    //if so return as part of the filtered array
+   //    if (tech !== "all") {
+   //       return arrProjects.filter((proj) => {
+   //          return proj.technologies.map((t) => t.name).includes(tech);
+   //       });
+   //    } else if (library !== "all") {
+   //       return arrProjects.filter((proj) => {
+   //          return proj.libraries.map((l) => l.name).includes(library);
+   //       });
+   //    } else if (name !== "all") {
+   //       return arrProjects.filter((proj) => proj.projectName === name);
+   //    } else {
+   //       return [...arrProjects];
+   //    }
+   // };
 
    let projectsByType = filterByType(includedProjects);
    let filteredProjects = filterByType(includedProjects);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { serverBaseURL } from "../config/config";
 
 //API
@@ -12,8 +12,8 @@ import { detailPopUp } from "../styles/animations";
 //import { MdWeb } from "react-icons/md";
 import Icon from "./Icon";
 //import { AiOutlineCalendar} from "react-icons/ai";
-import underline from "../img/underline.svg";
-import placeholderImage from "../img/college.jpg";
+// import underline from "../img/underline.svg";
+// import placeholderImage from "../img/college.jpg";
 
 //components
 import CloseButton from "./closeButton";
@@ -32,8 +32,6 @@ const FeaturedProject = ({
    showGallery,
    setShowGallery,
    setImageArray,
-   imageArray,
-   items,
 }) => {
    useEffect(() => {
       setImageArray(
@@ -49,7 +47,7 @@ const FeaturedProject = ({
       //     return image._id === project?.mainImage;
       //   })[0]
       // );
-   }, [project.screenshots, setImageArray]);
+   }, [project.screenshots]);
 
    return (
       <section className="z-[60] fixed top-0 left-0 flex items-start justify-center w-screen h-screen bg-[rgba(256,256,256,0.5)] py-[5vh] font-poppins">
@@ -149,7 +147,7 @@ const FeaturedProject = ({
                         </label>
                         <a
                            href={project?.walkthroughVideo}
-                           referrerpolicy="no-referrer"
+                           referrerPolicy="no-referrer"
                            rel="noReferrer"
                            target="_blank"
                         >
@@ -173,8 +171,11 @@ const FeaturedProject = ({
                      {project.screenshots.map((screenshot) => {
                         return (
                            <ImageComponent
-                              setShowGallery={setShowGallery}
-                              showGallery={showGallery}
+                              clickEvent={{
+                                 isState: true,
+                                 state: showGallery,
+                                 setter: setShowGallery,
+                              }}
                               fileName={screenshot.fileName}
                               allIcons={allIcons}
                               key={uuidv4()}

@@ -1,21 +1,26 @@
+import { useState, useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { useState } from "react";
 import Icon from "./Icon";
 import { serverBaseURL } from "../config/config";
 
-const ImageComponent = ({
-   setShowGallery,
-   showGallery,
-   fileName,
-   allIcons,
-}) => {
+const ImageComponent = ({ clickEvent, fileName, allIcons }) => {
    const [loaded, setLoaded] = useState(false);
 
-   const handleImageLoad = (e) => {
-      setTimeout(() => {
+   //const clickEvent = {isState: false, isFunction: false, ...clickEvent}
+   // const handleImageLoad = (e) => {
+   //    setTimeout(() => {
+   //       setLoaded(() => true);
+   //    }, 1500);
+   // };
+
+   useEffect(() => {
+      const timeoutId = setTimeout(() => {
          setLoaded(() => true);
-      }, 1500);
-   };
+      }, 500);
+      return () => {
+         clearTimeout(timeoutId);
+      };
+   }, []);
 
    return (
       <div className="w-[300px] transition">
@@ -32,18 +37,39 @@ const ImageComponent = ({
             />
          )}
 
-         <img
-            onLoad={handleImageLoad}
-            key={uuidv4()}
-            src={`${serverBaseURL()}/images/${fileName}`}
-            className={`w-[300px] max-w-[500px] rounded-sm grow-1 cursor-pointer ${
-               loaded ? "block" : "hidden"
-            } transition-all`}
-            alt="project screenshot"
-            onClick={() => {
-               setShowGallery(!showGallery);
-            }}
-         />
+         {clickEvent.isState ? (
+            <img
+               //onLoad={handleImageLoad}
+               key={uuidv4()}
+               src={`${serverBaseURL()}/images/${fileName}`}
+               className={`w-[300px] max-w-[500px] rounded-sm grow-1 cursor-pointer transition-all ${
+                  loaded ? "visible" : "invisible"
+               } transition-all`}
+               alt="project screenshot"
+               onClick={() => clickEvent.setter(!clickEvent.state)}
+            />
+         ) : clickEvent.isFunc ? (
+            <img
+               //onLoad={handleImageLoad}
+               key={uuidv4()}
+               src={`${serverBaseURL()}/images/${fileName}`}
+               className={`w-[300px] max-w-[500px] rounded-sm grow-1 cursor-pointer transition-all ${
+                  loaded ? "visible" : "invisible"
+               } transition-all`}
+               alt="project screenshot"
+               onClick={() => clickEvent.function(clickEvent.param)}
+            />
+         ) : (
+            <img
+               //onLoad={handleImageLoad}
+               key={uuidv4()}
+               src={`${serverBaseURL()}/images/${fileName}`}
+               className={`w-[300px] max-w-[500px] rounded-sm grow-1 cursor-pointer ${
+                  loaded ? "block" : "hidden"
+               } transition-all`}
+               alt="project screenshot"
+            />
+         )}
       </div>
    );
 };
