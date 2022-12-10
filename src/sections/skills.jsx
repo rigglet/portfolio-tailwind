@@ -86,7 +86,9 @@ const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
          <section className="flex flex-col gap-8">
             <SectionTitle title="Skills" />
             {loadingSkills ? (
-               <Loader rows="2" />
+               <div className="w-full flex justify-center items-start p-8 h-auto border-2 border-black">
+                  <Loader rows="2" />
+               </div>
             ) : (
                <div className="flex flex-wrap gap-8 justify-center">
                   {frontend.length > 0 && (
@@ -145,9 +147,10 @@ const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
             <section className="flex flex-col justify-start gap-y-4">
                <SectionTitle title="Soft Skills" />
 
-               <SectionTitle title="Skills" />
                {loadingTexts ? (
-                  <Loader rows="1" />
+                  <div className="w-full flex justify-center items-start p-8 h-fit">
+                     <Loader rows="1" />
+                  </div>
                ) : (
                   <FeatureBox>
                      <div className="text-textdark dark:text-textlight">

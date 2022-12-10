@@ -93,7 +93,7 @@ const Portfolio = ({
 
          <div className="h-auto">
             {loading ? (
-               <div className="w-full flex justify-center items-start p-8 h-full">
+               <div className="w-full flex justify-center items-start p-8 h-fit">
                   <Loader rows="3" />
                </div>
             ) : (

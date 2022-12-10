@@ -4,9 +4,12 @@ import ContentLoader from "react-content-loader";
 const loader = (props) => {
    return (
       <ContentLoader
-         width={800}
-         height={500}
-         viewBox="0 0 800 350"
+         //width={800}
+         //height={500}
+         //viewBox="0 0 800 350"
+         viewBox={`0 0 800 ${115 * props.rows}`}
+         //viewBox="0 0 size auto"
+         preserveAspectRatio="xMidYMid slice"
          backgroundColor="#D0D0D0"
          foregroundColor="#E2E2E2"
          {...props}
