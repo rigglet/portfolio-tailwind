@@ -13,15 +13,7 @@ import Icon from "./Icon";
 import { HiLink } from "react-icons/hi";
 import { FaGithubSquare } from "react-icons/fa";
 
-const ProjectCard = ({
-   project,
-   handleProjectClick,
-   explorer = false,
-   portfolio = false,
-   showStar = false,
-   allIcons,
-   mainImage,
-}) => {
+const ProjectCard = ({ project, handleProjectClick, allIcons, mainImage }) => {
    return (
       <div className="h-auto w-full rounded-xl flex flex-wrap gap-y-2 lg:gap-y-8 font-poppins border-secondary border-1 bg-input dark:bg-[#2B2B37] odd:flex-row-reverse">
          {/* image container */}
@@ -62,40 +54,25 @@ const ProjectCard = ({
          {/* Information */}
          <div className="flex flex-col p-4 sm:p-6 md:p-8 lg:p-16 gap-y-4 flex-1 min-w-[400px] justify-between">
             <h4
-               className={`font-bold text-primary text-xl 
-               ${
-                  portfolio
-                     ? "project-name light-text"
-                     : "project-name dark-text"
-               }
+               onClick={() => handleProjectClick(project)}
+               className={`font-bold text-primary text-xl cursor-pointer
                `}
             >
                {project.projectName}
             </h4>
-            <h5
-               className={`font-semibold text-textdark dark:text-textlight
-                  ${
-                     portfolio
-                        ? "project-description light-text"
-                        : "project-description dark-text"
-                  }
-               `}
-            >
+            <h5 className={`font-semibold text-textdark dark:text-textlight`}>
                {project.shortDescription}
             </h5>
 
             {/* Technology icons */}
-            <div
-               className={`${
-                  portfolio ? "technologies-show" : "technologies-hide"
-               } flex flex-wrap gap-4`}
-            >
+            <div className={`flex flex-wrap gap-4`}>
                {project.technologies.map((tech) => (
                   <a
                      key={uuidv4()}
                      href={tech.address}
                      target="_blank"
                      rel="noreferrer"
+                     className="rotate-0 hover:rotate-12 transition-all ease-out duration-150"
                   >
                      <Icon
                         key={uuidv4()}

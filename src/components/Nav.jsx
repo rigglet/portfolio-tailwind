@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion as m } from "framer-motion";
 import { HashLink } from "react-router-hash-link";
-import { Button } from "@material-tailwind/react";
+//import { Button } from "@material-tailwind/react";
 import Icon from "../components/Icon";
 
 const Nav = ({
@@ -139,7 +139,12 @@ const Nav = ({
                }
                onClick={() => setShowMenu(false)}
             >
-               <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:text-primary">
+               <h1
+                  className={`text-textdark dark:text-textlight text-l font-semibold font-nunito ${
+                     !homeInView &&
+                     "dark:hover:text-secondary hover:text-primary"
+                  }`}
+               >
                   Home
                </h1>
                <m.div
@@ -158,7 +163,12 @@ const Nav = ({
                to="/#about"
                onClick={() => setShowMenu(false)}
             >
-               <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:text-primary">
+               <h1
+                  className={`text-textdark dark:text-textlight text-l font-semibold font-nunito ${
+                     !aboutInView &&
+                     "dark:hover:text-secondary hover:text-primary"
+                  }`}
+               >
                   About
                </h1>
                <m.div
@@ -176,7 +186,12 @@ const Nav = ({
                to="/#portfolio"
                onClick={() => setShowMenu(false)}
             >
-               <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito  hover:text-primary">
+               <h1
+                  className={`text-textdark dark:text-textlight text-l font-semibold font-nunito ${
+                     !portfolioInView &&
+                     "dark:hover:text-secondary hover:text-primary"
+                  }`}
+               >
                   Portfolio
                </h1>
                <m.div
@@ -194,7 +209,12 @@ const Nav = ({
                to="/#skills"
                onClick={() => setShowMenu(false)}
             >
-               <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:text-primary">
+               <h1
+                  className={`text-textdark dark:text-textlight text-l font-semibold font-nunito ${
+                     !skillsInView &&
+                     "dark:hover:text-secondary hover:text-primary"
+                  }`}
+               >
                   Skills
                </h1>
                <m.div
@@ -212,7 +232,12 @@ const Nav = ({
                to="/#education"
                onClick={() => setShowMenu(false)}
             >
-               <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:text-primary">
+               <h1
+                  className={`text-textdark dark:text-textlight text-l font-semibold font-nunito ${
+                     !educationInView &&
+                     "dark:hover:text-secondary hover:text-primary"
+                  }`}
+               >
                   Education
                </h1>
                <m.div
@@ -230,7 +255,12 @@ const Nav = ({
                to="/#experience"
                onClick={() => setShowMenu(false)}
             >
-               <h1 className="text-textdark dark:text-textlight text-l font-semibold font-nunito hover:text-primary">
+               <h1
+                  className={`text-textdark dark:text-textlight text-l font-semibold font-nunito ${
+                     !experienceInView &&
+                     "dark:hover:text-secondary hover:text-primary"
+                  }`}
+               >
                   Experience
                </h1>
                <m.div
@@ -248,13 +278,30 @@ const Nav = ({
                to="/#contact"
                onClick={() => setShowMenu(false)}
             >
-               <Button
-                  ripple={true}
-                  variant="outlined"
-                  className=" ring-0 !text-primary dark:!text-textlight dark:border-textlight border-primary border-2 text-l font-bold font-nunito p-2"
+               <h1
+                  className={`text-textdark dark:text-textlight text-l font-semibold font-nunito ${
+                     !contactInView &&
+                     "dark:hover:text-secondary hover:text-primary"
+                  }`}
                >
                   Contact
-               </Button>
+               </h1>
+               <m.div
+                  initial={{ width: "0" }}
+                  animate={{ width: contactInView ? "100%" : "0" }}
+                  transition={{ duration: 0.75 }}
+                  className="bg-primary rounded-xl h-1 w-full"
+               ></m.div>
+               {/* <Button
+                  ripple={true}
+                  variant="outlined"
+                  className={`!text-primary dark:!text-textlight dark:border-textlight border-primary border-2 text-l font-bold font-nunito p-2 ${
+                     !contactInView &&
+                     "dark:hover:!text-secondary hover:!text-primary"
+                  }`}
+               >
+                  Contact
+               </Button> */}
             </HashLink>
          </m.div>
 

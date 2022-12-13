@@ -1,10 +1,13 @@
-import { motion } from "framer-motion";
+import { motion as m } from "framer-motion";
 import { v4 as uuidv4 } from "uuid";
 
-const Card = ({ data }) => {
+const Card = ({ data, item }) => {
    //console.log(data);
    return (
-      <div className="relative z-0 w-80 ">
+      <m.div
+         className="relative z-0 w-80 "
+         variants={item}
+      >
          <div className="bg-white rounded-lg p-4 w-72 flex flex-col items-center justify-start gap-y-4 relative !z-10 h-full">
             <div className="relative flex flex-col w-48 h-48 justify-center items-center rounded-full">
                <img
@@ -61,7 +64,7 @@ const Card = ({ data }) => {
             className="absolute top-0 left-0 w-95 h-95 bg-gradient-to-br from-secondary to-primary blur-md !-z-10
        -translate-x-2 translate-y-6 "
          ></div>
-      </div>
+      </m.div>
       // -translate-x-4 -translate-y-2
    );
 };

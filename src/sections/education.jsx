@@ -13,6 +13,20 @@ const Education = ({
    allIcons,
    showDropMenu,
 }) => {
+   const container = {
+      hidden: { opacity: 0 },
+      show: {
+         opacity: 1,
+         transition: {
+            staggerChildren: 0.5,
+         },
+      },
+   };
+
+   const item = {
+      hidden: { opacity: 0 },
+      show: { opacity: 1 },
+   };
    return (
       <section
          ref={educationRef}
@@ -22,14 +36,20 @@ const Education = ({
       >
          <SectionTitle title="Education" />
 
-         <div className="flex w-full flex-wrap justify-center md:justify-evenly gap-4">
+         <m.div
+            className="flex w-full flex-wrap justify-center md:justify-evenly gap-4"
+            variants={container}
+            initial="hidden"
+            whileInView={"show"}
+         >
             {cardData.map((institution) => (
                <Card
                   key={uuidv4()}
                   data={institution}
+                  variants={item}
                />
             ))}
-         </div>
+         </m.div>
       </section>
    );
 };

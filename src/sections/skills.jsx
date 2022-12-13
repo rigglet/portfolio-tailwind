@@ -76,6 +76,21 @@ const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
 
    const softSkills = text.filter((t) => t.name === "soft_skill");
 
+   const container = {
+      hidden: { opacity: 0 },
+      show: {
+         opacity: 1,
+         transition: {
+            staggerChildren: 0.5,
+         },
+      },
+   };
+
+   const item = {
+      hidden: { opacity: 0 },
+      show: { opacity: 1 },
+   };
+
    return (
       <main
          ref={skillsRef}
@@ -83,68 +98,101 @@ const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
             showDropMenu && "blur-sm"
          }`}
       >
-         <section className="flex flex-col gap-8">
+         <m.section
+            className="flex flex-col gap-8"
+            variants={container}
+            initial="hidden"
+            //animate={skillsControls}
+            whileInView={"show"}
+         >
             <SectionTitle title="Skills" />
             {loadingSkills ? (
-               <div className="w-full flex justify-center items-start p-8 h-auto border-2 border-black">
+               <div className="w-full flex justify-center items-start p-8 h-auto">
                   <Loader rows="2" />
                </div>
             ) : (
-               <div className="flex flex-wrap gap-8 justify-center">
-                  {frontend.length > 0 && (
-                     <FeatureBox title="Frontend">
-                        <IconSection
-                           allIcons={allIcons}
-                           arrIcons={frontend}
-                        />
-                     </FeatureBox>
-                  )}
-                  {backend.length > 0 && (
-                     <FeatureBox title="Backend">
-                        <IconSection
-                           allIcons={allIcons}
-                           arrIcons={backend}
-                        />
-                     </FeatureBox>
-                  )}
-                  {database.length > 0 && (
-                     <FeatureBox title="Database">
-                        <IconSection
-                           allIcons={allIcons}
-                           arrIcons={database}
-                        />
-                     </FeatureBox>
-                  )}
-                  {infrastructure.length > 0 && (
-                     <FeatureBox title="Deployment">
-                        <IconSection
-                           allIcons={allIcons}
-                           arrIcons={infrastructure}
-                        />
-                     </FeatureBox>
-                  )}
-                  {other.length > 0 && (
-                     <FeatureBox title="Other">
-                        <IconSection
-                           allIcons={allIcons}
-                           arrIcons={other}
-                        />
-                     </FeatureBox>
-                  )}
-                  {tools.length > 0 && (
-                     <FeatureBox title="Tools">
-                        <IconSection
-                           allIcons={allIcons}
-                           arrIcons={tools}
-                        />
-                     </FeatureBox>
-                  )}
-               </div>
+               <m.div
+                  className="flex flex-wrap gap-8 justify-center"
+                  // variants={container}
+                  // initial="hidden"
+                  // //animate={skillsControls}
+                  // whileInView={"show"}
+               >
+                  <m.div
+                     variants={item}
+                     className="grow"
+                  >
+                     {frontend.length > 0 && (
+                        <FeatureBox title="Frontend">
+                           <IconSection
+                              allIcons={allIcons}
+                              arrIcons={frontend}
+                           />
+                        </FeatureBox>
+                     )}
+                  </m.div>
+                  <m.div variants={item}>
+                     {backend.length > 0 && (
+                        <FeatureBox title="Backend">
+                           <IconSection
+                              allIcons={allIcons}
+                              arrIcons={backend}
+                           />
+                        </FeatureBox>
+                     )}
+                  </m.div>
+                  <m.div variants={item}>
+                     {database.length > 0 && (
+                        <FeatureBox title="Database">
+                           <IconSection
+                              allIcons={allIcons}
+                              arrIcons={database}
+                           />
+                        </FeatureBox>
+                     )}
+                  </m.div>
+                  <m.div variants={item}>
+                     {infrastructure.length > 0 && (
+                        <FeatureBox title="Deployment">
+                           <IconSection
+                              allIcons={allIcons}
+                              arrIcons={infrastructure}
+                           />
+                        </FeatureBox>
+                     )}
+                  </m.div>
+                  <m.div variants={item}>
+                     {other.length > 0 && (
+                        <FeatureBox title="Other">
+                           <IconSection
+                              allIcons={allIcons}
+                              arrIcons={other}
+                           />
+                        </FeatureBox>
+                     )}
+                  </m.div>
+                  <m.div variants={item}>
+                     {tools.length > 0 && (
+                        <FeatureBox title="Tools">
+                           <IconSection
+                              allIcons={allIcons}
+                              arrIcons={tools}
+                           />
+                        </FeatureBox>
+                     )}
+                  </m.div>
+               </m.div>
             )}
-         </section>
+         </m.section>
 
          {softSkills.length > 0 && (
-            <section className="flex flex-col justify-start gap-y-4">
+            <m.section
+               className="flex flex-col justify-start gap-y-4"
+               variants={container}
+               initial="hidden"
+               //animate={skillsControls}
+               whileInView={"show"}
+            >
                <SectionTitle title="Soft Skills" />
 
                {loadingTexts ? (
@@ -152,15 +200,17 @@ const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
                      <Loader rows="1" />
                   </div>
                ) : (
-                  <FeatureBox>
-                     <div className="text-textdark dark:text-textlight">
-                        {softSkills.map((skill) => (
-                           <p key={uuidv4()}>{skill.content}</p>
-                        ))}
-                     </div>
-                  </FeatureBox>
+                  <m.div variants={item}>
+                     <FeatureBox>
+                        <div className="text-textdark dark:text-textlight">
+                           {softSkills.map((skill) => (
+                              <p key={uuidv4()}>{skill.content}</p>
+                           ))}
+                        </div>
+                     </FeatureBox>
+                  </m.div>
                )}
-            </section>
+            </m.section>
          )}
       </main>
    );

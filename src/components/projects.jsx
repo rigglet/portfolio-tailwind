@@ -13,13 +13,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 import ProjectCard from "./projectCard";
 import ProjectDetailView from "./featuredProjectView";
 
-const Projects = ({
-   projects,
-   explorer = false,
-   portfolio = false,
-   showStar = false,
-   allIcons,
-}) => {
+const Projects = ({ projects, allIcons }) => {
    //const [element, controls] = useScroll();
    //const [currentImage, setCurrentImage] = useState(null);
 
@@ -91,9 +85,6 @@ const Projects = ({
                   project={project}
                   mainImage={mainImage}
                   handleProjectClick={handleProjectClick}
-                  portfolio={portfolio}
-                  explorer={explorer}
-                  showStar={showStar}
                   allIcons={allIcons}
                   setShowGallery={setShowGallery}
                />

@@ -101,8 +101,6 @@ const Portfolio = ({
                   {featuredProjects.length > 0 ? (
                      <Projects
                         projects={featuredProjects}
-                        portfolio={true}
-                        showStar={false}
                         allIcons={allIcons}
                      />
                   ) : (
