@@ -21,17 +21,6 @@ root: {
    --color-light: #e2e2e2;
 }
 
-/* .light {
-    color: var(--color-light);
-    background: var(--color-dark);
-}
-
-.dark {
-    color: var(--color-dark);
-    background: var(--color-light);
-}
-*/
-
 .primary {
    color: var(--primary);
 }
@@ -47,19 +36,23 @@ root: {
 ::-webkit-scrollbar-track — the track (progress bar) of the scrollbar.
 ::-webkit-scrollbar-track-piece — the part of the track (progress bar) not covered by the handle.
 ::-webkit-scrollbar-corner — the bottom corner of the scrollbar, where both horizontal and vertical scrollbars meet.
-::-webkit-resizer — the draggable resizing handle that appears at the bottom corner of some elements. */
-/* The emerging W3C standard that is currently Firefox-only */
+::-webkit-resizer — the draggable resizing handle that appears at the bottom corner of some elements. 
+The emerging W3C standard that is currently Firefox-only */
+
 * {
    scrollbar-width: none;
    scrollbar-color: #5156b8 !important;
 }
+
 /* Works on Chrome/Edge/Safari */
 *::-webkit-scrollbar {
    width: 5px;
 }
+
 *::-webkit-scrollbar-track {
    background: transparent !important;
 }
+
 *::-webkit-scrollbar-thumb {
    background: linear-gradient(#5156b8, #d478d1) !important;
    border-radius: 20px;
