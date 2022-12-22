@@ -29,22 +29,11 @@ root: {
    color: var(--secondary);
 }
 
-//scrollbar styling
-/* ::-webkit-scrollbar — the entire scrollbar.
-::-webkit-scrollbar-button — the buttons on the scrollbar (arrows pointing upwards and downwards).
-::-webkit-scrollbar-thumb — the draggable scrolling handle.
-::-webkit-scrollbar-track — the track (progress bar) of the scrollbar.
-::-webkit-scrollbar-track-piece — the part of the track (progress bar) not covered by the handle.
-::-webkit-scrollbar-corner — the bottom corner of the scrollbar, where both horizontal and vertical scrollbars meet.
-::-webkit-resizer — the draggable resizing handle that appears at the bottom corner of some elements. 
-The emerging W3C standard that is currently Firefox-only */
-
 * {
    scrollbar-width: none;
    scrollbar-color: #5156b8 !important;
 }
 
-/* Works on Chrome/Edge/Safari */
 *::-webkit-scrollbar {
    width: 5px;
 }
