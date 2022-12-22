@@ -103,6 +103,7 @@ const Contact = ({
                if (result.status === 200) {
                   //sent message
                   notify("SUCCESS");
+                  formik.resetForm();
                }
             })
             .catch((err) => {

@@ -99,7 +99,7 @@ const Nav = ({
          </h1>
 
          <m.div
-            className={`lg:flex justify-around items-center lg:gap-8 bg-bglight dark:bg-bgdark ${
+            className={`lg:flex justify-around items-center lg:gap-8 ${
                showDropMenu
                   ? "flex flex-col p-4 gap-y-2 h-auto w-[100vw] absolute top-0 left-0 z-[50] border-b-4 border-primary"
                   : "hidden"
