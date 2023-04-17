@@ -9,6 +9,7 @@ export function serverBaseURL() {
    //e.g https://portfolio-server26052021.herokuapp.com/api/projects
    //const host = "portfolio-server26052021.herokuapp.com";
    const host = "api-9dg1.onrender.com";
+   //const host = "api.neilrigg.com";
    //const host = "enchanting-wear-lamb.cyclic.app";
    const protocol = "https";
    //const host = "neilrigg.com";

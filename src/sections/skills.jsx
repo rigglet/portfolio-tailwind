@@ -8,6 +8,7 @@ import IconSection from "../components/IconSection";
 import SectionTitle from "../components/sectionTitle";
 import { v4 as uuidv4 } from "uuid";
 import Loader from "../components/loader";
+import Icon from "../components/Icon";
 
 const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
    const [technologies, setTechnologies] = useState([]);
@@ -202,9 +203,24 @@ const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
                ) : (
                   <m.div variants={item}>
                      <FeatureBox>
-                        <div className="text-textdark dark:text-textlight">
+                        <div className="text-textdark dark:text-textlight flex flex-col gap-y-4">
                            {softSkills.map((skill) => (
-                              <p key={uuidv4()}>{skill.content}</p>
+                              <div
+                                 key={uuidv4()}
+                                 className="flex"
+                              >
+                                 <div className="flex w-8 mr-4">
+                                    <Icon
+                                       icon="IoArrowForwardCircleSharp"
+                                       color=""
+                                       size="30px"
+                                       allIcons={allIcons}
+                                    />
+                                 </div>
+                                 <div className="flex-wrap self-center">
+                                    {skill.content}
+                                 </div>
+                              </div>
                            ))}
                         </div>
                      </FeatureBox>
