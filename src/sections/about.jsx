@@ -69,9 +69,10 @@ const About = ({ aboutRef, aboutControls, showDropMenu }) => {
             <p>
                I am a graduate with a &nbsp;
                <span className="text-primary font-semibold">
-                  BSc in Computer Systems and Networks
+                  BSc in Computer Systems and Networks,&nbsp;
                </span>
-               &nbsp; with &nbsp;
+               the emphasis of which was programming, software systems
+               development and web technologies, with &nbsp;
                <span className="text-primary font-semibold">
                   years of relevant industry experience
                </span>
@@ -86,7 +87,8 @@ const About = ({ aboutRef, aboutControls, showDropMenu }) => {
                <span className="text-primary font-semibold">MERN stack,</span>{" "}
                focusing on using{" "}
                <span className="text-primary font-semibold">React</span> for
-               frontend development.
+               frontend development. Whilst I'm keen to improve my skills in the
+               MERN stack, I am always eager to learn new technologies.
             </p>
          </m.article>
       </section>
