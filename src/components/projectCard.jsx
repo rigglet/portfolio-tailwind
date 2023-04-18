@@ -89,30 +89,40 @@ const ProjectCard = ({ project, handleProjectClick, allIcons, mainImage }) => {
             {/* <div className="flex justify-around items-center border-bgdark border-2 rounded-lg p-2 text-sm font-semibold uppercase"> */}
             <div className="flex justify-around items-center rounded-lg gap-x-8 text-sm font-semibold uppercase">
                {project.githubLink && (
-                  <Button
-                     ripple={true}
-                     variant="outlined"
-                     className="flex gap-x-4 items-center !text-primary border-primary dark:border-textlight dark:!text-textlight border-2 text-l font-bold font-nunito py-2 px-4"
+                  <a
+                     href={project.githubLink}
+                     target="_blank"
                   >
-                     <FaGithubSquare
-                        title="Open project in github"
-                        size="30px"
-                     />
-                     View Code
-                  </Button>
+                     <Button
+                        ripple={true}
+                        variant="outlined"
+                        className="flex gap-x-4 items-center !text-primary border-primary dark:border-textlight dark:!text-textlight border-2 text-l font-bold font-nunito py-2 px-4"
+                     >
+                        <FaGithubSquare
+                           title="Open project in github"
+                           size="30px"
+                        />
+                        View Code
+                     </Button>
+                  </a>
                )}
                {project.website && (
-                  <Button
-                     ripple={true}
-                     variant="filled"
-                     className="flex gap-x-4 py-2 px-4 items-center bg-primary !text-textlight dark:text-textlight text-l font-bold font-nunito hover:!shadow-lg hover:!shadow-indigo-500/40 w-px-100"
+                  <a
+                     href={project.website}
+                     target="_blank"
                   >
-                     <HiLink
-                        title="Open live project website"
-                        size="30px"
-                     />
-                     View live
-                  </Button>
+                     <Button
+                        ripple={true}
+                        variant="filled"
+                        className="flex gap-x-4 py-2 px-4 items-center bg-primary !text-textlight dark:text-textlight text-l font-bold font-nunito hover:!shadow-lg hover:!shadow-indigo-500/40 w-px-100"
+                     >
+                        <HiLink
+                           title="Open live project website"
+                           size="30px"
+                        />
+                        View live
+                     </Button>
+                  </a>
                )}
             </div>
          </div>
