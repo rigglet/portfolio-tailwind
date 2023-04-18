@@ -16,7 +16,14 @@ const Footer = ({ allIcons, showDropMenu }) => {
             />
             <div className="flex flex-col items-center md:items-start justify-around text-m !text-textlight font-poppins text-sm">
                <h1 className="font-semibold">Github:</h1>
-               <p className="font-normal">https://github.com/rigglet</p>
+               <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://github.com/rigglet"
+                  className="font-normal hover:scale-105"
+               >
+                  https://github.com/rigglet
+               </a>
             </div>
          </div>
 
@@ -29,9 +36,14 @@ const Footer = ({ allIcons, showDropMenu }) => {
             />
             <div className="flex flex-col items-center md:items-start justify-around text-m !text-textlight font-poppins  text-sm">
                <h1 className="font-semibold">Linked In:</h1>
-               <p className="font-normal">
+               <a
+                  target="_blank"
+                  rel="noreferrer"
+                  href="https://www.linkedin.com/in/neil-rigg-794243159/"
+                  className="font-normal hover:scale-105"
+               >
                   https://www.linkedin.com/in/neil-rigg-794243159/
-               </p>
+               </a>
             </div>
          </div>
       </main>

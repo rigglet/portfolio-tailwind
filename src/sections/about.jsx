@@ -5,12 +5,7 @@ import codingImage from "../img/coding.svg";
 import underline from "../img/underline.svg";
 
 //animations
-import {
-   fadeInOut,
-   slideLeft,
-   scaleUpRight,
-   slideUp,
-} from "../styles/animations";
+import { slideLeft, scaleUpRight, slideUp } from "../styles/animations";
 
 const About = ({ aboutRef, aboutControls, showDropMenu }) => {
    return (
