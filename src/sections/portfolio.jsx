@@ -35,9 +35,15 @@ const Portfolio = ({
    const [loading, setLoading] = useState(true);
    const [showFull, setShowFull] = useState(false);
    const [projects, setProjects] = useState([]);
+   const [text, setText] = useState([]);
+   const [loadingText, setLoadingText] = useState(true);
 
    async function getProjects() {
       return await getCollection("projects");
+   }
+
+   async function getText() {
+      return await getCollection("texts");
    }
 
    useEffect(() => {
@@ -53,11 +59,27 @@ const Portfolio = ({
          .catch((err) => {
             console.log(err);
          });
+
+      getText()
+         .then((results) => {
+            if (results.status === 200) {
+               setText(results.data);
+            }
+         })
+         .then(() => {
+            setLoadingText(false);
+         })
+         .catch((err) => {
+            console.log(err);
+         });
    }, []);
 
    const featuredProjects = projects.filter((project) => {
       return project.featured === true && project.included === true;
    });
+
+   const strWorkingOnText = text.filter((t) => t.name === "working_on")[0]
+      ?.content;
 
    const handleExploreClick = () => {
       setShowFull(true);
@@ -120,22 +142,26 @@ const Portfolio = ({
          </div>
 
          {/* "Currently working on" banner */}
-         <div className=" h-14 flex w-full rounded-lg justify-center items-center bg-gradient-to-b from-secondary to-primary">
-            <div className="flex items-center justify-around gap-x-4">
-               <Icon
-                  icon="FaLaptopCode"
-                  color="#e2e2e2"
-                  size="40px"
-                  allIcons={allIcons}
-               />
-               <div className="flex flex-col items-start justify-around text-m !text-textlight font-poppins">
-                  <h1 className="font-semibold">Currently working on:</h1>
-                  <p className="font-normal">
-                     Next JS, Figma design, Tailwind, Portfolio redesign
-                  </p>
+         {loadingText ? (
+            <div className="w-full flex justify-center items-start p-8 h-fit">
+               <Loader rows="1" />
+            </div>
+         ) : (
+            <div className=" h-14 flex w-full rounded-lg justify-center items-center bg-gradient-to-b from-secondary to-primary">
+               <div className="flex items-center justify-around gap-x-4">
+                  <Icon
+                     icon="FaLaptopCode"
+                     color="#e2e2e2"
+                     size="40px"
+                     allIcons={allIcons}
+                  />
+                  <div className="flex flex-col items-start justify-around text-m !text-textlight font-poppins">
+                     <h1 className="font-semibold">Currently working on:</h1>
+                     <p className="font-normal">{strWorkingOnText}</p>
+                  </div>
                </div>
             </div>
-         </div>
+         )}
       </section>
    );
 };
