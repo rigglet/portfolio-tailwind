@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 //framer motion and styled components
 import { motion as m } from "framer-motion";
-import { selection, slideDown, bounceUp } from "../styles/animations";
+//import { selection, slideDown, bounceUp } from "../styles/animations";
 import { getCollection } from "../api/api";
 import FeatureBox from "../components/featureBox";
 import IconSection from "../components/IconSection";

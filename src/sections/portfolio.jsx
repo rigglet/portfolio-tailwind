@@ -5,12 +5,12 @@ import { motion as m } from "framer-motion";
 import { Button } from "@material-tailwind/react";
 
 //animations
-import {
-   fadeInOut,
-   slideLeft,
-   scaleUpRight,
-   slideUp,
-} from "../styles/animations";
+// import {
+//    fadeInOut,
+//    slideLeft,
+//    scaleUpRight,
+//    slideUp,
+// } from "../styles/animations";
 
 //components
 import Projects from "../components/projects";

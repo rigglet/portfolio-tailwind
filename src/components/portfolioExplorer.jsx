@@ -16,41 +16,24 @@ import SectionTitle from "./sectionTitle";
 
 //icons
 import Icon from "./Icon";
+import { useEffect } from "react";
 
 const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
-   //const [projects, setProjects] = useState([]);
+   //state for each select input selected state
+   const [selectedType, setSelectedType] = useState("all");
+   const [selectedTechnology, setSelectedTechnology] = useState("all");
+   const [selectedLibrary, setSelectedLibrary] = useState("all");
+   const [selectedName, setSelectedName] = useState("all");
+   const [displayProjects, setDisplayProjects] = useState([]);
 
-   const includedProjects = projects.filter(
-      (project) => project.included === true
-   );
+   //all values for
+   let technologies = [];
+   let libraries = [];
+   let filteredProjects = [];
 
-   //const [loading, setLoading] = useState(true);
-   const [type, setType] = useState("all");
-   const [tech, setTech] = useState("all");
-   const [library, setLibrary] = useState("all");
-   const [name, setName] = useState("all");
-
-   const handleTypeChange = (e) => {
-      setType(e.target.value);
-   };
-   const handleTechChange = (e) => {
-      setTech(e.target.value);
-      setLibrary("all");
-      setName("all");
-   };
-   const handleLibraryChange = (e) => {
-      setLibrary(e.target.value);
-      setTech("all");
-      setName("all");
-   };
-   const handleNameChange = (e) => {
-      setName(e.target.value);
-      setTech("all");
-      setLibrary("all");
-   };
-
-   const filterByType = (arrProjects = []) => {
-      switch (type) {
+   const filterByType = (arrProjects) => {
+      console.log("filterByType: selectedType", selectedType);
+      switch (selectedType) {
          case "featured":
             return arrProjects.filter((project) => project.featured === true);
          case "all":
@@ -60,59 +43,124 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
       }
    };
 
-   // const getFilteredProjectsBySelection = (arrProjects = []) => {
-   //    //filter projects by selection
-   //    //map over selection names for each project then check if resulting array includes the currently selected item
-   //    //if so return as part of the filtered array
-   //    if (tech !== "all") {
-   //       return arrProjects.filter((proj) => {
-   //          return proj.technologies.map((t) => t.name).includes(tech);
-   //       });
-   //    } else if (library !== "all") {
-   //       return arrProjects.filter((proj) => {
-   //          return proj.libraries.map((l) => l.name).includes(library);
-   //       });
-   //    } else if (name !== "all") {
-   //       return arrProjects.filter((proj) => proj.projectName === name);
-   //    } else {
-   //       return [...arrProjects];
-   //    }
-   // };
+   //get array of included projects
+   const includedProjects = projects.filter(
+      (project) => project.included === true
+   );
 
-   let projectsByType = filterByType(includedProjects);
-   let filteredProjects = filterByType(includedProjects);
-   //getFilteredProjectsBySelection()
-   // getFilteredProjectsBySelection(filteredProjects);
-   // let filteredProjects = getFilteredProjectsBySelection(
-   //    filterByType(includedProjects)
-   // );
+   //filter projects according to selected 'selectedType' [all/featured]
+   filteredProjects = filterByType(includedProjects);
 
-   const getTechnologiesForAllProjects = (projects) => {
-      let projectSet = new Set();
+   useEffect(() => {
+      setDisplayProjects(() => filteredProjects);
+   }, []);
 
-      projects.map((project) => {
-         return project.technologies.map((t) => projectSet.add(t.name));
-      });
+   // useEffect(() => {
+   //    setDisplayProjects(filteredProjects);
+   // }, []);
 
-      return projectSet;
+   //GET VALUES FOR SELECT INPUTS
+   //get technologies
+
+   const getTechnologies = () => {
+      return [
+         ...new Set(
+            filteredProjects.reduce(
+               (accumulator, project) => [
+                  ...accumulator,
+                  ...project.technologies.map((technology) => technology.name),
+               ],
+               []
+            )
+         ),
+      ];
    };
 
-   const getLibrariesForAllProjects = (projects) => {
-      let projectSet = new Set();
-
-      projects.map((project) => {
-         return project.libraries.map((l) => projectSet.add(l.name));
-      });
-
-      return projectSet;
+   //get libraries
+   const getLibraries = () => {
+      return [
+         ...new Set(
+            filteredProjects.reduce(
+               (accumulator, project) => [
+                  ...accumulator,
+                  ...project.libraries.map((library) => library.name),
+               ],
+               []
+            )
+         ),
+      ];
    };
 
-   let technologiesForAllProjects = [
-      ...getTechnologiesForAllProjects(projectsByType),
-   ];
-   let librariesForAllProjects = [
-      ...getLibrariesForAllProjects(projectsByType),
-   ];
+   //initialise select options
+   libraries = getLibraries();
+   technologies = getTechnologies();
+
+   //get names
+   //
+
+   //handle selection from select inputs
+   const handleTypeChange = (e) => {
+      setSelectedType(() => e.target.value);
+      console.log(`Filter by selectedType ${e.target.value}`);
+      //console.log(`Filter by selectedType ${selectedType}`);
+      //filteredProjects = filterByType(includedProjects);
+      setDisplayProjects(() => filteredProjects);
+   };
+
+   const filterProjectsByTechnology = (techName) => {
+      return filteredProjects.filter((project) =>
+         project.technologies
+            .map((technology) => technology.name)
+            .includes(techName)
+      );
+   };
+
+   const filterProjectsByLibrary = (libraryName) => {
+      return filteredProjects.filter((project) =>
+         project.libraries.map((library) => library.name).includes(libraryName)
+      );
+   };
+
+   const filterProjectsByName = (projectName) => {
+      return filteredProjects.filter(
+         (project) => project.projectName === projectName
+      );
+   };
+
+   const handleTechChange = (e) => {
+      setSelectedTechnology(e.target.value);
+      setSelectedLibrary("all");
+      setSelectedName("all");
+      filteredProjects = filterProjectsByTechnology(e.target.value);
+      if (e.target.value !== "all") {
+         setDisplayProjects(() => filteredProjects);
+      }
+      technologies = getTechnologies();
+      console.log(`Handle technology change ${e.target.value}`);
+   };
+
+   const handleLibraryChange = (e) => {
+      setSelectedLibrary(e.target.value);
+      setSelectedTechnology("all");
+      setSelectedName("all");
+      if (e.target.value !== "all") {
+         filteredProjects = filterProjectsByLibrary(e.target.value);
+      }
+      setDisplayProjects(() => filteredProjects);
+      libraries = getLibraries();
+      console.log(`Handle library change ${e.target.value}`);
+   };
+
+   const handleNameChange = (e) => {
+      setSelectedName(e.target.value);
+      setSelectedTechnology("all");
+      setSelectedLibrary("all");
+      if (e.target.value !== "all") {
+         filteredProjects = filterProjectsByName(e.target.value);
+      }
+      setDisplayProjects(() => filteredProjects);
+      console.log(`Handle name change ${e.target.value}`);
+   };
 
    //close modal
    const projectClose = () => {
@@ -156,7 +204,7 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                         <select
                            name="type"
                            onChange={handleTypeChange}
-                           value={type}
+                           value={selectedType}
                            className="rounded-md border-primary text-sm"
                         >
                            <option
@@ -179,20 +227,21 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                            htmlFor="name"
                            className="font-semibold"
                         >
-                           {`Name (${projectsByType.length})`}
+                           {`Name (${filteredProjects.length})`}
                         </label>
                         <select
                            name="name"
                            onChange={handleNameChange}
-                           value={name}
+                           value={selectedName}
                            className="rounded-md border-primary text-sm"
                         >
                            <option value="all">All</option>
 
-                           {includedProjects.map((project) => {
+                           {filteredProjects.map((project) => {
                               if (
-                                 (type === "featured" && project.featured) ||
-                                 type === "all"
+                                 (selectedType === "featured" &&
+                                    project.featured) ||
+                                 selectedType === "all"
                               ) {
                                  return (
                                     <option
@@ -212,21 +261,21 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                            htmlFor="technology"
                            className="font-semibold"
                         >
-                           {`Technology (${includedProjects.length})`}
+                           {`Technology (${technologies.length})`}
                         </label>
                         <select
                            name="technology"
                            onChange={handleTechChange}
-                           value={tech}
+                           value={selectedTechnology}
                            className="rounded-md border-primary text-sm"
                         >
                            <option value="all">All</option>
-                           {technologiesForAllProjects.map((tech) => (
+                           {technologies.map((technology) => (
                               <option
-                                 value={tech}
-                                 key={tech}
+                                 value={technology}
+                                 key={technology}
                               >
-                                 {tech}
+                                 {technology}
                               </option>
                            ))}
                         </select>
@@ -238,16 +287,16 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                            htmlFor="library"
                            className="font-semibold"
                         >
-                           {`Library (${librariesForAllProjects.length})`}
+                           {`Library (${libraries.length})`}
                         </label>
                         <select
                            name="library"
                            onChange={handleLibraryChange}
-                           value={library}
+                           value={selectedLibrary}
                            className="rounded-md border-primary text-sm"
                         >
                            <option value="all">All</option>
-                           {librariesForAllProjects.map((library) => (
+                           {libraries.map((library) => (
                               <option
                                  value={library}
                                  key={library}
@@ -269,9 +318,9 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
 
                {/* Filtered projects */}
                <div className="projects">
-                  {filteredProjects.length > 0 ? (
+                  {displayProjects.length > 0 ? (
                      <ExplorerProjects
-                        projects={filteredProjects}
+                        projects={displayProjects}
                         allIcons={allIcons}
                      />
                   ) : (

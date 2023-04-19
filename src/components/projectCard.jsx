@@ -2,7 +2,7 @@ import { serverBaseURL } from "../config/config";
 import { Button } from "@material-tailwind/react";
 
 //framer motion and styled components
-import { motion as m } from "framer-motion";
+//import { motion as m } from "framer-motion";
 
 import screen from "../img/screen.png";
 
@@ -92,6 +92,7 @@ const ProjectCard = ({ project, handleProjectClick, allIcons, mainImage }) => {
                   <a
                      href={project.githubLink}
                      target="_blank"
+                     rel="noreferrer"
                   >
                      <Button
                         ripple={true}
@@ -110,6 +111,7 @@ const ProjectCard = ({ project, handleProjectClick, allIcons, mainImage }) => {
                   <a
                      href={project.website}
                      target="_blank"
+                     rel="noreferrer"
                   >
                      <Button
                         ripple={true}
