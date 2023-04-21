@@ -189,7 +189,7 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                      <div className="flex flex-col gap-y-1 items-center">
                         <label
                            htmlFor="type"
-                           className="font-semibold"
+                           className="font-semibold dark:text-textlight"
                         >
                            {`Type`}
                         </label>
@@ -213,11 +213,11 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                            </option>
                         </select>
                      </div>
-                     <h5>AND</h5>
+                     <h5 className="dark:text-textlight">AND</h5>
                      <div className="flex flex-col gap-y-1 items-center">
                         <label
                            htmlFor="name"
-                           className="font-semibold"
+                           className="font-semibold dark:text-textlight"
                         >
                            {`Name (${
                               filterByType(selectedType, includedProjects)
@@ -250,11 +250,11 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                            })}
                         </select>
                      </div>
-                     <h5>OR</h5>
+                     <h5 className="dark:text-textlight">OR</h5>
                      <div className="flex flex-col gap-y-1 items-center">
                         <label
                            htmlFor="technology"
-                           className="font-semibold"
+                           className="font-semibold dark:text-textlight"
                         >
                            {`Technology (${technologies.length})`}
                         </label>
@@ -275,12 +275,12 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                            ))}
                         </select>
                      </div>
-                     <h5>OR</h5>
+                     <h5 className="dark:text-textlight">OR</h5>
 
                      <div className="flex flex-col gap-y-1 items-center">
                         <label
                            htmlFor="library"
-                           className="font-semibold"
+                           className="font-semibold dark:text-textlight"
                         >
                            {`Library (${libraries.length})`}
                         </label>
@@ -303,9 +303,9 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                      </div>
                   </div>
                   {/* No of projects in filtered results */}
-                  <h4>
+                  <h4 className="dark:text-textlight">
                      No. of projects:{" "}
-                     <span className="font-semibold">
+                     <span className="font-semibold dark:text-textlight">
                         {displayProjects.length}
                      </span>
                   </h4>
@@ -319,7 +319,9 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                         allIcons={allIcons}
                      />
                   ) : (
-                     <h1 className="noresult">No projects to show.</h1>
+                     <h1 className="noresult dark:text-textlight">
+                        No projects to show.
+                     </h1>
                   )}
                </div>
                {/* </>
