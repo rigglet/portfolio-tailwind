@@ -7,9 +7,6 @@ import { detailPopUp } from "../styles/animations";
 //import Loader from "../components/Loader";
 import ExplorerProjects from "../components/explorerProjects";
 
-//data
-//import { getCollection } from "../api/api";
-
 //components
 import CloseButton from "./closeButton";
 import SectionTitle from "./sectionTitle";
@@ -24,16 +21,18 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
    const [selectedTechnology, setSelectedTechnology] = useState("all");
    const [selectedLibrary, setSelectedLibrary] = useState("all");
    const [selectedName, setSelectedName] = useState("all");
-   const [displayProjects, setDisplayProjects] = useState([]);
 
    //all values for
    let technologies = [];
    let libraries = [];
-   let filteredProjects = [];
 
-   const filterByType = (arrProjects) => {
-      console.log("filterByType: selectedType", selectedType);
-      switch (selectedType) {
+   const includedProjects = projects.filter(
+      (project) => project.included === true
+   );
+
+   const filterByType = (type, arrProjects) => {
+      //console.log("filterByType: selectedType", selectedType);
+      switch (type) {
          case "featured":
             return arrProjects.filter((project) => project.featured === true);
          case "all":
@@ -43,29 +42,19 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
       }
    };
 
-   //get array of included projects
-   const includedProjects = projects.filter(
-      (project) => project.included === true
-   );
-
-   //filter projects according to selected 'selectedType' [all/featured]
-   filteredProjects = filterByType(includedProjects);
+   const [displayProjects, setDisplayProjects] = useState([]);
 
    useEffect(() => {
-      setDisplayProjects(() => filteredProjects);
+      console.log("Set display projects on load");
+      setDisplayProjects(filterByType(selectedType, includedProjects));
    }, []);
-
-   // useEffect(() => {
-   //    setDisplayProjects(filteredProjects);
-   // }, []);
 
    //GET VALUES FOR SELECT INPUTS
    //get technologies
-
    const getTechnologies = () => {
       return [
          ...new Set(
-            filteredProjects.reduce(
+            displayProjects.reduce(
                (accumulator, project) => [
                   ...accumulator,
                   ...project.technologies.map((technology) => technology.name),
@@ -80,7 +69,7 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
    const getLibraries = () => {
       return [
          ...new Set(
-            filteredProjects.reduce(
+            displayProjects.reduce(
                (accumulator, project) => [
                   ...accumulator,
                   ...project.libraries.map((library) => library.name),
@@ -95,20 +84,14 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
    libraries = getLibraries();
    technologies = getTechnologies();
 
-   //get names
-   //
-
    //handle selection from select inputs
    const handleTypeChange = (e) => {
       setSelectedType(() => e.target.value);
-      console.log(`Filter by selectedType ${e.target.value}`);
-      //console.log(`Filter by selectedType ${selectedType}`);
-      //filteredProjects = filterByType(includedProjects);
-      setDisplayProjects(() => filteredProjects);
+      setDisplayProjects(() => filterByType(e.target.value, includedProjects));
    };
 
    const filterProjectsByTechnology = (techName) => {
-      return filteredProjects.filter((project) =>
+      return includedProjects.filter((project) =>
          project.technologies
             .map((technology) => technology.name)
             .includes(techName)
@@ -116,50 +99,59 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
    };
 
    const filterProjectsByLibrary = (libraryName) => {
-      return filteredProjects.filter((project) =>
+      return includedProjects.filter((project) =>
          project.libraries.map((library) => library.name).includes(libraryName)
       );
    };
 
    const filterProjectsByName = (projectName) => {
-      return filteredProjects.filter(
+      return includedProjects.filter(
          (project) => project.projectName === projectName
       );
    };
 
-   const handleTechChange = (e) => {
-      setSelectedTechnology(e.target.value);
-      setSelectedLibrary("all");
-      setSelectedName("all");
-      filteredProjects = filterProjectsByTechnology(e.target.value);
-      if (e.target.value !== "all") {
-         setDisplayProjects(() => filteredProjects);
-      }
-      technologies = getTechnologies();
-      console.log(`Handle technology change ${e.target.value}`);
-   };
-
-   const handleLibraryChange = (e) => {
-      setSelectedLibrary(e.target.value);
-      setSelectedTechnology("all");
-      setSelectedName("all");
-      if (e.target.value !== "all") {
-         filteredProjects = filterProjectsByLibrary(e.target.value);
-      }
-      setDisplayProjects(() => filteredProjects);
-      libraries = getLibraries();
-      console.log(`Handle library change ${e.target.value}`);
-   };
-
    const handleNameChange = (e) => {
+      //console.log(`Handle name change ${e.target.value}`);
+
       setSelectedName(e.target.value);
       setSelectedTechnology("all");
       setSelectedLibrary("all");
+
       if (e.target.value !== "all") {
-         filteredProjects = filterProjectsByName(e.target.value);
+         setDisplayProjects(filterProjectsByName(e.target.value));
+      } else {
+         setDisplayProjects(filterByType(selectedType, includedProjects));
       }
-      setDisplayProjects(() => filteredProjects);
-      console.log(`Handle name change ${e.target.value}`);
+   };
+
+   const handleTechChange = (e) => {
+      //console.log(`Handle technology change ${e.target.value}`);
+
+      setSelectedTechnology(e.target.value);
+      setSelectedLibrary("all");
+      setSelectedName("all");
+
+      if (e.target.value !== "all") {
+         setDisplayProjects(filterProjectsByTechnology(e.target.value));
+      } else {
+         setDisplayProjects(filterByType(selectedType, includedProjects));
+      }
+      //technologies = getTechnologies();
+   };
+
+   const handleLibraryChange = (e) => {
+      //console.log(`Handle library change ${e.target.value}`);
+
+      setSelectedLibrary(e.target.value);
+      setSelectedTechnology("all");
+      setSelectedName("all");
+
+      if (e.target.value !== "all") {
+         setDisplayProjects(filterProjectsByLibrary(e.target.value));
+      } else {
+         setDisplayProjects(filterByType(selectedType, includedProjects));
+      }
+      //libraries = getLibraries();
    };
 
    //close modal
@@ -227,7 +219,10 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                            htmlFor="name"
                            className="font-semibold"
                         >
-                           {`Name (${filteredProjects.length})`}
+                           {`Name (${
+                              filterByType(selectedType, includedProjects)
+                                 .length
+                           })`}
                         </label>
                         <select
                            name="name"
@@ -237,7 +232,7 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                         >
                            <option value="all">All</option>
 
-                           {filteredProjects.map((project) => {
+                           {includedProjects.map((project) => {
                               if (
                                  (selectedType === "featured" &&
                                     project.featured) ||
@@ -311,12 +306,12 @@ const PortfolioExplorer = ({ setShowFull, allIcons, projects }) => {
                   <h4>
                      No. of projects:{" "}
                      <span className="font-semibold">
-                        {filteredProjects.length}
+                        {displayProjects.length}
                      </span>
                   </h4>
                </div>
 
-               {/* Filtered projects */}
+               {/* Display projects */}
                <div className="projects">
                   {displayProjects.length > 0 ? (
                      <ExplorerProjects
