@@ -38,9 +38,9 @@ const About = ({ aboutRef, aboutControls, showDropMenu }) => {
                <p className="font-poppins text-textdark dark:text-textlight font-normal text-3xl lg:text-4xl">
                   Hi, I'm
                </p>
-               <div className="flex flex-col gap-y-2 items-center lg:items-end">
+               <div className="flex flex-row lg:flex-col gap-x-2 lg:gap-y-2 items-center lg:items-end">
                   <p className="font-montserrat text-textdark dark:text-textlight font-semibold text-5xl lg:text-7xl">
-                     Neil{" "}
+                     Neil
                   </p>
                   <p className="font-montserrat text-secondary font-semibold text-5xl lg:text-7xl relative justify-end">
                      Rigg
