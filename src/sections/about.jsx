@@ -24,7 +24,7 @@ const About = ({ aboutRef, aboutControls, showDropMenu }) => {
             animate={aboutControls}
          >
             <m.img
-               className="w-full lg:w-1/2 h-auto"
+               className="w-full lg:w-1/2 h-auto px-4 lg:px-0"
                src={codingImage}
                alt="Author of portfolio Neil Rigg"
             />
@@ -35,18 +35,18 @@ const About = ({ aboutRef, aboutControls, showDropMenu }) => {
                animate={aboutControls}
                className="flex flex-col gap-y-4 justify-center items-center lg:items-end w-full"
             >
-               <p className="font-poppins text-textdark dark:text-textlight font-normal text-4xl">
+               <p className="font-poppins text-textdark dark:text-textlight font-normal text-3xl lg:text-4xl">
                   Hi, I'm
                </p>
                <div className="flex flex-col gap-y-2 items-center lg:items-end">
-                  <p className="font-montserrat text-textdark dark:text-textlight font-semibold text-7xl">
+                  <p className="font-montserrat text-textdark dark:text-textlight font-semibold text-5xl lg:text-7xl">
                      Neil{" "}
                   </p>
-                  <p className="font-montserrat text-secondary font-semibold text-7xl relative justify-end">
+                  <p className="font-montserrat text-secondary font-semibold text-5xl lg:text-7xl relative justify-end">
                      Rigg
                      {/* <span className="text-primary">.</span> */}
                      <img
-                        className="absolute top-20 left-0 -z-10 "
+                        className="absolute top-15 lg:top-20 left-0 -z-10"
                         src={underline}
                         alt="underline"
                      />
@@ -59,7 +59,7 @@ const About = ({ aboutRef, aboutControls, showDropMenu }) => {
             variants={slideLeft}
             initial="initial"
             animate={aboutControls}
-            className="font-poppins text-textdark dark:text-textlight font-normal text-xl flex flex-col gap-y-2 text-justify"
+            className="font-poppins text-textdark dark:text-textlight font-normal text-lg lg:text-xl flex flex-col gap-y-2 text-justify"
          >
             <p>
                I am a graduate with a &nbsp;
