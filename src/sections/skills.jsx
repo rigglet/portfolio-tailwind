@@ -95,7 +95,7 @@ const Skills = ({ skillsRef, skillsControls, allIcons, showDropMenu }) => {
    return (
       <main
          ref={skillsRef}
-         className={`lg:mt-20 flex flex-col justify-around w-full h-full min-h-screen bg-bglight dark:bg-bgdark gap-y-8 ${
+         className={`lg:mt-20 flex flex-col justify-around mt-4 w-full h-full min-h-screen bg-bglight dark:bg-bgdark gap-y-8 ${
             showDropMenu && "blur-sm"
          }`}
       >

@@ -89,7 +89,7 @@ const Portfolio = ({
       <section
          ref={portfolioRef}
          showNav={showNav}
-         className={`flex flex-col sm:pt-10 lg:pt-24 gap-y-4 lg:gap-y-8 w-full h-auto min-h-screen bg-bglight dark:bg-bgdark ${
+         className={`flex flex-col sm:pt-10 lg:pt-24 gap-y-4 mb-4 lg:gap-y-8 w-full h-auto min-h-screen bg-bglight dark:bg-bgdark ${
             showDropMenu && "blur-sm"
          }`}
       >
@@ -148,7 +148,7 @@ const Portfolio = ({
             </div>
          ) : (
             <div className=" h-14 flex w-full rounded-lg justify-center items-center bg-gradient-to-b from-secondary to-primary">
-               <div className="flex items-center justify-around gap-x-4">
+               <div className="flex items-center justify-around gap-x-4 border-2 border-red-500 px-2 md:p-0">
                   <Icon
                      icon="FaLaptopCode"
                      color="#e2e2e2"
