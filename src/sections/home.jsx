@@ -23,24 +23,24 @@ const Home = ({ homeRef, homeControls, showNav, showDropMenu }) => {
             showDropMenu && "blur-sm"
          }`}
       >
-         <div className="flex flex-col gap-y-8 lg:gap-y-16 lg:items-start items-center">
+         <div className="flex flex-col gap-y-4 lg:gap-y-16 lg:items-start items-center">
             <m.div
                className="flex flex-col gap-y-2 lg:items-start items-center"
                variants={headerVariants}
                initial="initial"
                animate={homeControls}
             >
-               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-4xl">
+               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-3xl lg:text-4xl">
                   I am a
                </h2>
-               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-4xl">
+               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-3xl lg:text-4xl">
                   Frontend
                </h2>
                <div className="flex gap-x-2">
-                  <span className="font-poppins text-primary font-poppins font-bold text-5xl">
+                  <span className="font-poppins text-primary font-poppins font-bold text-4xl lg:text-5xl">
                      Web
                   </span>
-                  <span className="font-poppins text-textdark dark:text-textlight font-bold text-5xl relative">
+                  <span className="font-poppins text-textdark dark:text-textlight font-bold text-4xl lg:text-5xl relative">
                      Developer
                      <img
                         className="absolute top-10 left-0 -z-10"
@@ -57,13 +57,13 @@ const Home = ({ homeRef, homeControls, showNav, showDropMenu }) => {
                initial="initial"
                animate={homeControls}
             >
-               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-3xl text-center lg:text-left">
+               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-2xl lg:text-3xl text-center lg:text-left">
                   Passionate about web development
                </h2>
-               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-3xl text-center lg:text-left">
+               <h2 className="font-poppins text-textdark dark:text-textlight font-normal text-2xl lg:text-3xl text-center lg:text-left">
                   With a focus on React
                </h2>
-               <h2 className="font-poppins text-secondary font-semibold text-3xl text-center lg:text-left">
+               <h2 className="font-poppins text-secondary font-semibold text-2xl lg:text-3xl text-center lg:text-left">
                   Hire me today
                </h2>
             </m.div>
@@ -93,7 +93,7 @@ const Home = ({ homeRef, homeControls, showNav, showDropMenu }) => {
          </div>
 
          <m.div
-            className="aspect-square flex flex-col w-60 h-60 lg:w-80 lg:h-80 justify-center lg:items-start items-center rounded-full bg-gradient-to-b from-primary to-secondary"
+            className="aspect-square flex flex-col w-60 h-60 lg:w-80 lg:h-80 mt-4 justify-center lg:items-start items-center rounded-full bg-gradient-to-b from-primary to-secondary"
             variants={imageVariants}
             initial="initial"
             animate={homeControls}
