@@ -15,11 +15,9 @@ import { FaGithubSquare } from "react-icons/fa";
 
 const ProjectCard = ({ project, handleProjectClick, allIcons, mainImage }) => {
    return (
-      <div className="h-auto w-full rounded-xl flex flex-wrap gap-y-2 lg:gap-y-8 font-poppins border-secondary border-1 bg-input dark:bg-[#2B2B37] odd:flex-row-reverse">
+      <div className="h-auto w-full rounded-xl flex flex-col md:flex-wrap lg:gap-y-8 font-poppins border-secondary border-2 bg-input dark:bg-[#2B2B37] md:odd:flex-row-reverse md:even:flex-row p-2">
          {/* image container */}
-         <div
-            className={`flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8`}
-         >
+         <div className="flex-1 flex items-center justify-center lg:p-4">
             <div
                className={`z-10 flex items-center justify-center relative h-full`}
             >
@@ -27,7 +25,7 @@ const ProjectCard = ({ project, handleProjectClick, allIcons, mainImage }) => {
                   src={screen}
                   alt="computer screen"
                   onClick={() => handleProjectClick(project)}
-                  className="z-20 cursor-pointer min-w-[300px] max-w-[33vw]"
+                  className="z-20 cursor-pointer md:min-w-[300px] md:max-w-[33vw]"
                />
                {mainImage?.fileName && (
                   <img
@@ -52,10 +50,10 @@ const ProjectCard = ({ project, handleProjectClick, allIcons, mainImage }) => {
          </div>
 
          {/* Information */}
-         <div className="flex flex-col p-4 sm:p-6 md:p-8 lg:p-16 gap-y-4 flex-1 min-w-[400px] justify-between">
+         <div className="flex flex-col p-2 lg:p-16 gap-y-4 flex-1 lg:min-w-[400px] justify-between">
             <h4
                onClick={() => handleProjectClick(project)}
-               className={`font-bold text-primary text-xl cursor-pointer
+               className={`font-bold text-primary text-lg md:text-xl cursor-pointer
                `}
             >
                {project.projectName}

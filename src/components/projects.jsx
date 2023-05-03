@@ -44,7 +44,7 @@ const Projects = ({ projects, allIcons }) => {
    };
 
    return (
-      <div className="flex flex-wrap flex-col gap-8 h-auto ">
+      <div className="flex flex-wrap flex-col gap-8 h-auto">
          {showGallery && (
             <div className="w-full h-full fixed top-0 left-0 z-[100] backdrop-blur-md flex items-center justify-center">
                <ImageGallery
