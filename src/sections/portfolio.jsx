@@ -148,7 +148,7 @@ const Portfolio = ({
             </div>
          ) : (
             <div className=" h-14 flex w-full rounded-lg justify-center items-center bg-gradient-to-b from-secondary to-primary">
-               <div className="flex items-center justify-around gap-x-4 border-2 border-red-500 px-2 md:p-0">
+               <div className="flex items-center justify-around gap-x-4 px-2 md:p-0">
                   <Icon
                      icon="FaLaptopCode"
                      color="#e2e2e2"
