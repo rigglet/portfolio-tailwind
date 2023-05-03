@@ -129,7 +129,7 @@ function App() {
       <div
          onScroll={handleScroll}
          ref={elementRef}
-         className={`bg-bglight dark:bg-bgdark`}
+         className="bg-bglight dark:bg-bgdark w-screen overflow-x-hidden"
       >
          <AnimatePresence
             initial={false}
