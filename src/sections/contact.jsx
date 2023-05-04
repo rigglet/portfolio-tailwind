@@ -116,7 +116,7 @@ const Contact = ({
    return (
       <section
          ref={contactRef}
-         className={`md:py-20 flex flex-col items-start justify-around w-full min-h-screen bg-bglight dark:bg-bgdark gap-y-6 ${
+         className={`mt-4 md:mt-0 md:py-20 flex flex-col items-start justify-around w-full min-h-screen bg-bglight dark:bg-bgdark gap-y-6 ${
             showDropMenu && "blur-sm"
          }`}
       >
