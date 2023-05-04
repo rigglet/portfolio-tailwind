@@ -5,7 +5,7 @@ const Card = ({ data, item }) => {
    //console.log(data);
    return (
       <m.div
-         className="relative z-0 w-80 md:self-stretch"
+         className="relative z-0 w-auto md:w-80 md:self-stretch"
          variants={item}
       >
          <div className="bg-white rounded-lg p-4 w-72 flex flex-col items-center justify-start gap-y-4 relative !z-10 h-full">
