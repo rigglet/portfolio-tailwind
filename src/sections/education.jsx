@@ -1,18 +1,13 @@
 //framer motion and styled components
 import { motion as m } from "framer-motion";
-import Icon from "../components/Icon";
+//import Icon from "../components/Icon";
 //import { fadeInOut } from "../styles/animations";
 import Card from "../components/educationCard";
 import { cardData } from "../data/data";
 import { v4 as uuidv4 } from "uuid";
 import SectionTitle from "../components/sectionTitle";
 
-const Education = ({
-   educationRef,
-   educationControls,
-   allIcons,
-   showDropMenu,
-}) => {
+const Education = ({ educationRef, educationControls, showDropMenu }) => {
    const container = {
       hidden: { opacity: 0 },
       show: {
@@ -37,7 +32,7 @@ const Education = ({
          <SectionTitle title="Education" />
 
          <m.div
-            className="flex w-full flex-wrap justify-center md:justify-evenly gap-4"
+            className="flex w-full flex-col items-center gap-y-8 md:flex-row md:flex-wrap md:items-start md:justify-around md:gap-4 !z-8"
             variants={container}
             initial="hidden"
             whileInView={"show"}
